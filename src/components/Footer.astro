@@ -1,7 +1,7 @@
 ---
 import { Image } from "astro:assets";
 import logoTah from "../assets/logo/Logo-TAH-ENG.webp"
-
+import visa from "../assets/pay/visa.webp"
 ---
 
 <footer class="footer w-full flex justify-center items-center bottom-0">
@@ -83,7 +83,7 @@ import logoTah from "../assets/logo/Logo-TAH-ENG.webp"
 				Payment Options
 			</span>
 			<div class="text-gray-400 flex justify-start items-center gap-[15px] mt-4">
-				<img src="https://img.icons8.com/color/512/visa.png" alt="img-visa" class="w-[53px]" />
+				<Image src={visa} alt="img-visa" loading="lazy" class="w-[53px]" />
 				<svg
 					fill="#405e5b"
 					width="50px"
