@@ -11,11 +11,11 @@ export function getRoomIncludes(locale = 'es') {
 
     {
         image: "/images/iconos/tv.webp",
-        label: "Smart Tv 50°",
+        label: "Smart TV 50°",
     },
     {
         image: "/images/iconos/wifi-free.webp",
-        label: "WIFI Gratis",
+        label: "WiFi Gratis",
     },
     {
         image: "/images/iconos/despertar.webp",

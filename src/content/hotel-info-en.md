@@ -2,19 +2,19 @@
 sections:
   - image: "/images/iconos/loc-hotel.webp"
     alt: "location-icon"
-    text: "Located in the Historic Center of Cusco"
+    text: "Located in the Historic of Cusco"
   
   - image: "/images/iconos/winner.webp"
     alt: "medal-icon"
-    text: "Award-winning colonial mansion"
+    text: "Good rating and Service Excellence"
   
   - image: "/images/iconos/51-rooms.webp"
     alt: "rooms-icon"
-    text: "51 fully equipped rooms"
+    text: "51 equipped rooms"
   
   - image: "/images/iconos/ccard.webp"
     alt: "card-icon"
-    text: "Multiple payment options"
+    text: "Payment options"
   
   - image: "/images/iconos/check-in.webp"
     alt: "check-in-icon"

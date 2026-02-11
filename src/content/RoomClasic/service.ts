@@ -1,4 +1,3 @@
-// src/content/RoomClasic/service.ts
 
 export interface Room {
   title: string;
