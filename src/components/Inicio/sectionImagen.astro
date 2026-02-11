@@ -22,20 +22,17 @@ const t = translations[currentLocale as keyof typeof translations];
     <Image class="w-[18em]" loading="lazy" src={barVert} alt="bar-vert" />
   </div>
   
-  <div class="container-seccion-imagenes">
+  <div class="container-seccion-imagenes max-sm:text-center">
     <div class="p-[13px] bg-white shadow-black shadow-2xl">
       <Image class="w-[30em]" loading="lazy" src={repcionTah} alt="repcion-tah" />
     </div>
-    <span class="span-imagen">{t.hotelLabel}</span>
+    <span class="span-text relative top-[30px] max-sm:top-[35px] text-[#ddac1d] text-[64px] max-sm:text-center   max-sm:text-[50px]">{t.hotelLabel}</span>
   </div>
 </div>
 
 <style>
-  .span-imagen {
-    color: #ddac1d;
-    font-size: 64px;
-    position: relative;
-    top: 30px;
+  .span-text {
+  
     font-family: var(--font-family-tercer);
     font-weight: lighter;
     font-style: normal;
