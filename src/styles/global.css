@@ -29,6 +29,9 @@ html{
     font-family: var(--font-family-secondary);
     margin-bottom: 10px;
 }
+.poppins{
+    font-family: var(--font-family-poppins);
+}
 
 .container {
     width: 100%;

@@ -19,15 +19,15 @@ const sections = frontmatter.sections as Section[];
 <div class="w-[85%] restaurant-info">
   {
     sections.map((section) => (
-      <div class="info-item flex max-md:flex-wrap items-center justify-center gap-[10px]">
-        <div class="w-[50%] max-md:w-[90%] flex justify-center items-center">
+      <div class="info-item flex max-md:flex-wrap items-center justify-center gap-[50px]">
+        <div class="w-[50%] xl:w-[590px] max-md:w-[90%] flex justify-center items-center">
           <div class="texto p-[17px] w-[100%]">
-            <p class="text-letra text-start text-gray-500 text-[15.6px]">
+            <p class=" text-letra text-start text-gray-500 text-[15.6px]">
               {section.content}
             </p>
           </div>
         </div>
-        <div class="w-[50%] flex justify-center items-center">
+        <div class="xl:w-[490px] flex justify-center items-center">
           <img
             src={section.image}
             alt={section.alt}
@@ -41,7 +41,7 @@ const sections = frontmatter.sections as Section[];
 
 <style>
   .info-item {
-    margin-bottom: 28px;
+    margin-bottom: 45px;
   }
   .text-letra {
     font-family: var(--font-family-poppins);

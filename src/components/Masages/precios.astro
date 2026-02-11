@@ -25,13 +25,13 @@ const translations = {
 
 const t = translations[currentLocale as keyof typeof translations];
 ---
-<section class="flex justify-center pt-[20px]">
+<section class="flex justify-center pt-[60px]">
   <ul class="flex flex-col gap-[20px] text-[20px] text-gray-700 w-[500px] p-[40px]">
     {t.services.map((service) => (
       <li class="flex items-center justify-between">
-        <span>{service.name}</span>
+        <span class="poppins text-bold text-[#4E5250]">{service.name}</span>
 
-        <span class="flex-1 mx-3 relative top-[3px] border-dashed border-[#912424] border-t-2 h-[5px]"></span>
+        <span class="flex-1 mx-3 relative top-[3px] border-dashed border-[#912424] border-t-[0.5px] h-[1px]"></span>
 
         <span>${service.price}</span>
       </li>
