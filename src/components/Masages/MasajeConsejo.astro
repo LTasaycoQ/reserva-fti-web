@@ -1,24 +1,54 @@
 ---
+const currentLocale = Astro.currentLocale || 'es';
+
+const translations = {
+  es: {
+    title: "MANOS CURATIVAS",
+    content: [
+      "¡Tu cuerpo se merece un capricho!",
+      "Aprovecha nuestro servicio de masajes en el hotel.",
+      "",
+      "El masaje, como complemento de la medicina, se practica desde hace aproximadamente entre 4000 y 5000 años.",
+      "",
+      "La gran altitud de Cusco te exigirá más energía para respirar, caminar y disfrutar de las visitas turísticas.",
+      "Después de todos los beneficios de este masaje altamente energizante, tus músculos recuperarán toda su energía y equilibrio, y te sentirás como nuevo."
+    ]
+  },
+  en: {
+    title: "HEALING HANDS",
+    content: [
+      "Your body deserves a treat!",
+      "Take advantage of our in-hotel massage service.",
+      "",
+      "Massage, as a complement to medicine, has been practiced for approximately 4,000 to 5,000 years.",
+      "",
+      "The high altitude of Cusco will require more energy to breathe, walk and enjoy sightseeing.",
+      "After all the benefits of this highly energizing massage, your muscles will regain all their energy and balance, and you will feel like new."
+    ]
+  }
+};
+
+const t = translations[currentLocale as keyof typeof translations];
 ---
 
 <section class="w-full flex flex-col justify-center items-center relative top-[60px]">
-    <div class="flex flex-col justify-center items-center">
-    <h1 class="text-[35px] text-center font-black text-gray-700">MANOS CURATIVAS</h1>
-    <span class="w-[50%] bg-[#C28E26] h-[2px] "></span>
-</div>
-    <p class="text-spacio text-center p-[20px] text-gray-600 mt-6 text-[17.4px]">
-        ¡Tu cuerpo se merece un capricho! <br>  Aprovecha nuestro servicio de masajes
-        en el hotel. <br><br> El masaje, como complemento de la medicina, se practica
-        desde hace aproximadamente entre 4000 y 5000 años.  <br> <br> La gran altitud de
-        Cusco te exigirá más energía para respirar, caminar y disfrutar de las
-        visitas turísticas. <br> Después de todos los beneficios de este masaje
-        altamente energizante, tus músculos recuperarán toda su energía y
-        equilibrio, y te sentirás <br> como nuevo.
-    </p>
+  <div class="flex flex-col justify-center items-center">
+    <h1 class="text-[35px] text-center font-black text-gray-700">{t.title}</h1>
+    <span class="w-[50%] bg-[#C28E26] h-[2px]"></span>
+  </div>
+  
+  <p class="text-spacio text-center p-[20px] text-gray-600 mt-6 text-[17.4px]">
+    {t.content.map((line, index) => (
+      <>
+        {line}
+        {index < t.content.length - 1 && <br />}
+      </>
+    ))}
+  </p>
 </section>
 
 <style>
-    .text-spacio{
-        margin-top: 30px;
-    }
+  .text-spacio {
+    margin-top: 30px;
+  }
 </style>

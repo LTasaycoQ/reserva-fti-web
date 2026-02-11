@@ -1,12 +1,24 @@
 ---
 import CardRooms from "./CardRooms.astro";
+
+const currentLocale = Astro.currentLocale || 'es';
+
+const translations = {
+  es: {
+    title: "NUESTRAS HABITACIONES Y SUITES",
+    subtitle: "Selecciona tu alojamiento. Nosotros nos encargamos del resto."
+  },
+  en: {
+    title: "OUR ROOMS AND SUITES",
+    subtitle: "Select your accommodation. We take care of the rest."
+  }
+};
+
+const t = translations[currentLocale as keyof typeof translations];
 ---
 
 <section class="w-full flex flex-col justify-center items-center">
-  <h2 class="title text-center text-4xl  pt-[2em]">NUESTRAS HABITACIONES Y SUITES</h2>
-  <h3 class="text-center text-[21px] text-gray-700">Selecciona tu alojamiento. Nosotros nos encargamos del resto.</h3>
-
+  <h2 class="title text-center text-4xl pt-[2em]">{t.title}</h2>
+  <h3 class="text-center text-[21px] text-gray-700">{t.subtitle}</h3>
   <CardRooms />
 </section>
-
-

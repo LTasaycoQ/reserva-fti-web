@@ -1,123 +1,173 @@
 ---
 import SVG_SPAN from "../../utils/svg-spa.astro";
 import { Image } from "astro:assets";
-import spa from "../../assets/images/spa1.webp"
+import spa from "../../assets/images/spa1.webp";
+
+const currentLocale = Astro.currentLocale || 'es';
+
+const translations = {
+  es: {
+    mainTitle: "Masaje de una hora",
+    massages: [
+      {
+        title: "Masaje sueco<br />restaurador",
+        description: "Disfrute del masaje más conocido, que ayuda a aumentar el flujo de oxígeno en la sangre y mejora la circulación."
+      },
+      {
+        title: "Masaje relajante y aromaterapia",
+        description: "Elija una mezcla que atraiga al cuerpo, al espíritu, a la mente y a una emergente sensación de calma"
+      },
+      {
+        title: "Reflexología",
+        description: "Una técnica de masaje exclusiva mejorará la circulación sanguínea, aliviará el dolor y la rigidez, y favorecerá la relajación después de un largo día de turismo o senderismo."
+      },
+      {
+        title: "Shiatsu Del japonés «shi», dedo, y «atsu», presión.",
+        description: "Disfrute del masaje más conocido, que ayuda a aumentar el flujo de oxígeno en la sangre y mejora la circulación."
+      },
+      {
+        title: "Masaje terapéutico y deportivo",
+        description: "Disfrute del masaje más conocido, que ayuda a aumentar el flujo de oxígeno en la sangre y mejora la circulación."
+      }
+    ]
+  },
+  en: {
+    mainTitle: "One Hour Massage",
+    massages: [
+      {
+        title: "Restorative<br />Swedish Massage",
+        description: "Enjoy the most well-known massage, which helps increase oxygen flow in the blood and improves circulation."
+      },
+      {
+        title: "Relaxing Massage and Aromatherapy",
+        description: "Choose a blend that appeals to the body, spirit, mind and an emerging sense of calm"
+      },
+      {
+        title: "Reflexology",
+        description: "A unique massage technique will improve blood circulation, relieve pain and stiffness, and promote relaxation after a long day of sightseeing or hiking."
+      },
+      {
+        title: "Shiatsu From Japanese 'shi' (finger) and 'atsu' (pressure)",
+        description: "Enjoy the most well-known massage, which helps increase oxygen flow in the blood and improves circulation."
+      },
+      {
+        title: "Therapeutic and Sports Massage",
+        description: "Enjoy the most well-known massage, which helps increase oxygen flow in the blood and improves circulation."
+      }
+    ]
+  }
+};
+
+const t = translations[currentLocale as keyof typeof translations];
 ---
 
-
 <section class="container_masages flex flex-col justify-center items-center mx-auto my-20 px-5 w-full">
-    <h2 class="title_pasos text-center text-4xl font-semibold text-gray-700 pt-[20px] pb-[50px]">
-        Masaje de una hora
-    </h2>
+  <h2 class="title_pasos text-center text-4xl font-semibold text-gray-700 pt-[20px] pb-[50px]">
+    {t.mainTitle}
+  </h2>
+  
+  <div class="w-[65%] max-lg:w-full">
+    <div class="flex justify-center items-center max-md:flex-col gap-[35px]">
+      <!-- Columna 1 -->
+      <div class="flex flex-col w-[30%] max-md:w-[80%] gap-[80px]">
+        <!-- Masaje Sueco -->
+        <div class="flex flex-col items-center justify-center gap-[20px]">
+          <SVG_SPAN />
+          <div class="text-center flex flex-col gap-[20px]">
+            <h3 class="title_pasos text-[23px] font-bold text-gray-700 hover:text-[#886B19]" set:html={t.massages[0].title}></h3>
+            <p class="texto__parrafo text-gray-900 text-[18px]">
+              {t.massages[0].description}
+            </p>
+          </div>
+        </div>
+        
+        <!-- Masaje Relajante -->
+        <div class="flex flex-col items-center justify-center gap-[20px]">
+          <SVG_SPAN />
+          <div class="text-center flex flex-col gap-[20px]">
+            <h3 class="title_pasos text-[23px] font-bold text-gray-700 hover:text-[#886B19]">
+              {t.massages[1].title}
+            </h3>
+            <p class="texto__parrafo text-gray-900 text-[18px]">
+              {t.massages[1].description}
+            </p>
+          </div>
+        </div>
+      </div>
 
-    <div class="w-[65%] max-lg:w-full">
-    <div class="flex justify-center  items-center max-md:flex-col gap-[35px] ">
-        <div class="flex flex-col  w-[30%] max-md:w-[80%] gap-[80px]">
-            <div class="flex flex-col items-center justify-center gap-[20px]">
-                <SVG_SPAN />
-                <div class="text-center flex flex-col gap-[20px]">
-                    <h3 class="title_pasos text-[23px] font-bold text-gray-700  hover:text-[#886B19] ">
-                        Masaje sueco <br /> restaurador
-                    </h3>
-                    <p class="texto__parrafo text-gray-900 text-[18px]">
-                        Disfrute del masaje más conocido, que ayuda a aumentar
-                        el flujo de oxígeno en la sangre y mejora la
-                        circulación.
-                    </p>
-                </div>
-            </div>
-            <div class="flex flex-col items-center justify-center gap-[20px]">
-                <SVG_SPAN />
-                <div class="text-center flex flex-col gap-[20px]">
-                    <h3 class="title_pasos text-[23px] font-bold text-gray-700 hover:text-[#886B19] ">
-                        Masaje relajante y aromaterapia
-                    </h3>
-                    <p class="texto__parrafo text-gray-900 text-[18px]">
-                        Elija una mezcla que atraiga al cuerpo, al espíritu, a
-                        la mente y a una emergente sensación de calma
-                    </p>
-                </div>
-            </div>
+      <!-- Columna 2 (Centro con imagen) -->
+      <div class="flex flex-col w-[30%] max-md:w-[80%] gap-[80px]">
+        <div class="flex flex-col items-center justify-center gap-[20px]">
+          <Image class="relative top-[50px] w-[270px]" src={spa} alt="logo-spa" />
         </div>
-        <div class="flex  flex wrap  flex-col w-[30%] max-md:w-[80%] gap-[80px]">
-            <div class="flex flex-col items-center justify-center gap-[20px]">
-               
-               <Image class="relative top-[50px] w-[270px]" src={spa} alt="logo-spa" />
-              
-            </div>
-            <div class="flex flex-col items-center justify-center gap-[20px]">
-                <SVG_SPAN />
-                <div class="text-center flex flex-col gap-[20px]">
-                    <h3 class="title_pasos text-[23px] font-bold text-gray-700 hover:text-[#886B19]">
-                        Reflexología
-                    </h3>
-                    <p class="texto__parrafo text-gray-900 text-[18px]">
-                        Una técnica de masaje exclusiva mejorará la circulación
-                        sanguínea, aliviará el dolor y la rigidez, y favorecerá
-                        la relajación después de un largo día de turismo o
-                        senderismo.
-                    </p>
-                </div>
-            </div>
+        
+        <!-- Reflexología -->
+        <div class="flex flex-col items-center justify-center gap-[20px]">
+          <SVG_SPAN />
+          <div class="text-center flex flex-col gap-[20px]">
+            <h3 class="title_pasos text-[23px] font-bold text-gray-700 hover:text-[#886B19]">
+              {t.massages[2].title}
+            </h3>
+            <p class="texto__parrafo text-gray-900 text-[18px]">
+              {t.massages[2].description}
+            </p>
+          </div>
         </div>
+      </div>
 
-        <div class="flex flex-col flex wrap w-[30%] max-md:w-[80%] gap-[80px]">
-            <div class="flex flex-col items-center justify-center gap-[20px]">
-                <SVG_SPAN />
-                <div class="text-center flex flex-col gap-[20px]">
-                    <h3 class="title_pasos text-[23px] font-bold text-gray-700 hover:text-[#886B19]">
-                        Shiatsu Del japonés «shi», dedo, y «atsu», presión.
-                    </h3>
-                    <p class="texto__parrafo text-gray-900 text-[18px]">
-                        Disfrute del masaje más conocido, que ayuda a aumentar
-                        el flujo de oxígeno en la sangre y mejora la
-                        circulación.
-                    </p>
-                </div>
-            </div>
-            <div class="flex flex-col items-center justify-center gap-[20px]">
-                <SVG_SPAN />
-                <div class="text-center flex flex-col gap-[20px]">
-                    <h3 class="title_pasos text-[23px] font-bold text-gray-700 hover:text-[#886B19]">
-                        Masaje terapéutico y deportivo
-                    </h3>
-                    <p class="texto__parrafo text-gray-900 text-[18px]">
-                        Disfrute del masaje más conocido, que ayuda a aumentar
-                        el flujo de oxígeno en la sangre y mejora la
-                        circulación.
-                    </p>
-                </div>
-            </div>
+      <!-- Columna 3 -->
+      <div class="flex flex-col w-[30%] max-md:w-[80%] gap-[80px]">
+        <!-- Shiatsu -->
+        <div class="flex flex-col items-center justify-center gap-[20px]">
+          <SVG_SPAN />
+          <div class="text-center flex flex-col gap-[20px]">
+            <h3 class="title_pasos text-[23px] font-bold text-gray-700 hover:text-[#886B19]">
+              {t.massages[3].title}
+            </h3>
+            <p class="texto__parrafo text-gray-900 text-[18px]">
+              {t.massages[3].description}
+            </p>
+          </div>
         </div>
-    </div></div>
+        
+        <!-- Masaje Terapéutico -->
+        <div class="flex flex-col items-center justify-center gap-[20px]">
+          <SVG_SPAN />
+          <div class="text-center flex flex-col gap-[20px]">
+            <h3 class="title_pasos text-[23px] font-bold text-gray-700 hover:text-[#886B19]">
+              {t.massages[4].title}
+            </h3>
+            <p class="texto__parrafo text-gray-900 text-[18px]">
+              {t.massages[4].description}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 
 <style>
-    .texto__parrafo {
-        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-        font-weight: 300;
+  .texto__parrafo {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 300;
+  }
+  
+  .title_pasos {
+    font-family: var(--font-family-poppins);
+  }
+  
+  .container_masages {
+    margin-top: 100px;
+    animation: animations 2s;
+  }
+  
+  @keyframes animations {
+    0% {
+      transform: translateY(80px);
     }
-
-    .title_pasos{
-        font-family: var(--font-family-poppins);
-
+    100% {
+      transform: translateY(0);
     }
-    .container_masages {
-        margin-top: 100px;
-        animation: animations 2s ;
-        transform: matrix3d();
-    }
-
-    @keyframes animations {
-        0% {
-            transform: translateY(80px);
-        }
-       
-        100% {
-            transform: translateY(0);
-        }
-        
-    }
-
-    
+  }
 </style>

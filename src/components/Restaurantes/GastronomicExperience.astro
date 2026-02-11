@@ -1,20 +1,30 @@
 ---
 import ExperienceDetail from "./ExperienceDetail.astro"
+
+const currentLocale = Astro.currentLocale || 'es';
+
+const translations = {
+  es: {
+    title: "Nos enfocamos en hacer que su experiencia gastronómica sea extraordinaria!"
+  },
+  en: {
+    title: "We focus on making your dining experience extraordinary!"
+  }
+};
+
+const t = translations[currentLocale as keyof typeof translations];
 ---
 
 <section class="flex flex-col justify-center items-center text-center my-[80px] mx-auto">
-    <h2 class="title title--feature">Nos enfocamos en hacer que su experiencia gastronomica sea extraordinaria!</h2>
-    <ExperienceDetail />
+  <h2 class="title title--feature">{t.title}</h2>
+  <ExperienceDetail />
 </section>
 
 <style>
-  
-    .title--feature{
-        font-size: 26px;
-        margin-bottom: 70px;
-        font-weight: 300;
-        color:#CEAD2F;
-    }
-
-
+  .title--feature {
+    font-size: 26px;
+    margin-bottom: 70px;
+    font-weight: 300;
+    color: #CEAD2F;
+  }
 </style>

@@ -1,0 +1,61 @@
+---
+const currentPath = Astro.url.pathname;
+const currentLocale = Astro.currentLocale || 'es';
+
+const languages = [
+  { code: 'es', name: 'ES' },
+  { code: 'en', name: 'EN' }
+];
+
+const getLocalizedPath = (locale: string) => {
+  if (locale === 'es') {
+    return currentPath.replace(/^\/en/, '') || '/';
+  }
+  const cleanPath = currentPath.replace(/^\/en/, '');
+  return `/en${cleanPath}`;
+};
+---
+
+<div class="language-selector">
+  {languages.map((lang) => (
+    <a 
+      href={getLocalizedPath(lang.code)}
+      class={`lang-btn ${currentLocale === lang.code ? 'active' : ''}`}
+    >
+      {lang.name}
+    </a>
+  ))}
+</div>
+
+<style>
+  .language-selector {
+    display: flex;
+    gap: 4px;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 4px;
+    border-radius: 8px;
+    backdrop-filter: blur(10px);
+  }
+
+  .lang-btn {
+    padding: 6px 14px;
+    border-radius: 6px;
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.85rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    letter-spacing: 0.5px;
+  }
+
+  .lang-btn:hover {
+    color: white;
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  .lang-btn.active {
+    background: white;
+    color: #470D0D;
+    font-weight: 600;
+  }
+</style>
