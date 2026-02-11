@@ -7,11 +7,13 @@ import MasajesPasos from "../../components/Masages/masajepasos.astro";
 import MasajePrecio from "../../components/Masages/precios.astro";
 import OpenMassages from "../../components/Masages/OpenMassages.astro";
 
+const lang = "en"
+
 const title = "Massage";
 const description = "Recover your energy in Cusco with our 'Healing Hands'. Swedish, shiatsu and reflexology massages available every day from 8am to 10pm.";
 ---
 
-<BaseLayout title={title} description={description}>
+<BaseLayout lang={lang}  title={title} description={description}>
   <Fondos imgFondo={`url(${fondoImagen.src})`} />
   <main>
     <MasajeConsejo />
