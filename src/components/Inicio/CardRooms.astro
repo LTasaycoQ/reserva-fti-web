@@ -10,16 +10,13 @@ interface Section {
 
 const currentLocale = Astro.currentLocale || 'es';
 
-// Cargar ambos archivos
 const roomsEs = await Astro.glob('../../content/rooms-info.md');
 const roomsEn = await Astro.glob('../../content/rooms-info-en.md');
 
-// Seleccionar según idioma
 const roomsData = currentLocale === 'en' ? roomsEn[0] : roomsEs[0];
 const { frontmatter } = roomsData;
 const sections = frontmatter.sections as Section[];
 
-// Traducciones para labels
 const translations = {
   es: {
     people: "Personas",

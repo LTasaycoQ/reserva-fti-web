@@ -23,6 +23,7 @@ const getTargetLink = () => {
 
 <a href={getTargetLink()} class="lang-toggle" title={`Switch to ${targetLabel}`}>
   <Image 
+    loading="eager"
     class="flag" 
     src={targetFlag} 
     alt={`Flag for ${targetLabel}`} 

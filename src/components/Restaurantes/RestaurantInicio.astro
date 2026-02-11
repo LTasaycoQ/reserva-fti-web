@@ -22,10 +22,10 @@ const t = translations[currentLocale as keyof typeof translations];
 <section class="flex flex-col justify-center items-center text-center mx-auto">
   <div class="flex flex-wrap justify-center items-center gap-[80px] p-[40px]">
     <div class="size-auto">
-      <Image src={InterraIntro} alt="interra intro"/>
+      <Image loading="lazy" src={InterraIntro} alt="interra intro"/>
     </div>
     <div class="w-[31%] max-lg:w-[40%] max-md:w-[80%] flex flex-col items-center justify-center gap-[20px] p-[20px]">
-      <Image src={LogoInterra} alt="Logo Interra" />
+      <Image loading="lazy" src={LogoInterra} alt="Logo Interra" />
       <p class="resturant__parrafo text-gray-600">
         {t.description}
       </p>

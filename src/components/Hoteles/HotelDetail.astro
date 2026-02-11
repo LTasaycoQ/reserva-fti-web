@@ -20,7 +20,7 @@ const sections = frontmatter.sections as Section[];
   <div class="w-[90%] grid grid-cols-3 max-md:grid-cols-2 max-sm:grid-cols-1 gap-[40px]">
     {sections.map((section) => (
       <div class="gap-[10px] flex flex-col items-center justify-center">
-        <img src={section.image} alt={section.alt} />
+        <img loading="lazy" src={section.image} alt={section.alt} />
         <p class="text-gray-600">{section.text}</p>
       </div>
     ))}

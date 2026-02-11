@@ -19,12 +19,12 @@ const t = translations[currentLocale as keyof typeof translations];
 
 <div class="w-full flex justify-center max-md:flex-col gap-[35px] p-[2em] items-center">
   <div class="p-[13px] bg-white shadow-black shadow-2xl">
-    <Image class="w-[18em]" src={barVert} alt="bar-vert" />
+    <Image class="w-[18em]" loading="lazy" src={barVert} alt="bar-vert" />
   </div>
   
   <div class="container-seccion-imagenes">
     <div class="p-[13px] bg-white shadow-black shadow-2xl">
-      <Image class="w-[30em]" src={repcionTah} alt="repcion-tah" />
+      <Image class="w-[30em]" loading="lazy" src={repcionTah} alt="repcion-tah" />
     </div>
     <span class="span-imagen">{t.hotelLabel}</span>
   </div>

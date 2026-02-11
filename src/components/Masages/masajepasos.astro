@@ -68,9 +68,7 @@ const t = translations[currentLocale as keyof typeof translations];
   
   <div class="w-[65%] max-lg:w-full">
     <div class="flex justify-center items-center max-md:flex-col gap-[35px]">
-      <!-- Columna 1 -->
       <div class="flex flex-col w-[30%] max-md:w-[80%] gap-[80px]">
-        <!-- Masaje Sueco -->
         <div class="flex flex-col items-center justify-center gap-[20px]">
           <SVG_SPAN />
           <div class="text-center flex flex-col gap-[20px]">
@@ -81,7 +79,6 @@ const t = translations[currentLocale as keyof typeof translations];
           </div>
         </div>
         
-        <!-- Masaje Relajante -->
         <div class="flex flex-col items-center justify-center gap-[20px]">
           <SVG_SPAN />
           <div class="text-center flex flex-col gap-[20px]">
@@ -95,13 +92,11 @@ const t = translations[currentLocale as keyof typeof translations];
         </div>
       </div>
 
-      <!-- Columna 2 (Centro con imagen) -->
       <div class="flex flex-col w-[30%] max-md:w-[80%] gap-[80px]">
         <div class="flex flex-col items-center justify-center gap-[20px]">
-          <Image class="relative top-[50px] w-[270px]" src={spa} alt="logo-spa" />
+          <Image loading="lazy" class="relative top-[50px] w-[270px]" src={spa} alt="logo-spa" />
         </div>
         
-        <!-- Reflexología -->
         <div class="flex flex-col items-center justify-center gap-[20px]">
           <SVG_SPAN />
           <div class="text-center flex flex-col gap-[20px]">
@@ -115,9 +110,7 @@ const t = translations[currentLocale as keyof typeof translations];
         </div>
       </div>
 
-      <!-- Columna 3 -->
       <div class="flex flex-col w-[30%] max-md:w-[80%] gap-[80px]">
-        <!-- Shiatsu -->
         <div class="flex flex-col items-center justify-center gap-[20px]">
           <SVG_SPAN />
           <div class="text-center flex flex-col gap-[20px]">
@@ -130,7 +123,6 @@ const t = translations[currentLocale as keyof typeof translations];
           </div>
         </div>
         
-        <!-- Masaje Terapéutico -->
         <div class="flex flex-col items-center justify-center gap-[20px]">
           <SVG_SPAN />
           <div class="text-center flex flex-col gap-[20px]">

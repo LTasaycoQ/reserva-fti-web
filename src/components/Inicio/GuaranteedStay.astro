@@ -7,16 +7,13 @@ interface Section {
 
 const currentLocale = Astro.currentLocale || 'es';
 
-// Cargar ambos archivos
 const servicioEs = await Astro.glob("../../content/info-inicio.md");
 const servicioEn = await Astro.glob("../../content/info-inicio-en.md");
 
-// Seleccionar según idioma
 const servicioData = currentLocale === 'en' ? servicioEn[0] : servicioEs[0];
 const { frontmatter } = servicioData;
 const sections = frontmatter.sections as Section[];
 
-// Traducciones de títulos
 const translations = {
   es: {
     title: "LA ESTANCIA PERFECTA, GARANTIZADA",
@@ -43,7 +40,7 @@ const t = translations[currentLocale as keyof typeof translations];
     <div class="w-[70%] max-lg:w-[95%] grid grid-cols-5 max-md:grid-cols-3 max-sm:grid-cols-2 gap-[50px]">
       {sections.map((section) => (
         <div class="flex text-center gap-[18px] flex-col justify-center items-center">
-          <img src={section.image} alt={section.alt} />
+          <img src={section.image} loading="lazy" alt={section.alt} />
           <span class="text-[14px] text-gray-700">
             {section.text}
           </span>
