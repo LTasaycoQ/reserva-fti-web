@@ -36,11 +36,11 @@ const getPath = (path: string) => {
     <div class="menu-container w-[90%] max-sm:w-[90%]">
         <div class="nav__logo">
             <a href={currentLocale === 'es' ? '/' : '/en'} class="logo-link" aria-label="Volver al inicio">
-                <Image class="w-full max-md:w-[130px]" loading="eager" src={logo} alt="Logotipo de Terra Andina Colonial Mansion Hotel Cusco"/>
+                <Image class="w-full max-md:w-[120px]" loading="eager" src={logo} alt="Logotipo de Terra Andina Colonial Mansion Hotel Cusco"/>
             </a>
         </div>
 
-        <div class="max-lg:hidden">
+        <div class="max-lg:hidden relative left-[70px]">
             <ul class="flex gap-[40px] font-semibold text-[16px] text-white items-center">
                 <li><a class="nav__link" href={getPath("/hotel")}>{t.hotel}</a></li>
                 <li><a class="nav__link" href={getPath("/habitaciones")}>{t.rooms}</a></li>
@@ -179,7 +179,6 @@ const getPath = (path: string) => {
         border: none;
     }
 
-    /* Ajuste para selector móvil */
     .mobile-lang {
         display: flex;
         align-items: center;
