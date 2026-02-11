@@ -9,10 +9,10 @@ const currentLocale = Astro.currentLocale || 'es';
 
 const translations = {
   es: {
-    title: "Galeria de Fotos"
+    title: "GALERIA DE FOTOS"
   },
   en: {
-    title: "Photo Gallery"
+    title: "PHOTO GALLERY"
   }
 };
 const t = translations[currentLocale as keyof typeof translations];
@@ -21,9 +21,9 @@ const roomsData = Object.values(roomsImport) as any[];
 const sections: Section[] = roomsData[0]?.frontmatter?.fotos ?? [];
 ---
 <section class="w-full flex flex-col justify-center items-center mx-auto px-4 py-12">
-   <div class="w-[70%] max-md:w-[90%]">
+   <div class="w-[90%]">
         <div>
-            <h1 class="text-[34px] text-gray-600 mb-8 font-semibold">{t.title}</h1>        
+            <h1 class="title text-[34px] text-gray-600 mb-8 font-semibold">{t.title}</h1>        
         </div>
 
         <div class="flex flex-wrap hidden justify-start gap-4 mb-12">
