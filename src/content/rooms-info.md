@@ -12,7 +12,7 @@ sections:
       text: "Clásica Twin"
       people: "2"
       area: "16 m2"
-      bed: "3 camas individuales"
+      bed: "2 camas individuales"
 
     - image: "/images/rooms/premium-matrimonial-1.webp"
       alt: "icon-ubicacion"
