@@ -7,40 +7,43 @@ fotos:
     - id: 2
       image: "https://res.cloudinary.com/dlgeap8h0/image/upload/v1770926180/recepcion_2_kdgftj.webp"
       title: "Bar-2"
-      
+     
     - id: 3
-      image: "https://res.cloudinary.com/dlgeap8h0/image/upload/v1770926194/Suite-bano1_ko5xz9.webp"
+      image: "https://res.cloudinary.com/dlgeap8h0/image/upload/Suite_Twin_315_a_ghjjui.webp"
       title: "Clasica-bano"
 
     - id: 4
-      image: "https://res.cloudinary.com/dlgeap8h0/image/upload/Suite-twin-bano2_kgj2ag.webp"
+      image: "https://res.cloudinary.com/dlgeap8h0/image/upload/Salon-masajes_1_yaide0.webp"
       title: "Clasica-mat"
 
-    - id: 5
-      image: "https://res.cloudinary.com/dlgeap8h0/image/upload/Suite-Twin-bano1_u6zy3i.webp"
-      title: "Clasica-twin"
-    
 
+    - id: 5
+      image: "https://res.cloudinary.com/dlgeap8h0/image/upload/Suite_1_tlzfen.webp"
+      title: "Premium-bano"
+
+    
     - id: 6
-      image: "https://res.cloudinary.com/dlgeap8h0/image/upload/v1770926194/Suite-Twin-bano1_u6zy3i.webp"
-      title: "Junior-Suite-bano1"
+      image: "https://res.cloudinary.com/dlgeap8h0/image/upload/Rest_4_yqwmg7.webp"
+      title: "Junior-Suite1"
+      
+
       
     - id: 7
       image: "https://res.cloudinary.com/dlgeap8h0/image/upload/Suite1_ckpaov.webp"
       title: "Junior-Suite1"
       
     - id: 8
-      image: "https://res.cloudinary.com/dlgeap8h0/image/upload/Suite_Twin_315_a_ghjjui.webp"
+      image: "https://res.cloudinary.com/dlgeap8h0/image/upload/v1770926194/Suite-bano1_ko5xz9.webp"
       title: "Junior-Suite2"
 
 
     - id: 9
-      image: "https://res.cloudinary.com/dlgeap8h0/image/upload/Salon-masajes_1_yaide0.webp"
+      image: "https://res.cloudinary.com/dlgeap8h0/image/upload/Suite-twin-bano2_kgj2ag.webp"
       title: "Lobby"
       
     - id: 10
-      image: "https://res.cloudinary.com/dlgeap8h0/image/upload/Suite_1_tlzfen.webp"
-      title: "Premium-bano"
+      image: "https://res.cloudinary.com/dlgeap8h0/image/upload/Suite-Twin-bano1_u6zy3i.webp"
+      title: "Clasica-twin"
 
 
 
@@ -52,8 +55,8 @@ fotos:
       title: "Junior-Suite-bano1"
       
     - id: 12
-      image: "https://res.cloudinary.com/dlgeap8h0/image/upload/Rest_4_yqwmg7.webp"
-      title: "Junior-Suite1"
+      image: "https://res.cloudinary.com/dlgeap8h0/image/upload/v1770926194/Suite-Twin-bano1_u6zy3i.webp"
+      title: "Junior-Suite-bano1"
       
     - id: 13
       image: "https://res.cloudinary.com/dlgeap8h0/image/upload/Rest_3_ccdipv.webp"
