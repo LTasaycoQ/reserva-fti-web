@@ -6,7 +6,7 @@ import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://fti-weeb.netlify.app', 
+  site: 'https://terraandinahotel.com', 
 
   i18n: {
     defaultLocale: "es",
