@@ -86,7 +86,7 @@ const t = translations[currentLocale as keyof typeof translations];
     </form>
   </div>
   <div class="container-info">
-    <ul class="lista-contacto">
+    <ul class="lista-contacto ">
       <li>
         <i class="bi bi-geo-alt-fill"></i>Calle Union 184, Cusco, Perú
       </li>
@@ -96,10 +96,10 @@ const t = translations[currentLocale as keyof typeof translations];
       <li>
         <i class="bi bi-telephone-fill"></i>{t.contact.recepcion} +51 997 564 558
       </li>
-      <li class="contacto-titulo">{t.contact.titulo}</li>
-      <li><i class="bi bi-telephone-fill"></i>(51 - 84) 887-72950</li>
-      <li><i class="bi bi-telephone-fill"></i>(51 - 84) 887-72950</li>
-      <li><i class="bi bi-envelope"></i>reservas@TerraAndinaHotel.com</li>
+      <li class=" contacto-titulo">{t.contact.titulo}</li>
+      <li ><i class="bi bi-telephone-fill"></i>(51 - 84) 887-72950</li>
+      <li ><i class="bi bi-telephone-fill"></i>(51 - 84) 887-72950</li>
+      <li ><i class="bi bi-envelope"></i>reservas@TerraAndinaHotel.com</li>
     </ul>
     <div class="mapouter">
       <div class="gmap_canvas">
@@ -115,6 +115,13 @@ const t = translations[currentLocale as keyof typeof translations];
     </div>
   </div>
 </section>
+
+<style>
+  .lista-contacto li{
+      border-bottom: 1px solid rgb(233, 233, 233);
+      font-family: var(--font-family-poppins);
+  }
+</style>
 
 <script is:inline src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
