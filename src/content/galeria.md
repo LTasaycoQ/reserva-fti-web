@@ -1,45 +1,45 @@
 ---
 fotos:
     - id: 1
-      image: "/images/Galeria/Bar1.webp"
+      image: "https://res.cloudinary.com/dlgeap8h0/image/upload/Bar1_pnruco.webp"
       title: "Hotel - Terra Andina"
 
     - id: 2
-      image: "/images/Galeria/Bar-2.webp"
+      image: "https://res.cloudinary.com/dlgeap8h0/image/upload/v1770926180/recepcion_2_kdgftj.webp"
       title: "Bar-2"
       
     - id: 3
-      image: "/images/Galeria/Clasica-bano.webp"
+      image: "https://res.cloudinary.com/dlgeap8h0/image/upload/v1770926194/Suite-bano1_ko5xz9.webp"
       title: "Clasica-bano"
 
     - id: 4
-      image: "/images/Galeria/Clasica-mat.webp"
+      image: "https://res.cloudinary.com/dlgeap8h0/image/upload/Suite-twin-bano2_kgj2ag.webp"
       title: "Clasica-mat"
 
     - id: 5
-      image: "/images/Galeria/Clasica-twin.webp"
+      image: "https://res.cloudinary.com/dlgeap8h0/image/upload/Suite-Twin-bano1_u6zy3i.webp"
       title: "Clasica-twin"
     
 
     - id: 6
-      image: "/images/Galeria/Junior-Suite-bano1.webp"
+      image: "https://res.cloudinary.com/dlgeap8h0/image/upload/v1770926194/Suite-Twin-bano1_u6zy3i.webp"
       title: "Junior-Suite-bano1"
       
     - id: 7
-      image: "/images/Galeria/Junior-Suite1.webp"
+      image: "https://res.cloudinary.com/dlgeap8h0/image/upload/Suite1_ckpaov.webp"
       title: "Junior-Suite1"
       
     - id: 8
-      image: "/images/Galeria/Junior-Suite2.webp"
+      image: "https://res.cloudinary.com/dlgeap8h0/image/upload/Suite_Twin_315_a_ghjjui.webp"
       title: "Junior-Suite2"
 
 
     - id: 9
-      image: "/images/Galeria/Lobby.webp"
+      image: "https://res.cloudinary.com/dlgeap8h0/image/upload/Salon-masajes_1_yaide0.webp"
       title: "Lobby"
       
     - id: 10
-      image: "/images/Galeria/Premium-bano.webp"
+      image: "https://res.cloudinary.com/dlgeap8h0/image/upload/Suite_1_tlzfen.webp"
       title: "Premium-bano"
 
 
@@ -48,24 +48,24 @@ fotos:
 
       
     - id: 11
-      image: "/images/Galeria/Junior-Suite-bano2.webp"
+      image: "https://res.cloudinary.com/dlgeap8h0/image/upload/Restaurant_whlqjb.webp"
       title: "Junior-Suite-bano1"
       
     - id: 12
-      image: "/images/Galeria/Premium-familiar-1.webp"
+      image: "https://res.cloudinary.com/dlgeap8h0/image/upload/Rest_4_yqwmg7.webp"
       title: "Junior-Suite1"
       
     - id: 13
-      image: "/images/Galeria/Premium-familiar2.webp"
+      image: "https://res.cloudinary.com/dlgeap8h0/image/upload/Rest_3_ccdipv.webp"
       title: "Junior-Suite2"
 
 
     - id: 14
-      image: "/images/Galeria/Premium-familiar-bano1.webp"
+      image: "https://res.cloudinary.com/dlgeap8h0/image/upload/repcion_1_mcnh4a.webp"
       title: "Lobby"
       
     - id: 15
-      image: "/images/Galeria/Premium-matrimonial.webp"
+      image: "https://res.cloudinary.com/dlgeap8h0/image/upload/R6M25577_oiqbx9.webp"
       title: "Premium-bano"
 
 
@@ -73,121 +73,121 @@ fotos:
 
 
     - id: 16
-      image: "/images/Galeria/Premium-Triple.webp"
+      image: "https://res.cloudinary.com/dlgeap8h0/image/upload/Premium-twin_agrkqu.webp"
       title: "Junior-Suite-bano1"
       
     - id: 17
-      image: "/images/Galeria/Premium-triple1.webp"
+      image: "https://res.cloudinary.com/dlgeap8h0/image/upload/R6M25442_qbs8cv.webp"
       title: "Junior-Suite1"
       
     - id: 18
-      image: "/images/Galeria/Premium-familiar2.webp"
+      image: "https://res.cloudinary.com/dlgeap8h0/image/upload/Premium-triple2_z4hydf.webp"
       title: "Junior-Suite2"
 
 
     - id: 19
-      image: "/images/Galeria/Premium-triple2.webp"
+      image: "https://res.cloudinary.com/dlgeap8h0/image/upload/Premium-triple1_sdgt4q.webp"
       title: "Lobby"
       
     - id: 20
-      image: "/images/Galeria/Premium-triple-bano.webp"
+      image: "https://res.cloudinary.com/dlgeap8h0/image/upload/Premium-triple-bano_s4h0ee.webp"
       title: "Premium-bano"
 
 
 
 
     - id: 21
-      image: "/images/Galeria/Premium-twin.webp"
+      image: "https://res.cloudinary.com/dlgeap8h0/image/upload/Premium-Triple_vdsy5v.webp"
       title: "Junior-Suite-bano1"
       
     - id: 22
-      image: "/images/Galeria/R6M25442.webp"
+      image: "https://res.cloudinary.com/dlgeap8h0/image/upload/Premium-matrimonial_rtnim0.webp"
       title: "Junior-Suite1"
       
     - id: 23
-      image: "/images/Galeria/R6M25503.webp"
+      image: "https://res.cloudinary.com/dlgeap8h0/image/upload/Lobby_texahf.webp"
       title: "Junior-Suite2"
 
 
     - id: 24
-      image: "/images/Galeria/R6M25577.webp"
+      image: "https://res.cloudinary.com/dlgeap8h0/image/upload/Premium-familiar-bano2_gccfsr.webp"
       title: "Lobby"
       
     - id: 25
-      image: "/images/Galeria/recepcion 2.webp"
+      image: "https://res.cloudinary.com/dlgeap8h0/image/upload/Premium-familiar2_axktgh.webp"
       title: "Premium-bano"
             
    
 
     - id: 26
-      image: "/images/Galeria/repcion 1.webp"
+      image: "https://res.cloudinary.com/dlgeap8h0/image/upload/Premium-familiar2_axktgh.webp"
       title: "Junior-Suite-bano1"
       
     - id: 27
-      image: "/images/Galeria/Suite-twin-bano2.webp"
+      image: "https://res.cloudinary.com/dlgeap8h0/image/upload/Premium-familiar-1_akdbs3.webp"
       title: "Premium-bano"
       
     - id: 28
-      image: "/images/Galeria/Rest 3.webp"
+      image: "https://res.cloudinary.com/dlgeap8h0/image/upload/Junior-Suite-bano2_oqw351.webp"
       title: "Junior-Suite2"
 
 
     - id: 29
-      image: "/images/Galeria/Rest 4.webp"
+      image: "https://res.cloudinary.com/dlgeap8h0/image/upload/fachada_vlng7e.webp"
       title: "Lobby"
       
     - id: 30
-      image: "/images/Galeria/Restaurant.webp"
+      image: "https://res.cloudinary.com/dlgeap8h0/image/upload/Clasica-twin_bh4qyh.webp"
       title: "Premium-bano"
 
 
 
     - id: 31
-      image: "/images/Galeria/Salon-masajes 1.webp"
+      image: "https://res.cloudinary.com/dlgeap8h0/image/upload/Junior-Suite1_ihwpfc.webp"
       title: "Junior-Suite-bano1"
       
     - id: 32
-      image: "/images/Galeria/Suite 1.webp"
+      image: "https://res.cloudinary.com/dlgeap8h0/image/upload/Clasica-bano_mpfoco.webp"
       title: "Junior-Suite1"
       
     - id: 33
-      image: "/images/Galeria/Suite Twin 315 a.webp"
+      image: "https://res.cloudinary.com/dlgeap8h0/image/upload/Bar-2_a2jfjd.webp"
       title: "Junior-Suite2"
 
 
     - id: 34
-      image: "/images/Galeria/Suite Twin 315.webp"
+      image: "https://res.cloudinary.com/dlgeap8h0/image/upload/Clasica-mat_nfwsbk.webp"
       title: "Lobby"
       
     - id: 35
-      image: "/images/Galeria/Suite1.webp"
+      image: "https://res.cloudinary.com/dlgeap8h0/image/upload/Clasica-bano_mpfoco.webp"
       title: "Premium-bano"
             
 
 
 
     - id: 36
-      image: "/images/Galeria/Suite2.webp"
+      image: "https://res.cloudinary.com/dlgeap8h0/image/upload/R6M25577_oiqbx9.webp"
       title: "Junior-Suite-bano1"
       
     - id: 37
-      image: "/images/Galeria/Suite-bano1.webp"
+      image: "https://res.cloudinary.com/dlgeap8h0/image/upload/R6M25503_jkiers.webp"
       title: "Junior-Suite1"
       
     - id: 38
-      image: "/images/Galeria/Suite-bano2.webp"
+      image: "https://res.cloudinary.com/dlgeap8h0/image/upload/Suite_Twin_315_a4quwz.webp"
       title: "Junior-Suite2"
 
 
     - id: 39
-      image: "/images/Galeria/Suite-Twin-bano1.webp"
+      image: "https://res.cloudinary.com/dlgeap8h0/image/upload/repcion_1_mcnh4a.webp"
       title: "Lobby"
       
     - id: 40
-      image: "/images/Galeria/Suite1.webp"
+      image: "https://res.cloudinary.com/dlgeap8h0/image/upload/Premium-familiar-1_akdbs3.webp"
       title: "Premium-bano"
             
     - id: 41
-      image: "/images/Galeria/Rest 1.webp"
+      image: "https://res.cloudinary.com/dlgeap8h0/image/upload/Junior-Suite1_ihwpfc.webp"
       title: "Junior-Suite1"          
 ---
