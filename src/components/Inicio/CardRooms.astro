@@ -10,8 +10,13 @@ interface Section {
 
 const currentLocale = Astro.currentLocale || 'es';
 
+
 const roomsEs = await Astro.glob('../../content/rooms-info.md');
 const roomsEn = await Astro.glob('../../content/rooms-info-en.md');
+
+import { Image } from "astro:assets";
+import cama from "../../assets/pay/cama.webp"
+import area from "../../assets/pay/m2.webp"
 
 const roomsData = currentLocale === 'en' ? roomsEn[0] : roomsEs[0];
 const { frontmatter } = roomsData;
@@ -57,11 +62,11 @@ const t = translations[currentLocale as keyof typeof translations];
               {section.people} {t.people}
             </li>
             <li class="items flex items-center gap-[15px]">
-              <i class="text-[#F7A40F] icon-card bi bi-textarea-resize" /> 
+               <Image class="w-[20px]" src={area} alt="image-area"/>
               {section.area}
             </li>
             <li class="items flex items-center gap-[15px]">
-              <i class="text-[#F7A40F] icon-card bi bi-truck-flatbed" /> 
+              <Image  class="w-[20px]" src={cama} alt="image-bed"/>
               {section.bed} 
             </li>
           </ul>
