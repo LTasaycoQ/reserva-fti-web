@@ -40,13 +40,13 @@ const sections: Section[] = roomsData[0]?.frontmatter?.fotos ?? [];
             sections.length > 0 ? (
                 sections.map((foto, index) => (
                     <div 
-                        class="item-galeria group relative overflow-hidden rounded-[12px] shadow-lg w-full aspect-square cursor-pointer"
+                        class="item-galeria group relative overflow-hidden rounded-[20px] shadow-lg w-full  cursor-pointer"
                         data-index={index}
                     >
                         <img 
                             src={foto.image} 
                             alt={foto.title} 
-                            class="img w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                            class="img w-[100%]  bg-gray-400 object-cover transition-transform duration-700 group-hover:scale-110"
                             loading="lazy"
                         />
                         <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
