@@ -20,29 +20,25 @@ fotos:
       image: "/images/Galeria/Clasica-twin.webp"
       title: "Clasica-twin"
     
+
     - id: 6
-      image: "/images/Galeria/fachada.webp"
-      title: "fachada"
-
-
-    - id: 7
       image: "/images/Galeria/Junior-Suite-bano1.webp"
       title: "Junior-Suite-bano1"
       
-    - id: 8
+    - id: 7
       image: "/images/Galeria/Junior-Suite1.webp"
       title: "Junior-Suite1"
       
-    - id: 9
+    - id: 8
       image: "/images/Galeria/Junior-Suite2.webp"
       title: "Junior-Suite2"
 
 
-    - id: 10
+    - id: 9
       image: "/images/Galeria/Lobby.webp"
       title: "Lobby"
       
-    - id: 11
+    - id: 10
       image: "/images/Galeria/Premium-bano.webp"
       title: "Premium-bano"
 
@@ -51,24 +47,24 @@ fotos:
 
 
       
-    - id: 12
+    - id: 11
       image: "/images/Galeria/Junior-Suite-bano2.webp"
       title: "Junior-Suite-bano1"
       
-    - id: 13
+    - id: 12
       image: "/images/Galeria/Premium-familiar-1.webp"
       title: "Junior-Suite1"
       
-    - id: 14
+    - id: 13
       image: "/images/Galeria/Premium-familiar2.webp"
       title: "Junior-Suite2"
 
 
-    - id: 15
+    - id: 14
       image: "/images/Galeria/Premium-familiar-bano1.webp"
       title: "Lobby"
       
-    - id: 16
+    - id: 15
       image: "/images/Galeria/Premium-matrimonial.webp"
       title: "Premium-bano"
 
@@ -76,117 +72,120 @@ fotos:
 
 
 
-    - id: 17
+    - id: 16
       image: "/images/Galeria/Premium-Triple.webp"
       title: "Junior-Suite-bano1"
       
-    - id: 18
+    - id: 17
       image: "/images/Galeria/Premium-triple1.webp"
       title: "Junior-Suite1"
       
-    - id: 19
+    - id: 18
       image: "/images/Galeria/Premium-familiar2.webp"
       title: "Junior-Suite2"
 
 
-    - id: 20
+    - id: 19
       image: "/images/Galeria/Premium-triple2.webp"
       title: "Lobby"
       
-    - id: 21
+    - id: 20
       image: "/images/Galeria/Premium-triple-bano.webp"
       title: "Premium-bano"
 
 
 
 
-    - id: 22
+    - id: 21
       image: "/images/Galeria/Premium-twin.webp"
       title: "Junior-Suite-bano1"
       
-    - id: 23
+    - id: 22
       image: "/images/Galeria/R6M25442.webp"
       title: "Junior-Suite1"
       
-    - id: 24
+    - id: 23
       image: "/images/Galeria/R6M25503.webp"
       title: "Junior-Suite2"
 
 
-    - id: 25
+    - id: 24
       image: "/images/Galeria/R6M25577.webp"
       title: "Lobby"
       
-    - id: 26
+    - id: 25
       image: "/images/Galeria/recepcion 2.webp"
       title: "Premium-bano"
             
    
 
-    - id: 27
+    - id: 26
       image: "/images/Galeria/repcion 1.webp"
       title: "Junior-Suite-bano1"
       
-    - id: 28
+    - id: 27
       image: "/images/Galeria/Suite-twin-bano2.webp"
       title: "Premium-bano"
       
-    - id: 29
+    - id: 28
       image: "/images/Galeria/Rest 3.webp"
       title: "Junior-Suite2"
 
 
-    - id: 30
+    - id: 29
       image: "/images/Galeria/Rest 4.webp"
       title: "Lobby"
       
-    - id: 31
+    - id: 30
       image: "/images/Galeria/Restaurant.webp"
       title: "Premium-bano"
 
 
 
-    - id: 32
+    - id: 31
       image: "/images/Galeria/Salon-masajes 1.webp"
       title: "Junior-Suite-bano1"
       
-    - id: 33
+    - id: 32
       image: "/images/Galeria/Suite 1.webp"
       title: "Junior-Suite1"
       
-    - id: 34
+    - id: 33
       image: "/images/Galeria/Suite Twin 315 a.webp"
       title: "Junior-Suite2"
 
 
-    - id: 35
+    - id: 34
       image: "/images/Galeria/Suite Twin 315.webp"
       title: "Lobby"
       
-    - id: 36
+    - id: 35
       image: "/images/Galeria/Suite1.webp"
       title: "Premium-bano"
             
 
 
 
-    - id: 37
+    - id: 36
       image: "/images/Galeria/Suite2.webp"
       title: "Junior-Suite-bano1"
       
-    - id: 38
+    - id: 37
       image: "/images/Galeria/Suite-bano1.webp"
       title: "Junior-Suite1"
       
-    - id: 39
+    - id: 38
       image: "/images/Galeria/Suite-bano2.webp"
       title: "Junior-Suite2"
 
 
-    - id: 40
+    - id: 39
       image: "/images/Galeria/Suite-Twin-bano1.webp"
       title: "Lobby"
       
+    - id: 40
+      image: "/images/Galeria/Suite1.webp"
+      title: "Premium-bano"
             
     - id: 41
       image: "/images/Galeria/Rest 1.webp"
