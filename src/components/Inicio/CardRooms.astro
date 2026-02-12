@@ -62,11 +62,11 @@ const t = translations[currentLocale as keyof typeof translations];
               {section.people} {t.people}
             </li>
             <li class="items flex items-center gap-[15px]">
-               <Image class="w-[20px]" src={area} alt="image-area"/>
+               <Image class="w-[20px]" loading="eager" src={area} alt="image-area"/>
               {section.area}
             </li>
             <li class="items flex items-center gap-[15px]">
-              <Image  class="w-[20px]" src={cama} alt="image-bed"/>
+              <Image  class="w-[20px]" loading="eager" src={cama} alt="image-bed"/>
               {section.bed} 
             </li>
           </ul>
