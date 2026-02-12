@@ -33,14 +33,14 @@ const getPath = (path: string) => {
 ---
 
 <nav class="nav">
-    <div class="menu-container gap-[50px] w-[100%] max-lg:pl-[50px]  max-sm:pl-[18px] max-sm:pr-[18px] max-lg:pr-[50px] xl:w-[70%] max-sm:w-[90%]">
+    <div class="menu-container gap-[50px] w-[100%] max-lg:pl-[50px] lg:pl-[70px]  max-sm:pl-[18px] max-sm:pr-[18px] max-lg:pr-[50px] xl:w-[70%] max-sm:w-[90%]">
         <div class="nav__logo">
             <a href={currentLocale === 'es' ? '/' : '/en'} class="logo-link" aria-label="Volver al inicio">
                 <Image class="w-full max-md:w-[120px]" loading="eager" src={logo} alt="Logotipo de Terra Andina Colonial Mansion Hotel Cusco"/>
             </a>
         </div>
 
-        <div class="max-lg:hidden relative xl:left-[8em] 2xl:left-[15em]">
+        <div class="max-lg:hidden xl:relative   xl:left-[8em] 2xl:left-[15em]">
             <ul class="flex gap-[40px] font-semibold text-[16px] text-white items-center">
                 <li><a class="nav__link" href={getPath("/hotel")}>{t.hotel}</a></li>
                 <li><a class="nav__link" href={getPath("/habitaciones")}>{t.rooms}</a></li>
@@ -193,7 +193,6 @@ const getPath = (path: string) => {
         }
     }
 
-    /* Responsive para selector de idiomas */
     @media (max-width: 1024px) {
         .mobile-lang :global(.language-selector) {
             transform: scale(0.9);
