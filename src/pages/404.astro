@@ -1,0 +1,40 @@
+---
+import "../styles/global.css"
+import { Image } from "astro:assets";
+
+import logo from "../assets/logo/Logo-TAH-IC.png"
+---
+<div class="bg-[url('https://res.cloudinary.com/dlgeap8h0/image/upload/Bar-2_a2jfjd.webp')] bg-cover bg-no-repeat ">
+   <div class="bg-black/70">
+    <div class="flex w-full max-md:flex-col justify-center gap-[50px] xl:gap-[8em] lg:gap-[30px] 2xl:gap-[20em] font-[Poppins] items-center h-[100vh] text-start">
+        <div class="p-[30px] flex flex-col max-md:text-center max-md:items-center bg-white w-[500px] max-md:w-[90%] rounded-[10px]">
+            <div class="flex max-md:flex-col items-center justify-between pt-[2px] pb-[18px]">
+                <h2 class="text-[5.7em] font-bold">404</h2>
+                <Image class="w-[120px] max-md:w-[60px]" src={logo} alt="logo" />
+            </div>
+            <h3 class="font-bold text-[22px] text-gray-800 ">La Pagina que buscaba aun no existe.</h3>
+            <br>
+            <p class="font-extralight pb-[20px] text-[17px]">Es posible que la pagina que buscaba aun no se haya implementado</p>
+            <br>
+            <div class="w-full text-center flex max-md:justify-center items-center">
+            <a class="rounded-[8px] p-[10px] max-md:w-full text-center flex max-md:jutify-center border-[2px]    border-orange-800 hover:bg-orange-900 bg-orange-800 text-white font-bold" href="/">
+                <span class="w-full">IR A LA PAGINA DE INICIO</span>
+                </a>
+            </div>
+        </div>
+        <img class="img w-[300px]" src="https://job-smile.es/wp-content/uploads/2022/11/404.png" loading="eager" alt="">
+        </div> 
+    </div>
+</div>
+
+<style>
+    a,
+    p,
+    h3,
+    span,
+    h2{
+
+        font-family: var(--font-family-poppins);
+    }
+
+</style>
