@@ -4,10 +4,13 @@ import { defineConfig } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
 import sitemap from '@astrojs/sitemap';
 
-// https://astro.build/config
 export default defineConfig({
-  site: 'https://terraandinahotel.com', 
-
+  base: '/2026-2/',
+  site: 'https://terraandinahotel.com',
+  build: {
+    assets: 'assets', 
+  },
+  
   i18n: {
     defaultLocale: "es",
     locales: ["es", "en"],
@@ -17,11 +20,11 @@ export default defineConfig({
   },
 
   devToolbar: {
-      enabled: false,
+    enabled: false,
   },
 
   vite: {
-      plugins: [tailwindcss()],
+    plugins: [tailwindcss()],
   },
 
   integrations: [sitemap()],
