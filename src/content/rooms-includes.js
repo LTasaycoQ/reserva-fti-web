@@ -1,90 +1,28 @@
 export function getRoomIncludes(locale = 'es') {
   const iconsRoomIncludesEs = [
-    {
-        image: "/images/iconos/ducha.webp",
-        label: "Baño privado",
-    },
-    {
-        image: "/images/iconos/caliente.webp",
-        label: "Agua Caliente",
-    },
-
-    {
-        image: "/images/iconos/tv.webp",
-        label: "Smart TV 50°",
-    },
-    {
-        image: "/images/iconos/wifi-free.webp",
-        label: "WiFi Gratis",
-    },
-    {
-        image: "/images/iconos/despertar.webp",
-        label: "Servicio de Despertador",
-    },
-    {
-        image: "/images/iconos/secadora.webp",
-        label: "Secadora de Cabello",
-    },
-    {
-        image: "/images/iconos/planchador.webp",
-        label: "Set de planchado bajo peticion",
-    },
-    {
-        image: "/images/iconos/calefaccion.webp",
-        label: "Calefaccion",
-    },
-    {
-        image: "/images/iconos/caja-seguridad.webp",
-        label: "Caja fuerte",
-    },
-    {
-        image: "/images/iconos/telephone.webp",
-        label: "Telefono en el Baño",
-    },
+    { image: "ducha.webp",          label: "Baño privado" },
+    { image: "caliente.webp",       label: "Agua Caliente" },
+    { image: "tv.webp",             label: "Smart TV 50°" },
+    { image: "wifi-free.webp",      label: "WiFi Gratis" },
+    { image: "despertar.webp",      label: "Servicio de Despertador" },
+    { image: "secadora.webp",       label: "Secadora de Cabello" },
+    { image: "planchador.webp",     label: "Set de planchado bajo peticion" },
+    { image: "calefaccion.webp",    label: "Calefaccion" },
+    { image: "caja-seguridad.webp", label: "Caja fuerte" },
+    { image: "telephone.webp",      label: "Telefono en el Baño" },
   ];
 
   const iconsRoomIncludesEn = [
-    {
-        image: "/images/iconos/ducha.webp",
-        label: "Private Bathroom",
-    },
-    {
-        image: "/images/iconos/caliente.webp",
-        label: "Hot water",
-    },
-
-    {
-        image: "/images/iconos/tv.webp",
-        label: "Smart TV 50″",
-    },
-    {
-        image: "/images/iconos/wifi-free.webp",
-        label: "WiFi free",
-    },
-    {
-        image: "/images/iconos/despertar.webp",
-        label: "Wake-up service",
-    },
-    {
-        image: "/images/iconos/secadora.webp",
-        label: "Hair dryer",
-    },
-    {
-        image: "/images/iconos/planchador.webp",
-        label: "Ironing set on request",
-    },
-    {
-        image: "/images/iconos/calefaccion.webp",
-        label: "Heating",
-    },
-    {
-        image: "/images/iconos/caja-seguridad.webp",
-        label: "In-room safe deposit box",
-    },
-    {
-        image: "/images/iconos/telephone.webp",
-        label: "In’room telephome",
-    },
+    { image: "ducha.webp",          label: "Private Bathroom" },
+    { image: "caliente.webp",       label: "Hot water" },
+    { image: "tv.webp",             label: "Smart TV 50″" },
+    { image: "wifi-free.webp",      label: "WiFi free" },
+    { image: "despertar.webp",      label: "Wake-up service" },
+    { image: "secadora.webp",       label: "Hair dryer" },
+    { image: "planchador.webp",     label: "Ironing set on request" },
+    { image: "calefaccion.webp",    label: "Heating" },
+    { image: "caja-seguridad.webp", label: "In-room safe deposit box" },
+    { image: "telephone.webp",      label: "In-room telephone" },
   ];
 
   return locale === 'en' ? iconsRoomIncludesEn : iconsRoomIncludesEs;

@@ -1,18 +1,29 @@
 ---
+import { Image } from 'astro:assets';
+
 interface Section {
   text: string;
   image: string;
   alt: string;
 }
 
-const currentLocale = Astro.currentLocale || 'es';
+const iconos = import.meta.glob<{ default: ImageMetadata }>(
+  '../../assets/iconos/*.webp',
+  { eager: true }
+);
 
+const currentLocale = Astro.currentLocale || 'es';
 const servicioEs = await Astro.glob("../../content/info-inicio.md");
 const servicioEn = await Astro.glob("../../content/info-inicio-en.md");
-
 const servicioData = currentLocale === 'en' ? servicioEn[0] : servicioEs[0];
 const { frontmatter } = servicioData;
 const sections = frontmatter.sections as Section[];
+
+function getImage(path: string): ImageMetadata {
+  const filename = path.split('/').pop();
+  const key = `../../assets/iconos/${filename}`;
+  return iconos[key]?.default;
+}
 
 const translations = {
   es: {
@@ -35,12 +46,17 @@ const t = translations[currentLocale as keyof typeof translations];
   <h3 class="text-subtitle pt-[10px]">
     {t.subtitle}
   </h3>
-  
   <div class="flex justify-center pt-[30px] pb-[60px] items-center">
     <div class="w-[70%] max-lg:w-[95%] grid grid-cols-5 max-md:grid-cols-3 max-sm:grid-cols-2 gap-[50px]">
       {sections.map((section) => (
         <div class="flex text-center gap-[18px] flex-col justify-center items-center">
-          <img src={section.image} loading="lazy" alt={section.alt} />
+          <Image
+            src={getImage(section.image)}
+            loading="lazy"
+            alt={section.alt}
+            width={60}
+            height={60}
+          />
           <span class="text-[14px] text-gray-700">
             {section.text}
           </span>

@@ -1,4 +1,6 @@
 ---
+import { Image } from 'astro:assets';
+
 interface Section {
   title: string;
   text: string;
@@ -6,21 +8,41 @@ interface Section {
   alt: string;
 }
 
+const iconos = import.meta.glob<{ default: ImageMetadata }>(
+  '../../assets/iconos/*.webp',
+  { eager: true }
+);
+
 const currentLocale = Astro.currentLocale || 'es';
 
-const hotelDataEs = await Astro.glob('../../content/hotel-info.md');
-const hotelDataEn = await Astro.glob('../../content/hotel-info-en.md');
+const hotelDataEs = import.meta.glob<any>('../../content/hotel-info.md', { eager: true });
+const hotelDataEn = import.meta.glob<any>('../../content/hotel-info-en.md', { eager: true });
 
-const hotelData = currentLocale === 'en' ? hotelDataEn[0] : hotelDataEs[0];
+const hotelData = currentLocale === 'en'
+  ? Object.values(hotelDataEn)[0]
+  : Object.values(hotelDataEs)[0];
+
 const { frontmatter } = hotelData;
 const sections = frontmatter.sections as Section[];
+
+function getImage(path: string): ImageMetadata {
+  const filename = path.split('/').pop();
+  const key = `../../assets/iconos/${filename}`;
+  return iconos[key]?.default;
+}
 ---
 
 <div class="container__detail--hotel flex justify-center items-center pt-[30px] pb-[30px]">
   <div class="w-[90%] grid grid-cols-3 max-md:grid-cols-2 max-sm:grid-cols-1 gap-[40px]">
     {sections.map((section) => (
       <div class="gap-[10px] flex flex-col items-center justify-center">
-        <img loading="lazy" src={section.image} alt={section.alt} />
+        <Image
+          loading="lazy"
+          src={getImage(section.image)}
+          alt={section.alt}
+          width={60}
+          height={60}
+        />
         <p class="text-gray-600">{section.text}</p>
       </div>
     ))}

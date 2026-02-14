@@ -1,9 +1,23 @@
 ---
+import { Image } from "astro:assets";
 import RoomIncludes from "./RoomIncludes.astro";
 import { getRoomsData } from "../../content/RoomClasic/service";
 
+// Glob de todas las imágenes de rooms en src/assets/rooms/
+const roomImages = import.meta.glob<{ default: ImageMetadata }>(
+  '../../assets/rooms/*.webp',
+  { eager: true }
+);
+
 const currentLocale = Astro.currentLocale || 'es';
 const roomsData = getRoomsData(currentLocale);
+
+// Helper: convierte "/images/rooms/Clasica-mat-1.webp" → ImageMetadata
+function getImage(path: string): ImageMetadata {
+  const filename = path.split('/').pop();
+  const key = `../../assets/rooms/${filename}`;
+  return roomImages[key]?.default;
+}
 ---
 
 {
@@ -11,7 +25,6 @@ const roomsData = getRoomsData(currentLocale);
     const half = Math.ceil(room.services.length / 2);
     const col1 = room.services.slice(0, half);
     const col2 = room.services.slice(half);
-    
     return (
       <section class="mb-20 flex flex-col justify-center items-center text-center">
         <h2 class="text-gray-700 position__title title text-[1.8rem]">
@@ -23,12 +36,14 @@ const roomsData = getRoomsData(currentLocale);
           </button>
           <div class="slider__rooms flex justify-start items-center overflow-x-scroll scroll-smooth gap-[20px] max-md:w-[100%] w-[78%]">
             {room.images.map((img) => (
-              <img
-                src={img}
+              <Image
+                src={getImage(img)}
                 alt={room.title}
+                width={384}
+                height={280}
                 class="w-[24em]"
-                
-                draggable="false"
+                draggable={false}
+                loading="lazy"
               />
             ))}
           </div>

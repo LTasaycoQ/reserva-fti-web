@@ -1,4 +1,6 @@
 ---
+import { Image } from "astro:assets";
+
 interface Section {
   title: string;
   content: string;
@@ -6,14 +8,28 @@ interface Section {
   alt: string;
 }
 
+const restaurantImages = import.meta.glob<{ default: ImageMetadata }>(
+  '../../assets/restaurante/*.webp',
+  { eager: true }
+);
+
 const currentLocale = Astro.currentLocale || 'es';
 
-const restaurantDataEs = await Astro.glob("../../content/restaurant-info.md");
-const restaurantDataEn = await Astro.glob("../../content/restaurant-info-en.md");
+const restaurantDataEs = import.meta.glob<any>('../../content/restaurant-info.md', { eager: true });
+const restaurantDataEn = import.meta.glob<any>('../../content/restaurant-info-en.md', { eager: true });
 
-const restaurantData = currentLocale === 'en' ? restaurantDataEn[0] : restaurantDataEs[0];
+const restaurantData = currentLocale === 'en'
+  ? Object.values(restaurantDataEn)[0]
+  : Object.values(restaurantDataEs)[0];
+
 const { frontmatter } = restaurantData;
 const sections = frontmatter.sections as Section[];
+
+function getImage(path: string): ImageMetadata {
+  const filename = path.split('/').pop();
+  const key = `../../assets/restaurante/${filename}`;
+  return restaurantImages[key]?.default;
+}
 ---
 
 <div class="w-[85%] restaurant-info">
@@ -22,16 +38,18 @@ const sections = frontmatter.sections as Section[];
       <div class="info-item flex max-md:flex-wrap items-center justify-center gap-[50px]">
         <div class="w-[50%] xl:w-[590px] max-md:w-[90%] flex justify-center items-center">
           <div class="texto p-[17px] w-[100%]">
-            <p class=" text-letra text-start text-gray-500 text-[15.6px]">
+            <p class="text-letra text-start text-gray-500 text-[15.6px]">
               {section.content}
             </p>
           </div>
         </div>
         <div class="xl:w-[490px] flex justify-center items-center">
-          <img
-            src={section.image}
+          <Image
+            src={getImage(section.image)}
             alt={section.alt}
             loading="lazy"
+            width={490}
+            height={350}
           />
         </div>
       </div>
