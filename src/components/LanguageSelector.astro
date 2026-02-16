@@ -12,12 +12,29 @@ const targetLabel = isSpanish ? 'EN' : 'ES';
 
 const targetFlag = isSpanish ? banderaEngland : banderaSpanol; 
 
+const routeMap: Record<string, string> = {
+  '/habitaciones': '/rooms',
+  '/restaurante': '/restaurant',
+  '/masajes': '/massage',
+  '/galeria': '/gallery',
+  '/contacto': '/contact',
+  '/hotel': '/hotel',
+};
+
+const getReverseRoute = (path: string) => {
+  // inverso: inglés → español
+  return Object.entries(routeMap).find(([es, en]) => en === path)?.[0] || path;
+};
+
 const getTargetLink = () => {
   const cleanPath = currentPath.replace(/^\/en(\/|$)/, '/') || '/';
   
-  return targetLocale === 'en' 
-    ? `/en${cleanPath}`.replace(/\/+/g, '/') 
-    : cleanPath;
+  if (targetLocale === 'en') {
+    const enPath = routeMap[cleanPath] || cleanPath;
+    return `/en${enPath}`.replace(/\/+/g, '/');
+  } else {
+    return getReverseRoute(cleanPath);
+  }
 };
 ---
 
