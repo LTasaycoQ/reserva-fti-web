@@ -1,74 +1,53 @@
 ---
-const banderaSpanol = "https://res.cloudinary.com/dlgeap8h0/image/upload/spanol_nisxya.webp"; 
-const banderaEngland = "https://res.cloudinary.com/dlgeap8h0/image/upload/eeuu_zp1ijv.webp";
+const banderaSpanol =
+  "https://res.cloudinary.com/dlgeap8h0/image/upload/spanol_nisxya.webp";
 
+const banderaEngland =
+  "https://res.cloudinary.com/dlgeap8h0/image/upload/eeuu_zp1ijv.webp";
 const currentPath = Astro.url.pathname;
-const currentLocale = Astro.currentLocale ?? (Astro.url.pathname.startsWith('/en') ? 'en' : 'es');
-const isSpanish = currentLocale === 'es';
-const targetLocale = isSpanish ? 'en' : 'es';
-const targetLabel = isSpanish ? 'EN' : 'ES';
-
-const targetFlag = isSpanish ? banderaEngland : banderaSpanol; 
-
-const routeMap: Record<string, string> = {
-  '/habitaciones': '/rooms',
-  '/restaurante': '/restaurant',
-  '/masajes': '/massage',
-  '/galeria': '/gallery',
-  '/contacto': '/contact',
-  '/hotel': '/hotel',
-};
-
-const getReverseRoute = (path: string) => {
-  return Object.entries(routeMap).find(([es, en]) => en === path)?.[0] || path;
-};
-
+const currentLocale = Astro.currentLocale || "es";
+const isSpanish = currentLocale === "es";
+const targetLocale = isSpanish ? "en" : "es";
+const targetLabel = isSpanish ? "EN" : "ES";
+const targetFlag = isSpanish ? banderaEngland : banderaSpanol;
 const getTargetLink = () => {
-  const cleanPath = currentPath.replace(/^\/en(\/|$)/, '/') || '/';
-  
-  if (targetLocale === 'en') {
-    const enPath = routeMap[cleanPath] || cleanPath;
-    return `/en${enPath}`.replace(/\/+/g, '/');
-  } else {
-    return getReverseRoute(cleanPath);
-  }
+  const cleanPath = currentPath.replace(/^\/en(\/|$)/, "/") || "/";
+  return targetLocale === "en"
+    ? `/en${cleanPath}`.replace(/\/+/g, "/")
+    : cleanPath;
 };
 ---
 
-<a href={getTargetLink()} class="lang-toggle" title={`Switch to ${targetLabel}`}>
+  <a href={getTargetLink()} class="lang-toggle" title=`Switch to ${targetLabel}`}>
   <img 
-    loading="eager"
-    class="flag" 
-    src={targetFlag} 
-    alt={`Flag for ${targetLabel}`} 
-    width={24} 
-    height={24} 
+  loading="eager"
+  class="flag" 
+  src={targetFlag} 
+  alt=`Flag for ${targetLabel}`
+  width={24} 
+  height={24} 
   />
-</a>
-
-<style>
+  </a>
+  <style>
   .lang-toggle {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 8px 16px;
-    border-radius: 50px;
-    text-decoration: none;
-    color: white;
-    font-size: 0.9rem;
-    font-weight: 600;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    backdrop-filter: blur(8px);
-  }
-
-
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: 50px;
+  text-decoration: none;
+  color: white;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(8px);
+    }
   .flag {
-    width: 20px;
-    height: auto;
-    object-fit: contain;
-  }
-
+  width: 20px;
+  height: auto;
+  object-fit: contain;
+    }
   .lang-toggle:active {
-    transform: scale(0.95);
-  }
+  transform: scale(0.95);
+    }
 </style>
