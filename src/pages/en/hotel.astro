@@ -4,12 +4,12 @@ import Fondos from "../../components/fondos.astro";
 import HotelStay from "../../components/Hoteles/HotelStay.astro";
 import fondoImagen from "../../assets/backgrounds/fachada.webp";
 const lang = "en"
-
+const ogImage = "https://res.cloudinary.com/dlgeap8h0/image/upload/Bar1_pnruco.webp"
 const title = "Hotel";
 const description = "Located in a colonial mansion near Plaza San Pedro, Terra Andina offers 51 luxury rooms and excellent service in Cusco.";
 ---
 
-<BaseLayout title={title} description={description}>
+<BaseLayout lang={lang} title={title} description={description} ogImage={ogImage}>
   <Fondos imgFondo={`url(${fondoImagen.src})`} />
   <main class="home">
     <HotelStay />

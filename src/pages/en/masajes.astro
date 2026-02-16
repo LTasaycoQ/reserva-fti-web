@@ -8,12 +8,13 @@ import MasajePrecio from "../../components/Masages/precios.astro";
 import OpenMassages from "../../components/Masages/OpenMassages.astro";
 
 const lang = "en"
+const ogImage = "https://res.cloudinary.com/dlgeap8h0/image/upload/Salon-masajes_1_yaide0.webp"
 
 const title = "Massage";
 const description = "Recover your energy in Cusco with our 'Healing Hands'. Swedish, shiatsu and reflexology massages available every day from 8am to 10pm.";
 ---
 
-<BaseLayout lang={lang}  title={title} description={description}>
+<BaseLayout lang={lang}  title={title} description={description} ogImage={ogImage}>
   <Fondos imgFondo={`url(${fondoImagen.src})`} />
   <main>
     <MasajeConsejo />
