@@ -1,5 +1,7 @@
 ---
+import { Image } from "astro:assets"
 import BaseLayout from "../layouts/BaseLayout.astro"
+import imagen from "../assets/pay/404.png"
 ---
 
 <BaseLayout title="Error 404">
@@ -23,7 +25,7 @@ import BaseLayout from "../layouts/BaseLayout.astro"
             </a>
             </div>
         </div>
-        <img class="img w-[300px]" loading="eager" src="/images/404.png" loading="eager" alt="">
+        <Image class="img w-[300px]"  src={imagen} loading="eager" alt="error 404">
         </div> 
     </div>
 </div>
