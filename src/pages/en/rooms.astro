@@ -3,6 +3,8 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import Fondos from "../../components/fondos.astro";
 import RoomFeatures from "../../components/Habitaciones/RoomFeatures.astro";
 
+const fondoImagen = "https://res.cloudinary.com/dlgeap8h0/image/upload/ban2_vsrj8w.webp";
+
 const lang = "en"
 const ogImage = "https://res.cloudinary.com/dlgeap8h0/image/upload/Suite_1_tlzfen.webp"
 const title = "Rooms";
@@ -10,7 +12,7 @@ const description = "Classic, Premium and Suite rooms in Cusco. With heating, Sm
 ---
 
 <BaseLayout lang={lang}  title={title} description={description} ogImage={ogImage}>
-    <Fondos imgFondo={`url(https://i0.wp.com/terraandinahotel.com/wp-content/uploads/2025/12/ban2.jpg?fit=1573%2C600&ssl=1)`} />
+    <Fondos imgFondo={`url(${fondoImagen})`} />
     <main class="home">
         <RoomFeatures />
     </main>
