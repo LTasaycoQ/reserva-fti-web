@@ -1,7 +1,6 @@
 ---
-import { Image } from "astro:assets";
-import banderaSpanol from "../assets/logo/iconosLanguajes/spanol.webp"; 
-import banderaEngland from "../assets/logo/iconosLanguajes/eeuu.webp";
+const banderaSpanol = "https://res.cloudinary.com/dlgeap8h0/image/upload/spanol_nisxya.webp"; 
+const banderaEngland = "https://res.cloudinary.com/dlgeap8h0/image/upload/eeuu_zp1ijv.webp";
 
 const currentPath = Astro.url.pathname;
 const currentLocale = Astro.currentLocale ?? (Astro.url.pathname.startsWith('/en') ? 'en' : 'es');
@@ -37,7 +36,7 @@ const getTargetLink = () => {
 ---
 
 <a href={getTargetLink()} class="lang-toggle" title={`Switch to ${targetLabel}`}>
-  <Image 
+  <img 
     loading="eager"
     class="flag" 
     src={targetFlag} 
