@@ -11,13 +11,17 @@ export default defineConfig({
     assets: 'assets', 
   },
   
-  i18n: {
-    defaultLocale: "es",
-    locales: ["es", "en"],
-    routing: {
-      prefixDefaultLocale: false
-    }
+i18n: {
+  defaultLocale: "es",
+  locales: ["es", "en"],
+  routing: {
+    prefixDefaultLocale: false,
+    fallbackType: "rewrite"
   },
+  fallback: {
+    en: "es"
+  }
+},
 
   devToolbar: {
     enabled: false,

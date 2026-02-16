@@ -4,8 +4,7 @@ import banderaSpanol from "../assets/logo/iconosLanguajes/spanol.webp";
 import banderaEngland from "../assets/logo/iconosLanguajes/eeuu.webp";
 
 const currentPath = Astro.url.pathname;
-const currentLocale = Astro.currentLocale || 'es';
-
+const currentLocale = Astro.currentLocale ?? (Astro.url.pathname.startsWith('/en') ? 'en' : 'es');
 const isSpanish = currentLocale === 'es';
 const targetLocale = isSpanish ? 'en' : 'es';
 const targetLabel = isSpanish ? 'EN' : 'ES';
@@ -22,7 +21,6 @@ const routeMap: Record<string, string> = {
 };
 
 const getReverseRoute = (path: string) => {
-  // inverso: inglés → español
   return Object.entries(routeMap).find(([es, en]) => en === path)?.[0] || path;
 };
 
