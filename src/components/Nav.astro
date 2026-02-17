@@ -27,11 +27,8 @@ const translations = {
 const t = translations[currentLocale as keyof typeof translations];
 
 const getPath = (path: string) => {
-  if (currentLocale === 'es') {
-    return `/${path}`;
-  } else {
-    return `/en/${path}`;
-  }
+  if (currentLocale === 'es') return path;
+  return `/en${path}`;
 };
 ---
 
@@ -45,12 +42,12 @@ const getPath = (path: string) => {
 
         <div class="max-lg:hidden xl:relative   xl:left-[8em] 2xl:left-[15em]">
             <ul class="flex gap-[40px] font-semibold text-[16px] text-white items-center">
-                <li><a class="nav__link" href={getPath("hotel")}>{t.hotel}</a></li>
-                <li><a class="nav__link" href={getPath("habitaciones")}>{t.rooms}</a></li>
-                <li><a class="nav__link" href={getPath("restaurante")}>{t.restaurant}</a></li>
-                <li><a class="nav__link" href={getPath("masajes")}>{t.massage}</a></li>
-                <li><a class="nav__link" href={getPath("galeria")}>{t.gallery}</a></li>
-                <li><a class="nav__link" href={getPath("contacto")}>{t.contact}</a></li>
+                <li><a class="nav__link" href={getPath("/hotel")}>{t.hotel}</a></li>
+                <li><a class="nav__link" href={getPath("/habitaciones")}>{t.rooms}</a></li>
+                <li><a class="nav__link" href={getPath("/restaurante")}>{t.restaurant}</a></li>
+                <li><a class="nav__link" href={getPath("/masajes")}>{t.massage}</a></li>
+                <li><a class="nav__link" href={getPath("/galeria")}>{t.gallery}</a></li>
+                <li><a class="nav__link" href={getPath("/contacto")}>{t.contact}</a></li>
             </ul>
         </div>
 
@@ -105,27 +102,27 @@ const getPath = (path: string) => {
         <ul>
             <li class="w-full flex">
                     <a class="pl-[40px] w-full py-[10px] border-t-[1px] border-[#2D2828] bg-transparent hover:bg-[#3F444B]"
-                    href={getPath("hotel")}>{t.hotel}</a>
+                    href={getPath("/hotel")}>{t.hotel}</a>
             </li>
             <li class="w-full flex">
                 <a  class="pl-[40px] w-full py-[10px] border-t-[1px] border-[#2D2828] bg-transparent hover:bg-[#3F444B]"
-                href={getPath("habitaciones")}>{t.rooms}</a>
+                href={getPath("/habitaciones")}>{t.rooms}</a>
             </li>
             <li class="w-full flex">
                 <a class="pl-[40px] w-full py-[10px] border-t-[1px] border-[#2D2828] bg-transparent hover:bg-[#3F444B]"
-                href={getPath("restaurante")}>{t.restaurant}</a>
+                href={getPath("/restaurante")}>{t.restaurant}</a>
             </li>
             <li class="w-full flex">  
                 <a class="pl-[40px] w-full py-[10px] border-t-[1px] border-[#2D2828] bg-transparent hover:bg-[#3F444B]"
-                href={getPath("masajes")}>{t.massage}</a>
+                href={getPath("/masajes")}>{t.massage}</a>
             </li>
             <li class="w-full flex">
                 <a class="pl-[40px] w-full py-[10px] border-t-[1px] border-[#2D2828] bg-transparent hover:bg-[#3F444B]"
-                href={getPath("galeria")}>{t.gallery}</a>
+                href={getPath("/galeria")}>{t.gallery}</a>
             </li>
             <li class="w-full flex">
                 <a  class="pl-[40px] w-full py-[10px] border-t-[1px] border-[#2D2828] bg-transparent hover:bg-[#3F444B]"
-                href={getPath("contacto")}>{t.contact}</a>
+                href={getPath("/contacto")}>{t.contact}</a>
             </li>
         </ul>
     </div>

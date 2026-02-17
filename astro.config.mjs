@@ -5,7 +5,7 @@ import tailwindcss from '@tailwindcss/vite';
 import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
-  base: '/2026-2/',
+  base: '/',
   site: 'https://terraandinahotel.com',
   build: {
     assets: 'assets', 
