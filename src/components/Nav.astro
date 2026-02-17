@@ -9,7 +9,7 @@ const translations = {
   es: {
     hotel: "HOTEL",
     rooms: "HABITACIONES",
-    restaurant: "RESTAURANTES",
+    restaurant: "RESTAURANTE",
     massage: "MASAJES",
     gallery: "GALERIA",
     contact: "CONTACTO"
@@ -27,8 +27,11 @@ const translations = {
 const t = translations[currentLocale as keyof typeof translations];
 
 const getPath = (path: string) => {
-  if (currentLocale === 'es') return path;
-  return `/en/${path}`;
+  if (currentLocale === 'es') {
+    return `/${path}`;
+  } else {
+    return `/en/${path}`;
+  }
 };
 ---
 
