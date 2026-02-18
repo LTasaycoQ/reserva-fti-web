@@ -37,7 +37,7 @@ const translations = {
     contact: {
       titulo: "Hotel Contact:",
       reservaciones: "Reservations:",
-      recepcion: "Reception:"
+      recepcion: "Front Desk:"
     },
     alerts: {
       successTitle: "Sent!",
@@ -54,48 +54,20 @@ const t = translations[currentLocale as keyof typeof translations];
 <section class="contacto-section">
   <div class="container-form">
     <form class="form-contacto">
-      <input 
-        name="Nombre" 
-        placeholder={t.form.nombre} 
-        type="text" 
-        required 
-      />
-      <input
-        name="Apellido"
-        placeholder={t.form.apellido}
-        type="text"
-        required
-      />
-      <input
-        required
-        name="Telefono"
-        placeholder={t.form.telefono}
-        type="number"
-      />
-      <input 
-        name="Email" 
-        placeholder={t.form.email} 
-        type="email" 
-        required 
-      />
-      <textarea 
-        name="Mensaje" 
-        placeholder={t.form.mensaje}
-      ></textarea>
+      <input name="Nombre" placeholder={t.form.nombre} type="text" required/>
+      <input name="Apellido"placeholder={t.form.apellido}type="text" required/>
+      <input required name="Telefono" placeholder={t.form.telefono} type="number" />
+      <input name="Email" placeholder={t.form.email} type="email" required  />
+      <textarea name="Mensaje"  placeholder={t.form.mensaje} ></textarea>
       <button type="submit">{t.form.enviar}</button>
     </form>
   </div>
+
   <div class="container-info">
     <ul class="lista-contacto ">
-      <li>
-        <i class="bi bi-geo-alt-fill"></i>Calle Union 184, Cusco, Perú
-      </li>
-      <li>
-        <i class="bi bi-telephone-fill"></i>{t.contact.reservaciones} +51 987 945 817
-      </li>
-      <li>
-        <i class="bi bi-telephone-fill"></i>{t.contact.recepcion} +51 997 564 558
-      </li>
+      <li> <i class="bi bi-geo-alt-fill"></i>Calle Union 184, Cusco, Perú</li>
+      <li><i class="bi bi-telephone-fill"></i>{t.contact.reservaciones} +51 987 945 817</li>
+      <li><i class="bi bi-telephone-fill"></i>{t.contact.recepcion} +51 997 564 558</li>
       <li class=" contacto-titulo">{t.contact.titulo}</li>
       <li ><i class="bi bi-telephone-fill"></i>(51 - 84) 887-72950</li>
       <li ><i class="bi bi-telephone-fill"></i>(51 - 84) 887-72950</li>
