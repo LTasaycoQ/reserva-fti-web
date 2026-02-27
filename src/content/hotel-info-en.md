@@ -18,4 +18,4 @@ sections:
   - image: "check-out.webp"
     alt: "check-out-icon"
     text: "Check-out 10:00 AM"
----s
+---
