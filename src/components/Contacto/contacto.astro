@@ -50,7 +50,6 @@ const translations = {
 
 const t = translations[currentLocale as keyof typeof translations];
 ---
-<script is:inline src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 <section class="contacto-section">
   <div class="container-form">
     <form class="form-contacto">
@@ -109,23 +108,6 @@ const t = translations[currentLocale as keyof typeof translations];
 <script is:inline src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <script is:inline src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
-
-<form class="form-contacto">
-  <input name="Nombre" placeholder={t.form.nombre} type="text" required/>
-  <input name="Apellido" placeholder={t.form.apellido} type="text" required/>
-  <input required name="Telefono" placeholder={t.form.telefono} type="number" />
-  <input name="Email" placeholder={t.form.email} type="email" required />
-  <textarea name="Mensaje" placeholder={t.form.mensaje}></textarea>
-
-  <div class="cf-turnstile" 
-    data-sitekey="0x4AAAAAACw3a6WzSvEkH-5C" 
-    data-theme="light"
-    data-width="100%"
-    style="margin-bottom: 1rem;">
-  </div>
-
-  <button type="submit">{t.form.enviar}</button>
-</form>
 
 <script is:inline define:vars={{ t }}>
   const URL = "https://redesigned-eureka-pjpg6jg4vg9wf65rj-8000.app.github.dev/index.php";
