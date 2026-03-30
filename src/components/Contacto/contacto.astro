@@ -50,15 +50,21 @@ const translations = {
 
 const t = translations[currentLocale as keyof typeof translations];
 ---
-
+<script is:inline src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 <section class="contacto-section">
   <div class="container-form">
     <form class="form-contacto">
+      
       <input name="Nombre" placeholder={t.form.nombre} type="text" required/>
       <input name="Apellido"placeholder={t.form.apellido}type="text" required/>
       <input required name="Telefono" placeholder={t.form.telefono} type="number" />
       <input name="Email" placeholder={t.form.email} type="email" required  />
-      <textarea name="Mensaje"  placeholder={t.form.mensaje} ></textarea>
+        <textarea name="Mensaje"  placeholder={t.form.mensaje} ></textarea>
+          <div class="cf-turnstile" 
+          data-sitekey="0x4AAAAAACw3a6WzSvEkH-5C" 
+          data-theme="light"
+          data-width="100%"> 
+      </div>
       <button type="submit">{t.form.enviar}</button>
     </form>
   </div>
@@ -102,12 +108,44 @@ const t = translations[currentLocale as keyof typeof translations];
 
 <script is:inline src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+<script is:inline src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+
+<form class="form-contacto">
+  <input name="Nombre" placeholder={t.form.nombre} type="text" required/>
+  <input name="Apellido" placeholder={t.form.apellido} type="text" required/>
+  <input required name="Telefono" placeholder={t.form.telefono} type="number" />
+  <input name="Email" placeholder={t.form.email} type="email" required />
+  <textarea name="Mensaje" placeholder={t.form.mensaje}></textarea>
+
+  <div class="cf-turnstile" 
+    data-sitekey="0x4AAAAAACw3a6WzSvEkH-5C" 
+    data-theme="light"
+    data-width="100%"
+    style="margin-bottom: 1rem;">
+  </div>
+
+  <button type="submit">{t.form.enviar}</button>
+</form>
+
 <script is:inline define:vars={{ t }}>
-  const URL = "https://lost-roxanna-ltasaycoqs-9d45b4eb.koyeb.app/index.php";
+  const URL = "https://redesigned-eureka-pjpg6jg4vg9wf65rj-8000.app.github.dev/index.php";
   const form = document.querySelector(".form-contacto");
   
   form?.addEventListener("submit", async (e) => {
     e.preventDefault();
+
+    const turnstileResponse = turnstile.getResponse();
+
+    if (!turnstileResponse) {
+      Swal.fire({
+        title: "Verificación Requerida",
+        text: "Por favor, completa la verificación de seguridad.",
+        icon: "warning",
+        confirmButtonColor: "#C08E1F"
+      });
+      return;
+    }
+
     const btn = form.querySelector("button");
     const originalText = btn.innerText;
     btn.innerText = t.form.enviando;
@@ -120,12 +158,13 @@ const t = translations[currentLocale as keyof typeof translations];
       telefono: formData.get("Telefono"),
       email: formData.get("Email"),
       mensaje: formData.get("Mensaje"),
+      captcha: turnstileResponse 
     };
     
     try {
       await fetch(URL, {
         method: "POST",
-        mode: "no-cors",
+        mode: "no-cors", 
         body: JSON.stringify(data),
       });
       
@@ -137,12 +176,9 @@ const t = translations[currentLocale as keyof typeof translations];
       });
       
       form.reset();
+      turnstile.reset();
     } catch (error) {
-      Swal.fire({
-        title: t.alerts.errorTitle,
-        text: t.alerts.errorText,
-        icon: "error",
-      });
+      Swal.fire({ title: t.alerts.errorTitle, icon: "error" });
     } finally {
       btn.innerText = originalText;
       btn.disabled = false;
