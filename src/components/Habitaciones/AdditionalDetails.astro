@@ -3,7 +3,6 @@ import { Image } from "astro:assets";
 import RoomIncludes from "./RoomIncludes.astro";
 import { getRoomsData } from "../../content/RoomClasic/service";
 
-// Glob de todas las imágenes de rooms en src/assets/rooms/
 const roomImages = import.meta.glob<{ default: ImageMetadata }>(
   '../../assets/rooms/*.webp',
   { eager: true }
@@ -12,7 +11,6 @@ const roomImages = import.meta.glob<{ default: ImageMetadata }>(
 const currentLocale = Astro.currentLocale || 'es';
 const roomsData = getRoomsData(currentLocale);
 
-// Helper: convierte "/images/rooms/Clasica-mat-1.webp" → ImageMetadata
 function getImage(path: string): ImageMetadata {
   const filename = path.split('/').pop();
   const key = `../../assets/rooms/${filename}`;
