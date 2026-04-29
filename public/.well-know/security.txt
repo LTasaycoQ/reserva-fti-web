@@ -2,4 +2,4 @@ Contact: mailto:luistasayco3030@gmail.com
 Expires: 2027-04-29T16:00:00.000Z
 Acknowledgments: https://luistasayco.netlify.app/
 Preferred-Languages: es, en
-Canonical: https://terraandinahotel.com/.well-known/security.txt
+Canonical: https://fti-weeb.netlify.app/.well-known/security.txt
