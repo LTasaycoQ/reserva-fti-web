@@ -1,15 +1,8 @@
----
----
-
-<!-- BOOTRAP ICONS -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
 
-<!-- TIPOS DE LETRAS -->
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Alex+Brush&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&family=Vollkorn:ital,wght@0,400..900;1,400..900&display=swap');
 </style>
-
- <!-- ENLACE LINK Y SCRIPTS FORM RESERVA -->
 
 <link type="text/css" href="https://reservas.fnsbooking.com/css/FNSbooking.css" rel="stylesheet" />
 <link type="text/css" href="https://reservas.fnsbooking.com/css/hotel-datepicker.css" rel="stylesheet" />
@@ -21,9 +14,11 @@
 
 <meta http-equiv="Content-Security-Policy" content="
   default-src 'self';
-  script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.clarity.ms https://reservas.fnsbooking.com;
+  script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.clarity.ms https://reservas.fnsbooking.com https://maps.googleapis.com;
   style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.jsdelivr.net https://reservas.fnsbooking.com;
-  img-src 'self' data: res.cloudinary.com https://www.google-analytics.com https://reservas.fnsbooking.com https://c.bing.com;
+  img-src 'self' data: res.cloudinary.com https://www.google-analytics.com https://reservas.fnsbooking.com https://c.bing.com https://maps.gstatic.com https://*.googleapis.com;
   font-src 'self' https://fonts.gstatic.com https://cdn.jsdelivr.net;
-  connect-src 'self' https://www.google-analytics.com https://stats.g.doubleclick.net https://w3xvmxxviq.clr.p.clarity.ms;
+  connect-src 'self' https://www.google-analytics.com https://stats.g.doubleclick.net https://w3xvmxxviq.clr.p.clarity.ms https://maps.googleapis.com;
+  worker-src 'self' blob:;
+  frame-src 'self' https://www.google.com https://maps.google.com;
 ">
