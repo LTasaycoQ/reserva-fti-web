@@ -1,0 +1,371 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Fondos from "../components/fondos.astro";
+
+const lang = "es";
+const ogImage = "https://res.cloudinary.com/dlgeap8h0/image/upload/v1772826862/9.1_11zon_kyz8ug.webp";
+
+const title = "Masajes Terapéuticos en Cusco";
+const description = "Recupera tu energía en Cusco con nuestras 'Manos Curativas'. Masajes suecos, shiatsu y reflexología disponibles todos los días de 8am a 10pm.";
+
+const servicios = [
+  {
+    id: 1,
+    nombre: "Masaje Sueco",
+    descripcion: "Técnica clásica que combina amasamientos, fricciones y percusiones para liberar tensiones musculares y mejorar la circulación.",
+    duracion: "60 min",
+    precio: "S/ 120",
+    imagen: "https://res.cloudinary.com/dlgeap8h0/image/upload/v1778193171/iStock-1702599131_zkt9ls.jpg",
+    destacado: true
+  },
+  {
+    id: 2,
+    nombre: "Shiatsu",
+    descripcion: "Masaje japonés que aplica presión con los dedos en puntos específicos para equilibrar la energía vital del cuerpo.",
+    duracion: "50 min",
+    precio: "S/ 140",
+    imagen: "https://res.cloudinary.com/dlgeap8h0/image/upload/v1778193171/iStock-1702599131_zkt9ls.jpg",
+    destacado: false
+  },
+  {
+    id: 3,
+    nombre: "Reflexología",
+    descripcion: "Estimulación de puntos reflejos en pies y manos que corresponden a órganos y sistemas del cuerpo.",
+    duracion: "45 min",
+    precio: "S/ 100",
+    imagen: "https://res.cloudinary.com/dlgeap8h0/image/upload/v1778193171/iStock-1702599131_zkt9ls.jpg",
+    destacado: false
+  },
+  {
+    id: 4,
+    nombre: "Masaje con Piedras Calientes",
+    descripcion: "Terapia que utiliza piedras volcánicas calientes para relajar músculos profundos y aliviar el estrés.",
+    duracion: "75 min",
+    precio: "S/ 180",
+    imagen: "https://res.cloudinary.com/dlgeap8h0/image/upload/v1778193171/iStock-1702599131_zkt9ls.jpg",
+    destacado: false
+  },
+   {
+    id: 5,
+    nombre: "Reflexología",
+    descripcion: "Estimulación de puntos reflejos en pies y manos que corresponden a órganos y sistemas del cuerpo.",
+    duracion: "45 min",
+    precio: "S/ 100",
+    imagen: "https://res.cloudinary.com/dlgeap8h0/image/upload/v1778193171/iStock-1702599131_zkt9ls.jpg",
+    destacado: false
+  },
+  {
+    id: 6,
+    nombre: "Masaje con Piedras Calientes",
+    descripcion: "Terapia que utiliza piedras volcánicas calientes para relajar músculos profundos y aliviar el estrés.",
+    duracion: "75 min",
+    precio: "S/ 180",
+    imagen: "https://res.cloudinary.com/dlgeap8h0/image/upload/v1778193171/iStock-1702599131_zkt9ls.jpg",
+    destacado: false
+  }
+];
+---
+
+<BaseLayout lang={lang} title={title} description={description} ogImage={ogImage}>
+  <Fondos imgFondo={`url(${ogImage})`} />
+  
+  <main>
+    <section id="servicios" class="servicios-section">
+      <div class="container-fotos">
+        <div class="servicios-grid">
+            {servicios.slice(0, 8).map(servicio => (
+            <div class={`servicio-card ${servicio.destacado ? 'destacado' : ''}`}>
+                <div 
+                    class="servicio-imagen" 
+                    onclick={`openLightbox('${servicio.imagen}', '${servicio.nombre}')`}
+                    >
+                    <img src={servicio.imagen} alt={servicio.nombre} loading="lazy" />
+                    </div>
+                <div class="servicio-info">
+                  <h3 class="servicio-nombre">{servicio.nombre}</h3>
+                  <p class="servicio-descripcion">{servicio.descripcion}</p>
+                  
+                </div>
+            </div>
+            ))}
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+    <span class="close-lightbox" onclick="closeLightbox()">&times;</span>
+    <img class="lightbox-img" id="lightboxImg" alt="Imagen expandida">
+    <div class="lightbox-caption" id="lightboxCaption"></div>
+  </div>
+</BaseLayout>
+
+<script is:inline>
+  function openLightbox(imagenUrl, titulo) {
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightboxImg');
+    const lightboxCaption = document.getElementById('lightboxCaption');
+    
+    lightbox.style.display = 'flex';
+    lightboxImg.src = imagenUrl;
+    lightboxCaption.textContent = titulo;
+    
+    document.body.style.overflow = 'hidden';
+  }
+  
+  function closeLightbox() {
+    const lightbox = document.getElementById('lightbox');
+    lightbox.style.display = 'none';
+    document.body.style.overflow = 'auto';
+  }
+  
+  function contactar(servicioNombre) {
+    alert(`Gracias por tu interés en ${servicioNombre}. Pronto nos pondremos en contacto contigo.`);
+  }
+  
+  window.openLightbox = openLightbox;
+  window.closeLightbox = closeLightbox;
+  window.contactar = contactar;
+  
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      closeLightbox();
+    }
+  });
+</script>
+
+<style>
+  .servicios-section {
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 60px 60px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .container-fotos {
+    width: 1300px;
+  }
+  
+  .servicios-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    justify-content: center;
+    align-items: start;
+    gap: 80px;
+    padding: 40px 0;
+  }
+  
+  .servicio-imagen {
+    width: 100%;
+    height: 250px;
+    overflow: hidden;
+    border-radius: 10px;
+    cursor: pointer;
+    position: relative;
+  }
+  
+  .servicio-imagen img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+  
+  .servicio-imagen:hover img {
+    transform: scale(1.05);
+  }
+  
+  .servicio-imagen::after {
+    
+    font-family: "bootstrap-icons";
+    content: '\F62C';
+
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(0, 0, 0, 0.6);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 14px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+  }
+  
+  .servicio-imagen:hover::after {
+    opacity: 1;
+  }
+  
+  .servicio-card {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    border-radius: 10px;
+    background-color: rgba(238, 238, 238, 0.8);
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .servicio-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  }
+  
+  .servicio-nombre {
+    font-size: 1.5em;
+    color: #000;
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+  
+  .servicio-descripcion {
+    font-size: 0.95em;
+    color: #555;
+    line-height: 1.5;
+    margin-bottom: 15px;
+  }
+  
+  .servicio-detalles {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 15px;
+    padding: 10px 0;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .detalle-duracion,
+  .detalle-precio {
+    font-size: 0.9em;
+    color: #333;
+    font-weight: 500;
+  }
+  
+  .btn-contacto {
+    background-color: #8B7355;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-size: 1em;
+    cursor: pointer;
+    width: 100%;
+    transition: background-color 0.3s ease;
+    font-weight: 600;
+  }
+  
+  .btn-contacto:hover {
+    background-color: #6d5a47;
+  }
+  
+  .lightbox {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.548);
+    z-index: 2000;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    cursor: pointer;
+  }
+  
+  .lightbox-img {
+    max-width: 80%;
+    max-height: 85%;
+    object-fit: contain;
+    border-radius: 8px;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+    animation: zoomIn 0.3s ease;
+  }
+  
+  @keyframes zoomIn {
+    from {
+      transform: scale(0.8);
+      opacity: 0;
+    }
+    to {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+  
+  .lightbox-caption {
+    color: white;
+    text-align: center;
+    margin-top: 20px;
+    font-size: 1.2em;
+    background: rgba(0, 0, 0, 0.6);
+    padding: 10px 20px;
+    border-radius: 30px;
+  }
+  
+  .close-lightbox {
+    position: absolute;
+    top: 20px;
+    right: 40px;
+    color: white;
+    font-size: 50px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.3s ease;
+    z-index: 2001;
+  }
+  
+  .close-lightbox:hover {
+    color: #ccc;
+  }
+  
+  /* Responsive */
+  @media (max-width: 1024px) {
+    .servicios-grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .servicios-section {
+      padding: 40px 20px;
+    }
+    
+    .servicios-grid {
+      grid-template-columns: 1fr;
+      gap: 30px;
+    }
+    
+    .servicio-imagen {
+      height: 220px;
+    }
+    
+    .close-lightbox {
+      top: 10px;
+      right: 20px;
+      font-size: 40px;
+    }
+    
+    .lightbox-caption {
+      font-size: 1em;
+      margin: 15px 20px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .servicio-nombre {
+      font-size: 1.3em;
+    }
+    
+    .servicio-detalles {
+      flex-direction: column;
+      gap: 5px;
+    }
+  }
+</style>
