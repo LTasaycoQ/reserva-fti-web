@@ -1,69 +1,13 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Fondos from "../components/fondos.astro";
+import { terraFotosData } from "../content/TerraFotos";
 
 const lang = "es";
-const ogImage = "https://res.cloudinary.com/dlgeap8h0/image/upload/v1772826862/9.1_11zon_kyz8ug.webp";
+const ogImage = "https://res.cloudinary.com/dlgeap8h0/image/upload/v1770926175/R6M25442_qbs8cv.webp";
 
 const title = "Masajes Terapéuticos en Cusco";
 const description = "Recupera tu energía en Cusco con nuestras 'Manos Curativas'. Masajes suecos, shiatsu y reflexología disponibles todos los días de 8am a 10pm.";
-
-const servicios = [
-  {
-    id: 1,
-    nombre: "Masaje Sueco",
-    descripcion: "Técnica clásica que combina amasamientos, fricciones y percusiones para liberar tensiones musculares y mejorar la circulación.",
-    duracion: "60 min",
-    precio: "S/ 120",
-    imagen: "https://res.cloudinary.com/dlgeap8h0/image/upload/v1778193171/iStock-1702599131_zkt9ls.jpg",
-    destacado: true
-  },
-  {
-    id: 2,
-    nombre: "Shiatsu",
-    descripcion: "Masaje japonés que aplica presión con los dedos en puntos específicos para equilibrar la energía vital del cuerpo.",
-    duracion: "50 min",
-    precio: "S/ 140",
-    imagen: "https://res.cloudinary.com/dlgeap8h0/image/upload/v1778193171/iStock-1702599131_zkt9ls.jpg",
-    destacado: false
-  },
-  {
-    id: 3,
-    nombre: "Reflexología",
-    descripcion: "Estimulación de puntos reflejos en pies y manos que corresponden a órganos y sistemas del cuerpo.",
-    duracion: "45 min",
-    precio: "S/ 100",
-    imagen: "https://res.cloudinary.com/dlgeap8h0/image/upload/v1778193171/iStock-1702599131_zkt9ls.jpg",
-    destacado: false
-  },
-  {
-    id: 4,
-    nombre: "Masaje con Piedras Calientes",
-    descripcion: "Terapia que utiliza piedras volcánicas calientes para relajar músculos profundos y aliviar el estrés.",
-    duracion: "75 min",
-    precio: "S/ 180",
-    imagen: "https://res.cloudinary.com/dlgeap8h0/image/upload/v1778193171/iStock-1702599131_zkt9ls.jpg",
-    destacado: false
-  },
-   {
-    id: 5,
-    nombre: "Reflexología",
-    descripcion: "Estimulación de puntos reflejos en pies y manos que corresponden a órganos y sistemas del cuerpo.",
-    duracion: "45 min",
-    precio: "S/ 100",
-    imagen: "https://res.cloudinary.com/dlgeap8h0/image/upload/v1778193171/iStock-1702599131_zkt9ls.jpg",
-    destacado: false
-  },
-  {
-    id: 6,
-    nombre: "Masaje con Piedras Calientes",
-    descripcion: "Terapia que utiliza piedras volcánicas calientes para relajar músculos profundos y aliviar el estrés.",
-    duracion: "75 min",
-    precio: "S/ 180",
-    imagen: "https://res.cloudinary.com/dlgeap8h0/image/upload/v1778193171/iStock-1702599131_zkt9ls.jpg",
-    destacado: false
-  }
-];
 ---
 
 <BaseLayout lang={lang} title={title} description={description} ogImage={ogImage}>
@@ -73,21 +17,37 @@ const servicios = [
     <section id="servicios" class="servicios-section">
       <div class="container-fotos">
         <div class="servicios-grid">
-            {servicios.slice(0, 8).map(servicio => (
-            <div class={`servicio-card ${servicio.destacado ? 'destacado' : ''}`}>
-                <div 
-                    class="servicio-imagen" 
-                    onclick={`openLightbox('${servicio.imagen}', '${servicio.nombre}')`}
-                    >
-                    <img src={servicio.imagen} alt={servicio.nombre} loading="lazy" />
-                    </div>
-                <div class="servicio-info">
-                  <h3 class="servicio-nombre">{servicio.nombre}</h3>
-                  <p class="servicio-descripcion">{servicio.descripcion}</p>
-                  
+          {terraFotosData.map((servicio, index) => (
+            <div class="servicio-card" data-index={index}>
+              <div class="carousel-container">
+                <div class="carousel-track" id={`carousel-${index}`}>
+                  {servicio.images.map((img, imgIndex) => (
+                    <img 
+                      class="carousel-image" 
+                      src={img} 
+                      alt={`${servicio.title} - imagen ${imgIndex + 1}`}
+                      onclick={`openLightbox('${img}', '${servicio.title}')`}
+                    />
+                  ))}
                 </div>
+                {/* {servicio.images.length > 1 && (
+                  <>
+                    <button class="carousel-btn prev" onclick={`moveCarousel(${index}, -1)`}>❮</button>
+                    <button class="carousel-btn next" onclick={`moveCarousel(${index}, 1)`}>❯</button>
+                  </>
+                )} */}
+                <div class="carousel-dots" id={`dots-${index}`}>
+                  {servicio.images.map((_, dotIndex) => (
+                    <span class="dot" data-dot-index={dotIndex} onclick={`goToSlide(${index}, ${dotIndex})`}></span>
+                  ))}
+                </div>
+              </div>
+              <div class="servicio-info">
+                <h3 class="servicio-nombre">{servicio.title}</h3>
+                <p class="servicio-descripcion">{servicio.descripcion}</p>
+              </div>
             </div>
-            ))}
+          ))}
         </div>
       </div>
     </section>
@@ -101,6 +61,52 @@ const servicios = [
 </BaseLayout>
 
 <script is:inline>
+  const currentSlides = {};
+  
+  function initCarousel(index, totalSlides) {
+    if (currentSlides[index] === undefined) {
+      currentSlides[index] = 0;
+    }
+    updateCarousel(index, totalSlides);
+  }
+  
+  function updateCarousel(index, totalSlides) {
+    const track = document.getElementById(`carousel-${index}`);
+    if (!track) return;
+    
+    const slideWidth = track.clientWidth;
+    track.style.transform = `translateX(-${currentSlides[index] * slideWidth}px)`;
+    
+    const dots = document.querySelectorAll(`#dots-${index} .dot`);
+    dots.forEach((dot, i) => {
+      if (i === currentSlides[index]) {
+        dot.classList.add('active');
+      } else {
+        dot.classList.remove('active');
+      }
+    });
+  }
+  
+  function moveCarousel(index, direction) {
+    const servicio = terraFotosData[index];
+    const totalSlides = servicio.images.length;
+    
+    let newIndex = currentSlides[index] + direction;
+    if (newIndex < 0) newIndex = totalSlides - 1;
+    if (newIndex >= totalSlides) newIndex = 0;
+    
+    currentSlides[index] = newIndex;
+    updateCarousel(index, totalSlides);
+  }
+  
+  function goToSlide(index, slideIndex) {
+    const servicio = terraFotosData[index];
+    const totalSlides = servicio.images.length;
+    
+    currentSlides[index] = slideIndex;
+    updateCarousel(index, totalSlides);
+  }
+  
   function openLightbox(imagenUrl, titulo) {
     const lightbox = document.getElementById('lightbox');
     const lightboxImg = document.getElementById('lightboxImg');
@@ -109,7 +115,6 @@ const servicios = [
     lightbox.style.display = 'flex';
     lightboxImg.src = imagenUrl;
     lightboxCaption.textContent = titulo;
-    
     document.body.style.overflow = 'hidden';
   }
   
@@ -119,18 +124,23 @@ const servicios = [
     document.body.style.overflow = 'auto';
   }
   
-  function contactar(servicioNombre) {
-    alert(`Gracias por tu interés en ${servicioNombre}. Pronto nos pondremos en contacto contigo.`);
-  }
+  document.addEventListener('DOMContentLoaded', () => {
+    terraFotosData.forEach((servicio, index) => {
+      initCarousel(index, servicio.images.length);
+      
+      window.addEventListener('resize', () => {
+        updateCarousel(index, servicio.images.length);
+      });
+    });
+  });
   
+  window.moveCarousel = moveCarousel;
+  window.goToSlide = goToSlide;
   window.openLightbox = openLightbox;
   window.closeLightbox = closeLightbox;
-  window.contactar = contactar;
   
-  document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') {
-      closeLightbox();
-    }
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeLightbox();
   });
 </script>
 
@@ -145,58 +155,92 @@ const servicios = [
   }
   
   .container-fotos {
-    width: 1300px;
+    width: 1500px;
+    max-width: 100%;
   }
   
   .servicios-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    justify-content: center;
-    align-items: start;
-    gap: 80px;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
     padding: 40px 0;
   }
   
-  .servicio-imagen {
+  /* Carrusel */
+  .carousel-container {
+    position: relative;
     width: 100%;
     height: 250px;
     overflow: hidden;
     border-radius: 10px;
-    cursor: pointer;
-    position: relative;
   }
   
-  .servicio-imagen img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+  .carousel-track {
+    display: flex;
     transition: transform 0.3s ease;
+    height: 100%;
   }
   
-  .servicio-imagen:hover img {
-    transform: scale(1.05);
+  .carousel-image {
+    width: 100%;
+    flex-shrink: 0;
+    object-fit: cover;
+    cursor: pointer;
+    transition: transform 0.2s ease;
   }
   
-  .servicio-imagen::after {
-    
-    font-family: "bootstrap-icons";
-    content: '\F62C';
-
+  .carousel-image:hover {
+    transform: scale(1.02);
+  }
+  
+  .carousel-btn {
     position: absolute;
-    top: 10px;
-    right: 10px;
-    background: rgba(0, 0, 0, 0.6);
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.5);
     color: white;
-    padding: 5px 10px;
-    border-radius: 20px;
-    font-size: 14px;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    pointer-events: none;
+    border: none;
+    font-size: 24px;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: background 0.3s ease;
+    z-index: 10;
   }
   
-  .servicio-imagen:hover::after {
-    opacity: 1;
+  .carousel-btn:hover {
+    background: rgba(0, 0, 0, 0.8);
+  }
+  
+  .prev {
+    left: 10px;
+  }
+  
+  .next {
+    right: 10px;
+  }
+  
+  .carousel-dots {
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+  }
+  
+  .dot {
+    width: 10px;
+    height: 10px;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  
+  .dot.active {
+    background: white;
   }
   
   .servicio-card {
@@ -226,76 +270,29 @@ const servicios = [
     font-size: 0.95em;
     color: #555;
     line-height: 1.5;
-    margin-bottom: 15px;
   }
   
-  .servicio-detalles {
-    display: flex;
-    justify-content: space-between;
-    gap: 10px;
-    margin-bottom: 15px;
-    padding: 10px 0;
-    border-top: 1px solid #ddd;
-    border-bottom: 1px solid #ddd;
-  }
-  
-  .detalle-duracion,
-  .detalle-precio {
-    font-size: 0.9em;
-    color: #333;
-    font-weight: 500;
-  }
-  
-  .btn-contacto {
-    background-color: #8B7355;
-    color: white;
-    border: none;
-    padding: 12px 20px;
-    border-radius: 8px;
-    font-size: 1em;
-    cursor: pointer;
-    width: 100%;
-    transition: background-color 0.3s ease;
-    font-weight: 600;
-  }
-  
-  .btn-contacto:hover {
-    background-color: #6d5a47;
-  }
-  
+  /* Lightbox */
   .lightbox {
-    display: none;
+    display: flex;
+    flex-direction: column;
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.548);
+    background-color: rgba(0, 0, 0, 0.9);
     z-index: 2000;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
     cursor: pointer;
   }
   
   .lightbox-img {
-    max-width: 80%;
+    max-width: 90%;
     max-height: 85%;
     object-fit: contain;
     border-radius: 8px;
-    box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
-    animation: zoomIn 0.3s ease;
-  }
-  
-  @keyframes zoomIn {
-    from {
-      transform: scale(0.8);
-      opacity: 0;
-    }
-    to {
-      transform: scale(1);
-      opacity: 1;
-    }
   }
   
   .lightbox-caption {
@@ -314,24 +311,10 @@ const servicios = [
     right: 40px;
     color: white;
     font-size: 50px;
-    font-weight: bold;
     cursor: pointer;
-    transition: color 0.3s ease;
-    z-index: 2001;
-  }
-  
-  .close-lightbox:hover {
-    color: #ccc;
   }
   
   /* Responsive */
-  @media (max-width: 1024px) {
-    .servicios-grid {
-      grid-template-columns: 1fr 1fr;
-      gap: 40px;
-    }
-  }
-  
   @media (max-width: 768px) {
     .servicios-section {
       padding: 40px 20px;
@@ -342,30 +325,8 @@ const servicios = [
       gap: 30px;
     }
     
-    .servicio-imagen {
+    .carousel-container {
       height: 220px;
-    }
-    
-    .close-lightbox {
-      top: 10px;
-      right: 20px;
-      font-size: 40px;
-    }
-    
-    .lightbox-caption {
-      font-size: 1em;
-      margin: 15px 20px;
-    }
-  }
-  
-  @media (max-width: 480px) {
-    .servicio-nombre {
-      font-size: 1.3em;
-    }
-    
-    .servicio-detalles {
-      flex-direction: column;
-      gap: 5px;
     }
   }
 </style>
