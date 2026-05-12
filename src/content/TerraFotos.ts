@@ -25,16 +25,16 @@ export const terraFotosData: TerraFotos[] = [
  images: [
       "https://res.cloudinary.com/dlgeap8h0/image/upload/v1770926169/Lobby_texahf.webp",
       "https://res.cloudinary.com/dlgeap8h0/image/upload/v1770926180/Rest_1_bvkniv.webp"
-    ],    title: "Prueba card 1",
-    descripcion: "Estimulación de puntos reflejos en pies y manos que corresponden a órganos y sistemas del cuerpo.",
+    ],    title: "Welcome Desk",
+    descripcion: "Welcome Desk Our reception welcomes you amidst Inca stone walls, exquisite wood carvings, and paintings using the same techniques as the Cusco School, all framed and gleaming like gold leaf; a first encounter with colonial history and art.",
 
   },
   {
  images: [
       "https://res.cloudinary.com/dlgeap8h0/image/upload/v1770926175/R6M25442_qbs8cv.webp",
       "https://res.cloudinary.com/dlgeap8h0/image/upload/v1778193171/iStock-1702599131_zkt9ls.jpg"
-    ],    title: "Prueba card 1",
-    descripcion: "Estimulación de puntos reflejos en pies y manos que corresponden a órganos y sistemas del cuerpo.",
+    ],    title: "Welcome Desk",
+    descripcion: "Welcome Desk at Terra Andina Colonial Mansion is a space that seamlessly blends Cusco's living history, where imposing Inca stone walls serve as the foundation for exquisite colonial decor. The welcome area features intricate carved woodwork and a stunning collection similar to “Cusco School” paintings, whose religious motifs and ornate like gold-leaf frames create a warm, solemn 'Museum-Mansion' atmosphere. ",
 
   },
   {
@@ -107,7 +107,9 @@ export const terraFotosData: TerraFotos[] = [
  images: [
       "https://res.cloudinary.com/dlgeap8h0/image/upload/v1770926175/R6M25442_qbs8cv.webp",
       "https://res.cloudinary.com/dlgeap8h0/image/upload/v1778193171/iStock-1702599131_zkt9ls.jpg"
-    ],    descripcion: `
+    ],    
+    title:"Master King Suite",
+    descripcion: `
     Our Master King Suite redefines luxury with a spacious King bed and independent living areas.Designed for ultimate privacy, it features premium finishes and breathtaking views that invite absolute relaxation
 
     The exquisite hand-carved woodwork, crafted with unparalleled artistry, blends seamlessly with contemporary luxury to create a space fit for royalty. 
@@ -121,15 +123,19 @@ export const terraFotosData: TerraFotos[] = [
  images: [
       "https://res.cloudinary.com/dlgeap8h0/image/upload/v1770926175/R6M25442_qbs8cv.webp",
       "https://res.cloudinary.com/dlgeap8h0/image/upload/v1778193171/iStock-1702599131_zkt9ls.jpg"
-    ],    descripcion: `
+    ],    
+    title:"Master Suite ",
+    descripcion: `
     From this vantage point, the Master Suite reveals its finest feature: a dream closet functional yet contemporary in its design. 
     `,
   },
   {
  images: [
-      "https://res.cloudinary.com/dlgeap8h0/image/upload/v1770926175/R6M25442_qbs8cv.webp",
+      "https://res.cloudinary.com/dlgeap8h0/image/upload/Suite-twin-bano2_kgj2ag.webp",
       "https://res.cloudinary.com/dlgeap8h0/image/upload/v1778193171/iStock-1702599131_zkt9ls.jpg"
-    ],    descripcion: `
+    ],    
+    title: "Juinior Suite King",
+    descripcion: `
     Junior Suite King 
     Experience the height of comfort in our Junior Suite Kings , which offers a spacious layout with a plush King bed and an inviting living area. 
 
@@ -137,7 +143,7 @@ export const terraFotosData: TerraFotos[] = [
   },
   {
  images: [
-      "https://res.cloudinary.com/dlgeap8h0/image/upload/v1770926175/R6M25442_qbs8cv.webp",
+      "https://res.cloudinary.com/dlgeap8h0/image/upload/v1778628492/assss_fgko0z.png",
       "https://res.cloudinary.com/dlgeap8h0/image/upload/v1778193171/iStock-1702599131_zkt9ls.jpg"
     ],    title: "Premium Room",
     descripcion: `
@@ -153,7 +159,7 @@ export const terraFotosData: TerraFotos[] = [
   },
   {
     images: [
-      "https://res.cloudinary.com/dlgeap8h0/image/upload/v1770926175/R6M25442_qbs8cv.webp",
+      "https://res.cloudinary.com/dlgeap8h0/image/upload/v1770926166/Clasica-twin_bh4qyh.webp",
       "https://res.cloudinary.com/dlgeap8h0/image/upload/v1778193171/iStock-1702599131_zkt9ls.jpg"
     ],
     title: "Classic Room",

@@ -3,6 +3,13 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import Fondos from "../components/fondos.astro";
 import { terraFotosData } from "../content/TerraFotos";
 
+
+const optimizeCloudinary = (url: string) => {
+  if (!url.includes('cloudinary.com')) return url;
+  return url.replace('/upload/', '/upload/f_auto,q_auto,w_800,c_limit/');
+};
+
+
 const lang = "es";
 const ogImage = "https://res.cloudinary.com/dlgeap8h0/image/upload/v1770926175/R6M25442_qbs8cv.webp";
 
@@ -14,9 +21,13 @@ const description = "Recupera tu energía en Cusco con nuestras 'Manos Curativas
   <Fondos imgFondo={`url(${ogImage})`} />
   
   <main>
-    <section id="servicios" class="servicios-section">
+    <section id="servicios" class="servicios-section-all">
+        <h1 class="title-terrafotos">Un Viajes al Corazon del Cusco Colonial</h1>
+        <div class="line"></div>
+        <p class="parrafo-terra-fotos w-[700px] text-center max-md:w-[80%]">Bienvenidos a Terra Andina Colonial Mansion, donde la elegancia de la piedra y la madera del siglo XVIII se encuentran con el lujo contemporáneo. Ubicados a solo unos pasos del histórico Mercado de San Pedro, ofrecemos una experiencia única de inmersión en el arte y la historia cusqueña.</p>
+      <div class="servicios-section"> 
       <div class="container-fotos">
-        <div class="servicios-grid">
+        <div id="servicios-grid" class="servicios-grid" data-fotos={JSON.stringify(terraFotosData)}>
           {terraFotosData.map((servicio, index) => (
             <div class="servicio-card" data-index={index}>
               <div class="carousel-container">
@@ -24,18 +35,18 @@ const description = "Recupera tu energía en Cusco con nuestras 'Manos Curativas
                   {servicio.images.map((img, imgIndex) => (
                     <img 
                       class="carousel-image" 
-                      src={img} 
+                      src={optimizeCloudinary(img)} 
                       alt={`${servicio.title} - imagen ${imgIndex + 1}`}
                       onclick={`openLightbox('${img}', '${servicio.title}')`}
                     />
                   ))}
                 </div>
-                {/* {servicio.images.length > 1 && (
+                {servicio.images.length > 1 && (
                   <>
                     <button class="carousel-btn prev" onclick={`moveCarousel(${index}, -1)`}>❮</button>
                     <button class="carousel-btn next" onclick={`moveCarousel(${index}, 1)`}>❯</button>
                   </>
-                )} */}
+                )}
                 <div class="carousel-dots" id={`dots-${index}`}>
                   {servicio.images.map((_, dotIndex) => (
                     <span class="dot" data-dot-index={dotIndex} onclick={`goToSlide(${index}, ${dotIndex})`}></span>
@@ -50,6 +61,7 @@ const description = "Recupera tu energía en Cusco con nuestras 'Manos Curativas
           ))}
         </div>
       </div>
+        </div>
     </section>
   </main>
 
@@ -61,32 +73,30 @@ const description = "Recupera tu energía en Cusco con nuestras 'Manos Curativas
 </BaseLayout>
 
 <script is:inline>
-  const currentSlides = {};
-  
-  function initCarousel(index, totalSlides) {
-    if (currentSlides[index] === undefined) {
-      currentSlides[index] = 0;
-    }
-    updateCarousel(index, totalSlides);
+const grid = document.getElementById('servicios-grid');
+const terraFotosData = JSON.parse(grid.dataset.fotos);
+
+const currentSlides = {};
+
+function initCarousel(index, totalSlides) {
+  if (currentSlides[index] === undefined) {
+    currentSlides[index] = 0;
   }
-  
-  function updateCarousel(index, totalSlides) {
-    const track = document.getElementById(`carousel-${index}`);
-    if (!track) return;
-    
-    const slideWidth = track.clientWidth;
-    track.style.transform = `translateX(-${currentSlides[index] * slideWidth}px)`;
-    
-    const dots = document.querySelectorAll(`#dots-${index} .dot`);
-    dots.forEach((dot, i) => {
-      if (i === currentSlides[index]) {
-        dot.classList.add('active');
-      } else {
-        dot.classList.remove('active');
-      }
-    });
-  }
-  
+  updateCarousel(index, totalSlides);
+}
+
+function updateCarousel(index, totalSlides) {
+  const track = document.getElementById(`carousel-${index}`);
+  if (!track) return;
+
+  const slideWidth = track.parentElement.clientWidth; 
+  track.style.transform = `translateX(-${currentSlides[index] * slideWidth}px)`;
+
+  const dots = document.querySelectorAll(`#dots-${index} .dot`);
+  dots.forEach((dot, i) => {
+    dot.classList.toggle('active', i === currentSlides[index]);
+  });
+}
   function moveCarousel(index, direction) {
     const servicio = terraFotosData[index];
     const totalSlides = servicio.images.length;
@@ -145,6 +155,37 @@ const description = "Recupera tu energía en Cusco con nuestras 'Manos Curativas
 </script>
 
 <style>
+
+.line{
+    width: 200px;
+    height: 6px;
+    margin-top: 12px;
+    border-radius: 20px;
+    background-color: rgb(204, 135, 56);
+}
+  .servicios-section-all {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .title-terrafotos{
+    font-size: 40px;
+    text-align: center;
+    padding: 0px 60px;
+    margin-top: 60px;
+    font-weight: 500;
+    color:rgb(66, 66, 66)
+  }
+
+  .parrafo-terra-fotos{
+    font-size: 15px;
+    margin-top: 40px;
+    color: rgb(54, 54, 54);
+  }
+
   .servicios-section {
     background-color: rgba(255, 255, 255, 0.9);
     padding: 60px 60px;
@@ -182,12 +223,13 @@ const description = "Recupera tu energía en Cusco con nuestras 'Manos Curativas
   }
   
   .carousel-image {
-    width: 100%;
-    flex-shrink: 0;
-    object-fit: cover;
-    cursor: pointer;
-    transition: transform 0.2s ease;
-  }
+  min-width: 100%;   
+  width: 100%;
+  flex-shrink: 0;
+  object-fit: cover;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
   
   .carousel-image:hover {
     transform: scale(1.02);
@@ -197,10 +239,10 @@ const description = "Recupera tu energía en Cusco con nuestras 'Manos Curativas
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(27, 27, 27, 0.685);
     color: white;
     border: none;
-    font-size: 24px;
+    font-size: 13px;
     padding: 10px 15px;
     cursor: pointer;
     border-radius: 50%;
@@ -272,9 +314,8 @@ const description = "Recupera tu energía en Cusco con nuestras 'Manos Curativas
     line-height: 1.5;
   }
   
-  /* Lightbox */
   .lightbox {
-    display: flex;
+    display: none;
     flex-direction: column;
     position: fixed;
     top: 0;
