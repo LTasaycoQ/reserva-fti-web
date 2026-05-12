@@ -12,10 +12,21 @@ const iconos = import.meta.glob<{ default: ImageMetadata }>(
   { eager: true }
 );
 
+type MarkdownModule = {
+  frontmatter: {
+    sections: Section[];
+    [key: string]: unknown;
+  };
+};
+
+const mdEs = import.meta.glob<MarkdownModule>('../../content/info-inicio.md', { eager: true });
+const mdEn = import.meta.glob<MarkdownModule>('../../content/info-inicio-en.md', { eager: true });
+
 const currentLocale = Astro.currentLocale || 'es';
-const servicioEs = await Astro.glob("../../content/info-inicio.md");
-const servicioEn = await Astro.glob("../../content/info-inicio-en.md");
-const servicioData = currentLocale === 'en' ? servicioEn[0] : servicioEs[0];
+const servicioData = currentLocale === 'en'
+  ? Object.values(mdEn)[0]
+  : Object.values(mdEs)[0];
+
 const { frontmatter } = servicioData;
 const sections = frontmatter.sections as Section[];
 
