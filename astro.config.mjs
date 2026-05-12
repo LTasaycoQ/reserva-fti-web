@@ -3,7 +3,6 @@ import { defineConfig } from 'astro/config';
 // @ts-ignore
 import tailwindcss from '@tailwindcss/vite';
 import sitemap from '@astrojs/sitemap';
-import partytown from '@astrojs/partytown'; 
 export default defineConfig({
   base: '/',
   site: 'https://terraandinahotel.com',
@@ -30,11 +29,6 @@ export default defineConfig({
 
   integrations: [
     sitemap(),
-    partytown({
-      config: {
-        forward: ['dataLayer.push'],
-        debug: false,
-      },
-    }),
+    
   ],
 });

@@ -14,11 +14,13 @@
 
 <meta http-equiv="Content-Security-Policy" content="
   default-src 'self';
-  script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.clarity.ms https://reservas.fnsbooking.com https://maps.googleapis.com;
+  script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.clarity.ms https://reservas.fnsbooking.com https://maps.googleapis.com https://challenges.cloudflare.com https://cdn.jsdelivr.net;
   style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.jsdelivr.net https://reservas.fnsbooking.com;
-  img-src 'self' data: res.cloudinary.com https://www.google-analytics.com https://reservas.fnsbooking.com https://c.bing.com https://maps.gstatic.com https://*.googleapis.com;
+  img-src 'self' data: res.cloudinary.com https://www.google-analytics.com https://reservas.fnsbooking.com https://c.bing.com https://c.clarity.ms https://maps.gstatic.com https://*.googleapis.com;
   font-src 'self' https://fonts.gstatic.com https://cdn.jsdelivr.net;
-  connect-src 'self' https://www.google-analytics.com https://stats.g.doubleclick.net https://w3xvmxxviq.clr.p.clarity.ms https://maps.googleapis.com;
+  connect-src 'self' https://www.google-analytics.com https://stats.g.doubleclick.net https://w3xvmxxviq.clr.p.clarity.ms https://challenges.cloudflare.com https://maps.googleapis.com;
   worker-src 'self' blob:;
-  frame-src 'self' https://www.google.com https://maps.google.com;
+  frame-src 'self' https://www.google.com https://maps.google.com https://challenges.cloudflare.com;
 ">
+
+
