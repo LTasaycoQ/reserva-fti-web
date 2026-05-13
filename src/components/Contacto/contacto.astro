@@ -137,6 +137,7 @@ const t = translations[currentLocale as keyof typeof translations];
   }
 
   function clearError() {
+    document.getElementById("form-error").style.display = "none";
     document.getElementById("form-error").textContent = "";
   }
 
