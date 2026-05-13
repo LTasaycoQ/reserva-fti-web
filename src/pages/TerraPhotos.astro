@@ -9,15 +9,12 @@ const optimizeCloudinary = (url: string) => {
   return url.replace('/upload/', '/upload/f_auto,q_auto,w_800,c_limit/');
 };
 
-
-const lang = "es";
 const ogImage = "https://res.cloudinary.com/dlgeap8h0/image/upload/v1770926175/R6M25442_qbs8cv.webp";
+const title = "Terra Photos";
 
-const title = "Masajes Terapéuticos en Cusco";
-const description = "Recupera tu energía en Cusco con nuestras 'Manos Curativas'. Masajes suecos, shiatsu y reflexología disponibles todos los días de 8am a 10pm.";
 ---
 
-<BaseLayout lang={lang} title={title} description={description} ogImage={ogImage}>
+<BaseLayout title={title}>
   <Fondos imgFondo={`url(${ogImage})`} />
   
   <main>

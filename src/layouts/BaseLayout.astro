@@ -25,19 +25,73 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
         "@context": "https://schema.org",
         "@type": "Hotel",
         "name": "Terra Andina Colonial Mansion",
-        "description": "Hotel boutique colonial en el centro de Cusco",
+        "description": "Hotel de primera clase ubicado en una mansión colonial en el centro histórico de Cusco, a pasos del Mercado de San Pedro y la Plaza de Armas.",
+        "image": "https://res.cloudinary.com/dlgeap8h0/image/upload/v1770926175/R6M25442_qbs8cv.webp",
         "address": {
           "@type": "PostalAddress",
           "streetAddress": "Calle Unión 184",
           "addressLocality": "Cusco",
           "addressRegion": "Cusco",
+          "postalCode": "08002",
           "addressCountry": "PE"
         },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": -13.51955731546197,
+          "longitude": -71.98356659976618
+        },
         "telephone": "+51987945817",
-        "url": "https://terraandinahotel.com"
+        "url": "https://terraandinahotel.com",
+        "numberOfRooms": 51,
+        "sameAs": [
+          "https://www.facebook.com/TerraAndinaColonialMansion",
+          "https://www.instagram.com/terraandina_hotel_cusco",
+          "https://www.tiktok.com/@hotel.cusco.terra"
+        ],
+        "amenityFeature": [
+          { "@type": "LocationFeatureSpecification", "name": "WiFi gratuito", "value": "true" },
+          { "@type": "LocationFeatureSpecification", "name": "Restaurante", "value": "true" },
+          { "@type": "LocationFeatureSpecification", "name": "Cafetería", "value": "true" },
+          { "@type": "LocationFeatureSpecification", "name": "Recepción 24 horas", "value": "true" },
+          { "@type": "LocationFeatureSpecification", "name": "Calefacción", "value": "true" },
+          { "@type": "LocationFeatureSpecification", "name": "Desayuno buffet", "value": "true" },
+          { "@type": "LocationFeatureSpecification", "name": "Cambio de moneda", "value": "true" },
+          { "@type": "LocationFeatureSpecification", "name": "Almacenamiento de equipaje", "value": "true" },
+          { "@type": "LocationFeatureSpecification", "name": "Servicio a la habitación", "value": "true" },
+          { "@type": "LocationFeatureSpecification", "name": "Bar", "value": "true" }
+        ],
+        "containsPlace": [
+          {
+            "@type": "HotelRoom",
+            "name": "Clásica Matrimonial",
+            "occupancy": { "@type": "QuantitativeValue", "value": 2 },
+            "floorSize": { "@type": "QuantitativeValue", "value": 16, "unitCode": "MTK" },
+            "bed": "1 cama queen size"
+          },
+          {
+            "@type": "HotelRoom",
+            "name": "Premium Triple",
+            "occupancy": { "@type": "QuantitativeValue", "value": 3 },
+            "floorSize": { "@type": "QuantitativeValue", "value": 26, "unitCode": "MTK" },
+            "bed": "3 camas individuales"
+          },
+          {
+            "@type": "HotelRoom",
+            "name": "Premium Familiar",
+            "occupancy": { "@type": "QuantitativeValue", "value": 4 },
+            "floorSize": { "@type": "QuantitativeValue", "value": 26, "unitCode": "MTK" },
+            "bed": "1 cama King size"
+          },
+          {
+            "@type": "HotelRoom",
+            "name": "Suite",
+            "occupancy": { "@type": "QuantitativeValue", "value": 2 },
+            "floorSize": { "@type": "QuantitativeValue", "value": 44, "unitCode": "MTK" },
+            "bed": "1 cama King size"
+          }
+        ]
       }
     </script>
-
     <meta property="og:type" content="website" />
     <meta property="og:url" content={Astro.url} />
     <meta property="og:title" content={`${title} - Terra Andina Colonial Mansion`} />
