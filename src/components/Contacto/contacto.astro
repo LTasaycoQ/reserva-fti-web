@@ -139,7 +139,7 @@ const t = translations[currentLocale as keyof typeof translations];
     const formData = new FormData(form);
     const data = {
       nombre: formData.get("Nombre"),
-      apellidos: formData.get("Apellido"),
+      apellido: formData.get("Apellido"),
       telefono: formData.get("Telefono"),
       email: formData.get("Email"),
       mensaje: formData.get("Mensaje"),
