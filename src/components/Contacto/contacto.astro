@@ -59,11 +59,17 @@ const t = translations[currentLocale as keyof typeof translations];
       <input required name="Telefono" placeholder={t.form.telefono} type="number" />
       <input name="Email" placeholder={t.form.email} type="email" required  />
       <textarea name="Mensaje"  placeholder={t.form.mensaje} ></textarea>
+      
+
+
       <div class="cf-turnstile" 
           data-sitekey="0x4AAAAAACw3a6WzSvEkH-5C" 
           data-theme="light"
           data-width="100%"> 
       </div>
+
+      <span id="form-error" style="display: none;" class="field-error" aria-live="polite"></span>
+
       <button type="submit">{t.form.enviar}</button>
     </form>
   </div>
@@ -107,68 +113,122 @@ const t = translations[currentLocale as keyof typeof translations];
 
 
 
-
 <script is:inline src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
 <script is:inline src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 
 <script is:inline define:vars={{ t }}>
   const URL = "https://fti-emailservice.vercel.app/form-terra";
   const form = document.querySelector(".form-contacto");
-  
+
+  const rules = {
+    Nombre:   { min: 2, max: 50,  pattern: /^[a-zA-ZÀ-ÿ\s]+$/,        msg: { es: "Solo letras, mínimo 2 caracteres.",   en: "Letters only, minimum 2 characters."    } },
+    Apellido: { min: 2, max: 50,  pattern: /^[a-zA-ZÀ-ÿ\s]+$/,        msg: { es: "Solo letras, mínimo 2 caracteres.",   en: "Letters only, minimum 2 characters."    } },
+    Telefono: { min: 7, max: 15,  pattern: /^\d{7,15}$/,               msg: { es: "Solo números, entre 7 y 15 dígitos.", en: "Numbers only, between 7 and 15 digits." } },
+    Email:    {                   pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,msg: { es: "Ingresa un email válido.",            en: "Enter a valid email."                   } },
+    Mensaje:  { min: 10, max: 500,                                      msg: { es: "Mínimo 10 caracteres, máximo 500.",  en: "Minimum 10 characters, maximum 500."    } },
+  };
+
+  const locale = document.documentElement.lang?.startsWith("en") ? "en" : "es";
+
+  function showError(msg) {
+
+    document.getElementById("form-error").style.display = 'block';
+    document.getElementById("form-error").textContent = msg;
+  }
+
+  function clearError() {
+    document.getElementById("form-error").textContent = "";
+  }
+
+  function validate(fields) {
+    for (const field of fields) {
+      const rule  = rules[field.name];
+      const value = field.value.trim();
+
+      if (!value) {
+        showError(locale === "en"
+          ? `${field.placeholder} is required.`
+          : `${field.placeholder} es obligatorio.`
+        );
+        field.focus();
+        return false;
+      }
+      if (rule?.min && value.length < rule.min) { showError(rule.msg[locale]); field.focus(); return false; }
+      if (rule?.max && value.length > rule.max) { showError(rule.msg[locale]); field.focus(); return false; }
+      if (rule?.pattern && !rule.pattern.test(value)) { showError(rule.msg[locale]); field.focus(); return false; }
+    }
+    clearError();
+    return true;
+  }
+
   form?.addEventListener("submit", async (e) => {
     e.preventDefault();
 
-    const turnstileResponse = turnstile.getResponse();
+    const fields = Object.keys(rules)
+      .map(name => form.querySelector(`[name="${name}"]`))
+      .filter(Boolean);
 
+    if (!validate(fields)) return;
+
+    const turnstileResponse = turnstile.getResponse();
     if (!turnstileResponse) {
-      Swal.fire({
-        title: "Verificación Requerida",
-        text: "Por favor, completa la verificación de seguridad.",
-        icon: "warning",
-        confirmButtonColor: "#C08E1F"
-      });
+      showError(locale === "en"
+        ? "Please complete the security check."
+        : "Por favor, completa la verificación de seguridad."
+      );
       return;
     }
+
+    clearError();
 
     const btn = form.querySelector("button");
     const originalText = btn.innerText;
     btn.innerText = t.form.enviando;
-    btn.disabled = true;
-    
+    btn.disabled  = true;
+
     const formData = new FormData(form);
     const data = {
-      nombre: formData.get("Nombre"),
+      nombre:   formData.get("Nombre"),
       apellido: formData.get("Apellido"),
       telefono: formData.get("Telefono"),
-      email: formData.get("Email"),
-      mensaje: formData.get("Mensaje"),
-      captcha: turnstileResponse 
+      email:    formData.get("Email"),
+      mensaje:  formData.get("Mensaje"),
+      captcha:  turnstileResponse
     };
-    
+
     try {
       await fetch(URL, {
         method: "POST",
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
       });
-      
+
       Swal.fire({
         title: t.alerts.successTitle,
-        text: t.alerts.successText,
-        icon: "success",
+        text:  t.alerts.successText,
+        icon:  "success",
         confirmButtonColor: "#C08E1F"
       });
-      
+
       form.reset();
       turnstile.reset();
+
     } catch (error) {
       Swal.fire({ title: t.alerts.errorTitle, icon: "error" });
     } finally {
       btn.innerText = originalText;
-      btn.disabled = false;
+      btn.disabled  = false;
     }
   });
 </script>
+
+<style>
+  .field-error {
+    display: block;
+    color: #e53e3e;
+    font-size: 0.75rem;
+    margin-bottom: 0.5rem;
+    font-family: var(--font-family-poppins);
+    min-height: 1rem;
+  }
+</style>
