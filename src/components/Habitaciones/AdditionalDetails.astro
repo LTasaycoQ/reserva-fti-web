@@ -81,7 +81,60 @@ function getImage(path: string): ImageMetadata {
     );
   })
 }
+<script is:inline>
+  function initSliders() {
+    const sections = document.querySelectorAll("section");
 
+    sections.forEach((section) => {
+      const slider = section.querySelector(".slider__rooms");
+      const prevBtn = section.querySelector(".prevBtn");
+      const nextBtn = section.querySelector(".nextBtn");
+
+      if (!slider || !prevBtn || !nextBtn) return;
+
+      // Scroll con botones
+      prevBtn.addEventListener("click", () => {
+        slider.scrollBy({ left: -300, behavior: "smooth" });
+      });
+
+      nextBtn.addEventListener("click", () => {
+        slider.scrollBy({ left: 300, behavior: "smooth" });
+      });
+
+      // Drag para desktop
+      let isDown = false;
+      let startX;
+      let scrollLeft;
+
+      slider.addEventListener("mousedown", (e) => {
+        isDown = true;
+        slider.style.cursor = "grabbing";
+        startX = e.pageX - slider.offsetLeft;
+        scrollLeft = slider.scrollLeft;
+      });
+
+      slider.addEventListener("mouseleave", () => {
+        isDown = false;
+        slider.style.cursor = "grab";
+      });
+
+      slider.addEventListener("mouseup", () => {
+        isDown = false;
+        slider.style.cursor = "grab";
+      });
+
+      slider.addEventListener("mousemove", (e) => {
+        if (!isDown) return;
+        e.preventDefault();
+        const x = e.pageX - slider.offsetLeft;
+        const walk = (x - startX) * 1.5;
+        slider.scrollLeft = scrollLeft - walk;
+      });
+    });
+  }
+
+  document.addEventListener("astro:page-load", initSliders);
+</script>
 <style>
   .lista__detail {
     margin-bottom: 50px;
