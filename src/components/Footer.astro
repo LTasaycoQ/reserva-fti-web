@@ -120,7 +120,7 @@ import visa from "../assets/pay/visa.webp"
         display: flex;
         justify-content: center;
         align-items: center;
-        position: relative; /* Cambiado de bottom-0 fijo para un flujo natural */
+        position: relative;
         background-color: #252424;
         color: var(--text-color-primary);
         font-family: var(--font-family-primary);
@@ -136,14 +136,12 @@ import visa from "../assets/pay/visa.webp"
         gap: 40px;
     }
 
-    /* --- COLUMNAS GENERALES --- */
     .footer__col {
         flex: 1;
         display: flex;
         flex-direction: column;
     }
 
-    /* Columnas con comportamientos específicos */
     .footer__brand {
         max-width: 280px;
         justify-content: center;
@@ -151,7 +149,6 @@ import visa from "../assets/pay/visa.webp"
         padding-top: 30px;
     }
 
-    /* --- ELEMENTOS DE TEXTO E INTERFAZ --- */
     .title-footer {
         display: block;
         font-size: 14px;
@@ -175,7 +172,6 @@ import visa from "../assets/pay/visa.webp"
         margin-bottom: 0;
     }
 
-    /* --- COMPONENTE DE LOGO E IMÁGENES --- */
     .logo {
         width: 200px;
         padding-top: 15px;
@@ -185,7 +181,6 @@ import visa from "../assets/pay/visa.webp"
         width: 53px;
     }
 
-    /* --- COMPONENTES DE LISTA --- */
     .lista-elementos {
         list-style: none;
         padding: 0;
@@ -207,7 +202,6 @@ import visa from "../assets/pay/visa.webp"
         color: #E9A423;
     }
 
-    /* --- ENLACES INTERNOS --- */
     .footer__link {
         color: rgb(170, 170, 170);
         text-decoration: none;
@@ -225,7 +219,6 @@ import visa from "../assets/pay/visa.webp"
         justify-content: center;
     }
 
-    /* --- PASARELA DE PAGOS (SVGs) --- */
     .payment-icons {
         display: flex;
         justify-content: flex-start;
@@ -241,7 +234,6 @@ import visa from "../assets/pay/visa.webp"
         top: 10px;
     }
 
-    /* --- CONTENEDOR DE REDES SOCIALES --- */
     .social-container {
         display: flex;
         flex-wrap: wrap;
@@ -268,12 +260,10 @@ import visa from "../assets/pay/visa.webp"
         font-size: 13px;
     }
 
-    /* Hover states para Redes */
     .social-link--facebook:hover { color: #60a5fa; }
     .social-link--instagram:hover { color: #f472b6; }
     .social-link--tiktok:hover { color: #c084fc; }
 
-    /* --- RESPONSIVE DESIGN (MEDIA QUERIES MÓVILES) --- */
     @media (max-width: 768px) {
         .footer__container {
             flex-direction: column;
