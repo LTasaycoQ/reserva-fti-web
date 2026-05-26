@@ -33,14 +33,14 @@ const getPath = (path: string) => {
 ---
 
 <nav class="nav">
-    <div class="menu-container gap-[50px] w-[100%] max-lg:pl-[50px] lg:pl-[70px]  max-sm:pl-[18px] max-sm:pr-[18px] max-lg:pr-[50px] xl:w-[70%] max-sm:w-[90%]">
+    <div class="menu-container gap-[50px] w-[100%] max-lg:pl-[50px] lg:pl-[70px] max-sm:pl-[18px] max-sm:pr-[18px] max-lg:pr-[50px] xl:w-[70%] max-sm:w-[90%]">
         <div class="nav__logo">
             <a href={currentLocale === 'es' ? '/' : '/en'} class="logo-link" aria-label="Volver al inicio">
                 <Image class="w-full max-md:w-[120px]" loading="eager" src={logo} alt="Logotipo de Terra Andina Colonial Mansion Hotel Cusco"/>
             </a>
         </div>
 
-        <div class="max-lg:hidden xl:relative   xl:left-[8em] 2xl:left-[15em]">
+        <div class="max-lg:hidden xl:relative xl:left-[8em] 2xl:left-[15em]">
             <ul class="flex gap-[40px] font-semibold text-[16px] text-white items-center">
                 <li><a class="nav__link" href={getPath("/hotel")}>{t.hotel}</a></li>
                 <li><a class="nav__link" href={getPath("/habitaciones")}>{t.rooms}</a></li>
@@ -51,78 +51,63 @@ const getPath = (path: string) => {
             </ul>
         </div>
 
-
         <div class="flex items-center">
             <div class="md:hidden">
                 <LanguageSelector/>
             </div>
             <div class="lg:hidden flex items-center gap-[15px]">
-            
-                
-                <span id="open-modal" class="bg-[#470D0D] p-[5px]">
+                {/* Agregamos la clase de control por CSS a los botones del menú */}
+                <button id="open-modal" class="btn-menu-toggle bg-[#470D0D] p-[5px] border-none cursor-pointer" aria-label="Abrir menú">
                     <svg
                         aria-hidden="true"
                         fill="#ffffff"
                         width="30"
                         height="30"
-                        role="presentation"
-                        class="elementor-menu-toggle__icon--open e-font-icon-svg e-eicon-menu-bar"
                         viewBox="0 0 1000 1000"
                         xmlns="http://www.w3.org/2000/svg"
                     >
-                        <path
-                            d="M104 333H896C929 333 958 304 958 271S929 208 896 208H104C71 208 42 237 42 271S71 333 104 333ZM104 583H896C929 583 958 554 958 521S929 458 896 458H104C71 458 42 487 42 521S71 583 104 583ZM104 833H896C929 833 958 804 958 771S929 708 896 708H104C71 708 42 737 42 771S71 833 104 833Z"
-                        ></path>
+                        <path d="M104 333H896C929 333 958 304 958 271S929 208 896 208H104C71 208 42 237 42 271S71 333 104 333ZM104 583H896C929 583 958 554 958 521S929 458 896 458H104C71 458 42 487 42 521S71 583 104 583ZM104 833H896C929 833 958 804 958 771S929 708 896 708H104C71 708 42 737 42 771S71 833 104 833Z"></path>
                     </svg>
-                </span>
+                </button>
                 
-                <span id="close-modal" class="hidden bg-[#470D0D] p-[5px]">
+                <button id="close-modal" class="btn-menu-toggle hidden bg-[#470D0D] p-[5px] border-none cursor-pointer" aria-label="Cerrar menú">
                     <svg
                         aria-hidden="true"
                         height="30"
                         width="30"
                         fill="#ffffff"
-                        role="presentation"
-                        class="elementor-menu-toggle__icon--close e-font-icon-svg e-eicon-close"
                         viewBox="0 0 1000 1000"
                         xmlns="http://www.w3.org/2000/svg"
                     >
-                        <path
-                            d="M742 167L500 408 258 167C246 154 233 150 217 150 196 150 179 158 167 167 154 179 150 196 150 212 150 229 154 242 171 254L408 500 167 742C138 771 138 800 167 829 196 858 225 858 254 829L496 587 738 829C750 842 767 846 783 846 800 846 817 842 829 829 842 817 846 804 846 783 846 767 842 750 829 737L588 500 833 258C863 229 863 200 833 171 804 137 775 137 742 167Z"
-                        ></path>
+                        <path d="M742 167L500 408 258 167C246 154 233 150 217 150 196 150 179 158 167 167 154 179 150 196 150 212 150 229 154 242 171 254L408 500 167 742C138 771 138 800 167 829 196 858 225 858 254 829L496 587 738 829C750 842 767 846 783 846 800 846 817 842 829 829 842 817 846 804 846 783 846 767 842 750 829 737L588 500 833 258C863 229 863 200 833 171 804 137 775 137 742 167Z"></path>
                     </svg>
-                </span>
+                </button>
             </div>
         </div>
     </div>
 </nav>
 
-<div id="menu-responsive" class="menu-responsive hidden lg:hidden relative">
+{/* Estado inicial cerrado manejado por el atributo personalizado data-open */}
+<div id="menu-responsive" class="menu-responsive lg:hidden" data-open="false">
     <div class="absolute lg:hidden z-[9999] bg-[#1C1717] text-white text-[13px] font-medium w-full">
         <ul>
             <li class="w-full flex">
-                    <a class="pl-[40px] w-full py-[10px] border-t-[1px] border-[#2D2828] bg-transparent hover:bg-[#3F444B]"
-                    href={getPath("/hotel")}>{t.hotel}</a>
+                <a class="pl-[40px] w-full py-[10px] border-t-[1px] border-[#2D2828] bg-transparent hover:bg-[#3F444B]" href={getPath("/hotel")}>{t.hotel}</a>
             </li>
             <li class="w-full flex">
-                <a  class="pl-[40px] w-full py-[10px] border-t-[1px] border-[#2D2828] bg-transparent hover:bg-[#3F444B]"
-                href={getPath("/habitaciones")}>{t.rooms}</a>
+                <a class="pl-[40px] w-full py-[10px] border-t-[1px] border-[#2D2828] bg-transparent hover:bg-[#3F444B]" href={getPath("/habitaciones")}>{t.rooms}</a>
             </li>
             <li class="w-full flex">
-                <a class="pl-[40px] w-full py-[10px] border-t-[1px] border-[#2D2828] bg-transparent hover:bg-[#3F444B]"
-                href={getPath("/restaurante")}>{t.restaurant}</a>
+                <a class="pl-[40px] w-full py-[10px] border-t-[1px] border-[#2D2828] bg-transparent hover:bg-[#3F444B]" href={getPath("/restaurante")}>{t.restaurant}</a>
             </li>
             <li class="w-full flex">  
-                <a class="pl-[40px] w-full py-[10px] border-t-[1px] border-[#2D2828] bg-transparent hover:bg-[#3F444B]"
-                href={getPath("/masajes")}>{t.massage}</a>
+                <a class="pl-[40px] w-full py-[10px] border-t-[1px] border-[#2D2828] bg-transparent hover:bg-[#3F444B]" href={getPath("/masajes")}>{t.massage}</a>
             </li>
             <li class="w-full flex">
-                <a class="pl-[40px] w-full py-[10px] border-t-[1px] border-[#2D2828] bg-transparent hover:bg-[#3F444B]"
-                href={getPath("/galeria")}>{t.gallery}</a>
+                <a class="pl-[40px] w-full py-[10px] border-t-[1px] border-[#2D2828] bg-transparent hover:bg-[#3F444B]" href={getPath("/galeria")}>{t.gallery}</a>
             </li>
             <li class="w-full flex">
-                <a  class="pl-[40px] w-full py-[10px] border-t-[1px] border-[#2D2828] bg-transparent hover:bg-[#3F444B]"
-                href={getPath("/contacto")}>{t.contact}</a>
+                <a class="pl-[40px] w-full py-[10px] border-t-[1px] border-[#2D2828] bg-transparent hover:bg-[#3F444B]" href={getPath("/contacto")}>{t.contact}</a>
             </li>
         </ul>
     </div>
@@ -145,15 +130,10 @@ const getPath = (path: string) => {
     }
     
     .menu-container {
-    
         margin: 0 auto;
         display: flex;
         justify-content: space-between;
         align-items: center;
-    }
-    
-    .menu-responsive {
-        animation: nav-animation 0.5s ease-in-out;
     }
     
     .logo-link {
@@ -172,13 +152,19 @@ const getPath = (path: string) => {
         align-items: center;
     }
 
-    @keyframes nav-animation {
-        0% {
-            transform: scaleY(0);
-        }
-        100% {
-            transform: scale(1);
-        }
+    
+    .menu-responsive {
+        display: none;
+        transform-origin: top;
+        transform: scaleY(0);
+        opacity: 0;
+        transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.25s ease-in-out;
+    }
+
+    .menu-responsive[data-open="true"] {
+        display: block;
+        transform: scaleY(1);
+        opacity: 1;
     }
 
     @media (max-width: 1024px) {
@@ -195,21 +181,27 @@ const getPath = (path: string) => {
         const menu = document.getElementById("menu-responsive");
 
         if (openBtn && closeBtn && menu) {
-            openBtn.onclick = () => {
-                menu.classList.remove("hidden");
+            // Manejador robusto para abrir
+            openBtn.addEventListener("click", (e) => {
+                e.preventDefault();
+                menu.setAttribute("data-open", "true");
                 openBtn.classList.add("hidden");
                 closeBtn.classList.remove("hidden");
-            };
+            });
 
-            closeBtn.onclick = () => {
-                menu.classList.add("hidden");
+            // Manejador robusto para cerrar
+            closeBtn.addEventListener("click", (e) => {
+                e.preventDefault();
+                menu.setAttribute("data-open", "false");
                 openBtn.classList.remove("hidden");
                 closeBtn.classList.add("hidden");
-            };
+            });
         }
     };
 
+    // Inicialización limpia
     setupMenu();
 
+    // Re-ejecutar cuando Astro cambie de ruta en SPA mode
     document.addEventListener("astro:page-load", setupMenu);
 </script>

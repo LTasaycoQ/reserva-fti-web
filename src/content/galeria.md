@@ -166,9 +166,6 @@ fotos:
       image: "https://res.cloudinary.com/dlgeap8h0/image/upload/Clasica-bano_mpfoco"
       title: "Premium-bano"
             
-
-
-
     - id: 36
       image: "https://res.cloudinary.com/dlgeap8h0/image/upload/R6M25577_oiqbx9"
       title: "Junior-Suite-bano1"
