@@ -2,26 +2,75 @@
 import LanguageSelector from "./LanguageSelector.astro";
 ---
 
-<div class="header-top max-md:hidden justify-center items-center">
-  <div class="flex p-[10px] items-center gap-[40px] justify-end xl:w-[90%] 2xl:w-[88%] max-lg:w-[100%] ">
-    <a href="mailto:ventas@terraandinahotel.com" class="text-white hover:text-blue-200 header-top__contact">
+<div class="header-top">
+  <div class="header-top__container">
+    <a href="mailto:ventas@terraandinahotel.com" class="header-top__link email">
       <i class="bi bi-envelope"></i>
       sales@terraandinahotel.com
     </a>
-    <a href="https://wa.link/0x6gpq" target="_blank" class="text-white hover:text-green-300 flex gap-[8px]">
-      <i class=" bi bi-whatsapp"></i>+51 987 945 817
+    <a href="https://wa.link/0x6gpq" target="_blank" class="header-top__link whatsapp">
+      <i class="bi bi-whatsapp"></i>
+      +51 987 945 817
     </a>
     <LanguageSelector />
   </div>
 </div>
+
 <style>
   .header-top {
     background: var(--primary-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
-  .header-top__contact {
-    position: relative;
+
+  .header-top__container {
+    display: flex;
+    padding: 10px;
+    align-items: center;
+    gap: 40px;
+    justify-content: flex-end;
+    width: 100%;
+
+  }
+
+  .header-top__link {
+    color: #ffffff;
     text-decoration: none;
     display: flex;
     gap: 10px;
+    position: relative;
+    transition: color 0.2s ease-in-out;
+  }
+
+  .header-top__link.whatsapp {
+    gap: 8px;
+  }
+
+  .header-top__link.email:hover {
+    color: #bfdbfe;
+  }
+
+  .header-top__link.whatsapp:hover {
+    color: #86efac; 
+  }
+
+
+  @media (max-width: 767px) {
+    .header-top {
+      display: none !important;
+    }
+  }
+
+  @media (min-width: 1280px) {
+    .header-top__container {
+      width: 90%;
+    }
+  }
+
+  @media (min-width: 1536px) {
+    .header-top__container {
+      width: 80%;
+    }
   }
 </style>
