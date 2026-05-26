@@ -32,37 +32,176 @@ const translations = {
 const t = translations[currentLocale as keyof typeof translations];
 ---
 
-<section class="w-full flex justify-center items-center pt-[40px] flex-wrap">
-  <div class="w-[80%] max-lg:w-full flex justify-center items-center gap-[30px] max-md:flex-col p-[2em]">
-    <div class="flex flex-col justify-center items-start gap-[20px] max-md:items-center">
-      <h3 class="text-start title text-3xl">
+<section class="hotel-section">
+  <div class="hotel-section__container">
+    
+    <div class="hotel-section__tagline-box">
+      <h3 class="tagline-title">
         {t.tagline}
       </h3>
-      <a href="#" class="bg-[#9d8132] hover:bg-[#bfa355] font-normal rounded-[5px] text-white w-[170px] justify-center p-[10px] flex gap-[10px]">
+      <a href="#" class="btn-about">
         <i class="bi bi-arrow-right"></i>
         {t.buttonText}
       </a>
     </div>
     
     <div class="hotel-intro__content">
-      <h2 class="title text-4xl">
+      <h2 class="intro-title">
         {t.title} <br />
         {t.subtitle}
       </h2>
-      <p class="text-gray-700 text-[15px]" set:html={t.description}></p>
+      <p class="intro-description" set:html={t.description}></p>
       
-      <ul class="text-[13px] text-gray-500 pt-[20px]">
+      <ul class="benefits-list">
         {t.benefits.map((benefit) => (
-          <li class="flex gap-[10px] items-center">
-            <i class="text-red-800 bi bi-check-circle-fill"></i>
-            {benefit}
+          <li class="benefit-item">
+            <i class="bi bi-check-circle-fill icon-check"></i>
+            <span>{benefit}</span>
           </li>
         ))}
       </ul>
     </div>
     
-    <div class="p-[10px] bg-white shadow-black shadow-2xl">
-      <Image loading="lazy" class="w-[52em]" src={pasadizVert} alt="pasadizo-terraAndinaHotel"/>
+    <div class="hotel-section__image-box">
+      <Image loading="lazy" class="intro-image" src={pasadizVert} alt="pasadizo-terraAndinaHotel"/>
     </div>
+    
   </div>
 </section>
+
+<style>
+  /* --- SECCIÓN PRINCIPAL Y CONTENEDOR --- */
+  .hotel-section {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 40px;
+  }
+
+  .hotel-section__container {
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    padding: 2em;
+  }
+
+  /* --- COLUMNA 1: TAGLINE & BOTÓN --- */
+  .hotel-section__tagline-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 20px;
+  }
+
+  .tagline-title {
+    text-align: start;
+    font-size: 1.875rem; /* text-3xl */
+    line-height: 2.25rem;
+    margin: 0;
+  }
+
+  .btn-about {
+    background-color: #9d8132;
+    font-weight: 400;
+    border-radius: 5px;
+    color: #ffffff;
+    width: 170px;
+    justify-content: center;
+    padding: 10px;
+    display: flex;
+    gap: 10px;
+    text-decoration: none;
+    transition: background-color 0.2s ease-in-out;
+  }
+
+  .btn-about:hover {
+    background-color: #bfa355;
+  }
+
+  /* --- COLUMNA 2: TEXTOS INTRODUCTORIOS --- */
+  .hotel-intro__content {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .intro-title {
+    font-size: 2.25rem; /* text-4xl */
+    line-height: 2.5rem;
+    margin: 0;
+  }
+
+  .intro-description {
+    color: #374151; /* text-gray-700 */
+    font-size: 15px;
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  /* --- LISTA DE BENEFICIOS --- */
+  .benefits-list {
+    font-size: 13px;
+    color: #6b7280; /* text-gray-500 */
+    padding-top: 20px;
+    list-style: none;
+    margin: 0;
+    padding-left: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .benefit-item {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+
+  .icon-check {
+    color: #991b1b; /* text-red-800 */
+    flex-shrink: 0;
+  }
+
+  /* --- COLUMNA 3: CONTENEDOR DE IMAGEN --- */
+  .hotel-section__image-box {
+    padding: 10px;
+    background-color: #ffffff;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25); /* shadow-2xl */
+    display: flex;
+  }
+
+  .intro-image {
+    width: 100%;
+    max-width: 52em;
+    height: auto;
+    display: block;
+  }
+
+  /* --- RESPONSIVE MEDIA QUERIES --- */
+
+  /* lg: max-width: 1023px (Equivale al cambio de ancho en contenedor) */
+  @media (max-width: 1023px) {
+    .hotel-section__container {
+      width: 100%;
+    }
+  }
+
+  /* md: max-width: 767px (Cambio estricto a diseño vertical para tablets/móviles) */
+  @media (max-width: 767px) {
+    .hotel-section__container {
+      flex-direction: column;
+    }
+
+    .hotel-section__tagline-box {
+      align-items: center;
+    }
+
+    .tagline-title {
+      text-align: center;
+    }
+  }
+</style>
