@@ -16,8 +16,6 @@ function getImage(path: string): ImageMetadata {
   const key = `../../assets/rooms/${filename}`;
   return roomImages[key]?.default;
 }
-
-
 ---
 
 {
@@ -26,52 +24,58 @@ function getImage(path: string): ImageMetadata {
     const col1 = room.services.slice(0, half);
     const col2 = room.services.slice(half);
     return (
-      <section class="mb-20 flex flex-col justify-center items-center text-center">
-        <h2 class="text-gray-700 position__title title text-[1.8rem]">
+      <section class="room-section-card">
+        <h2 class="room-card-title font-title">
           {room.title}
         </h2>
-        <div class="w-[80%] max-md:w-[100%] p-[15px] flex justify-center gap-[30px] items-center mb-8">
-          <button aria-label="Anterior" class="prevBtn">
-            <i class="bi bi-caret-left-fill bg-red-900 text-white p-[8px] rounded-full text-[18px]" />
+        
+        <div class="slider-wrapper">
+          <button aria-label="Anterior" class="prevBtn slider-nav-btn">
+            <i class="bi bi-caret-left-fill" />
           </button>
-          <div class="slider__rooms flex justify-start items-center overflow-x-scroll scroll-smooth gap-[20px] max-md:w-[100%] w-[78%]">
+          
+          <div class="slider__rooms">
             {room.images.map((img) => (
               <Image
                 src={getImage(img)}
                 alt={room.title}
                 width={384}
                 height={280}
-                class="w-[24em]"
+                class="slider-image-item"
                 draggable={false}
                 loading="lazy"
               />
             ))}
           </div>
-          <button aria-label="Siguiente" class="nextBtn">
-            <i class="bi bi-caret-right-fill bg-red-900 text-white p-[8px] rounded-full text-[18px]" />
+          
+          <button aria-label="Siguiente" class="nextBtn slider-nav-btn">
+            <i class="bi bi-caret-right-fill" />
           </button>
         </div>
-        <div class="lista__detail w-full flex justify-center items-center">
+        
+        <div class="lista__detail info-container">
           <RoomIncludes />
         </div>
+        
         {room.titleService && (
-          <h3 class="text-gray-700 text-[1.4rem] title">{room.titleService}</h3>
+          <h3 class="room-services-subtitle">{room.titleService}</h3>
         )}
+        
         {room.services.length > 0 && (
-          <div class="lista__detail text-[18px] flex flex-wrap gap-[40px] justify-center items-center">
-            <ul class="flex flex-col justify-center max-lg:w-[85%] items-start">
+          <div class="lista__detail services-grid">
+            <ul class="services-column">
               {col1.map((item) => (
-                <li class="flex gap-[10px] text-start items-center justify-center text-gray-600">
-                  <i class="text-[#9E2222] text-[18px] bi bi-check-lg" />
-                  {item}
+                <li class="service-item">
+                  <i class="bi bi-check-lg check-icon" />
+                  <span class="service-text">{item}</span>
                 </li>
               ))}
             </ul>
-            <ul class="flex flex-col justify-center max-lg:w-[85%] items-start">
+            <ul class="services-column">
               {col2.map((item) => (
-                <li class="flex gap-[10px] items-center text-start justify-center text-gray-600">
-                  <i class="text-[#9E2222] text-[18px] bi bi-check-lg" />
-                  {item}
+                <li class="service-item">
+                  <i class="bi bi-check-lg check-icon" />
+                  <span class="service-text">{item}</span>
                 </li>
               ))}
             </ul>
@@ -81,9 +85,161 @@ function getImage(path: string): ImageMetadata {
     );
   })
 }
+
+<style>
+  .room-section-card {
+    margin-bottom: 80px; /* mb-20 */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+
+  .room-card-title {
+    color: #374151; 
+    font-size: 1.8rem;
+    margin-top: 40px;
+    margin-bottom: 24px;
+    font-weight: normal;
+  }
+
+  .slider-wrapper {
+    width: 80%;
+    padding: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    margin-bottom: 32px; 
+    box-sizing: border-box;
+  }
+
+  .slider__rooms {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    overflow-x: scroll;
+    scroll-behavior: smooth;
+    gap: 20px;
+    width: 78%;
+    cursor: grab;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none; 
+  }
+
+  .slider__rooms::-webkit-scrollbar {
+    display: none;
+  }
+
+  .slider-image-item {
+    width: 24em;
+    height: auto;
+    object-fit: cover;
+    pointer-events: none;
+    user-select: none;
+    flex-shrink: 0;
+  }
+
+  .slider-nav-btn {
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .slider-nav-btn i {
+    background-color: #701a1a;
+    color: #ffffff;
+    padding: 8px;
+    border-radius: 9999px;
+    font-size: 18px;
+    display: inline-flex;
+  }
+
+  /* --- LISTAS DE ETALLES Y SERVICIOS --- */
+  .lista__detail {
+    margin-bottom: 50px;
+    margin-top: 40px;
+  }
+
+  .info-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .room-services-subtitle {
+    color: #374151;
+    font-size: 1.4rem;
+    margin-bottom: 16px;
+    font-weight: normal;
+  }
+
+  .services-grid {
+    font-size: 18px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+
+  .services-column {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+
+  .service-item {
+    display: flex;
+    gap: 10px;
+    text-align: start;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .service-text {
+    color: #4b5563; /* text-gray-600 */
+  }
+
+  .check-icon {
+    color: #9E2222;
+    font-size: 18px;
+  }
+
+  /* --- RESPONSIVE DESIGN (MEDIA QUERIES) --- */
+  @media (max-width: 1024px) {
+    .services-column {
+      width: 85%; /* max-lg:w-[85%] */
+    }
+  }
+
+  @media (max-width: 768px) {
+    .slider-wrapper {
+      width: 100%; /* max-md:w-[100%] */
+    }
+    .slider__rooms {
+      width: 100%; /* max-md:w-[100%] */
+    }
+  }
+</style>
+
 <script is:inline>
-  function initSliders() {
-    const sections = document.querySelectorAll("section");
+  // Enlazamos de forma segura usando el helper global unificado
+  window.safeInit('rooms-detail-sliders', () => {
+    const sections = document.querySelectorAll(".room-section-card");
+
+    if (sections.length === 0) return;
 
     sections.forEach((section) => {
       const slider = section.querySelector(".slider__rooms");
@@ -92,7 +248,7 @@ function getImage(path: string): ImageMetadata {
 
       if (!slider || !prevBtn || !nextBtn) return;
 
-      // Scroll con botones
+      // Navegación asistida por botones
       prevBtn.addEventListener("click", () => {
         slider.scrollBy({ left: -300, behavior: "smooth" });
       });
@@ -101,7 +257,7 @@ function getImage(path: string): ImageMetadata {
         slider.scrollBy({ left: 300, behavior: "smooth" });
       });
 
-      // Drag para desktop
+      // Lógica nativa de arrastre (Desktop Drag)
       let isDown = false;
       let startX;
       let scrollLeft;
@@ -131,25 +287,5 @@ function getImage(path: string): ImageMetadata {
         slider.scrollLeft = scrollLeft - walk;
       });
     });
-  }
-
-  document.addEventListener("astro:page-load", initSliders);
+  });
 </script>
-<style>
-  .lista__detail {
-    margin-bottom: 50px;
-    margin-top: 40px;
-  }
-  .slider__rooms {
-    cursor: grab;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-  }
-  .slider__rooms::-webkit-scrollbar {
-    display: none;
-  }
-  .slider__rooms img {
-    pointer-events: none;
-    user-select: none;
-  }
-</style>

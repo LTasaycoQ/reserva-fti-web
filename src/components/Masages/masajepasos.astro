@@ -58,108 +58,248 @@ const translations = {
   }
 };
 
-const t = translations[currentLocale as keyof typeof translations];
+const t = translations[currentLocale as keyof typeof translations] || translations.es;
 ---
 
-<section class="container_masages flex flex-col pt-[60px] justify-center items-center mx-auto  px-5 w-full">
-  <h2 class="title_pasos text-center text-4xl font-semibold text-gray-700 pt-[20px] pb-[50px]">
+<section class="container_masages">
+  <h2 class="main-spa-title">
     {t.mainTitle}
   </h2>
   
-  <div class="w-[65%] max-lg:w-full">
-    <div class="flex justify-center items-center max-md:flex-col gap-[35px]">
-      <div class="flex flex-col w-[30%] max-md:w-[80%] gap-[80px]">
-        <div class="flex flex-col items-center justify-center gap-[20px]">
+  <div class="spa-layout-inner">
+    <div class="spa-columns-container">
+      
+      <div class="spa-column">
+        <div class="massage-card">
           <SVG_SPAN />
-          <div class="text-center flex flex-col gap-[20px]">
-            <h3 class="title_pasos text-[23px] font-bold text-gray-700 hover:text-[#886B19]" set:html={t.massages[0].title}></h3>
-            <p class="texto__parrafo text-gray-900 text-[18px]">
+          <div class="massage-info">
+            <h3 class="title_pasos massage-title" set:html={t.massages[0].title}></h3>
+            <p class="texto__parrafo massage-desc">
               {t.massages[0].description}
             </p>
           </div>
         </div>
         
-        <div class="flex flex-col items-center justify-center gap-[20px]">
+        <div class="massage-card">
           <SVG_SPAN />
-          <div class="text-center flex flex-col gap-[20px]">
-            <h3 class="title_pasos text-[23px] font-bold text-gray-700 hover:text-[#886B19]">
+          <div class="massage-info">
+            <h3 class="title_pasos massage-title">
               {t.massages[1].title}
             </h3>
-            <p class="texto__parrafo text-gray-900 text-[18px]">
+            <p class="texto__parrafo massage-desc">
               {t.massages[1].description}
             </p>
           </div>
         </div>
       </div>
 
-      <div class="flex flex-col w-[30%] max-md:w-[80%] gap-[80px]">
-        <div class="flex flex-col items-center justify-center gap-[20px]">
-          <Image loading="lazy" class="relative top-[50px] w-[270px]" src={spa} alt="logo-spa" />
+      <div class="spa-column spacer-column">
+        <div class="image-wrapper">
+          <Image loading="lazy" class="center-spa-img" src={spa} alt="logo-spa" />
         </div>
         
-        <div class="flex flex-col items-center justify-center gap-[20px]">
+        <div class="massage-card">
           <SVG_SPAN />
-          <div class="text-center flex flex-col gap-[20px]">
-            <h3 class="title_pasos text-[23px] font-bold text-gray-700 hover:text-[#886B19]">
+          <div class="massage-info">
+            <h3 class="title_pasos massage-title">
               {t.massages[2].title}
             </h3>
-            <p class="texto__parrafo text-gray-900 text-[18px]">
+            <p class="texto__parrafo massage-desc">
               {t.massages[2].description}
             </p>
           </div>
         </div>
       </div>
 
-      <div class="flex flex-col w-[30%] max-md:w-[80%] gap-[80px]">
-        <div class="flex flex-col items-center justify-center gap-[20px]">
+      <div class="spa-column">
+        <div class="massage-card">
           <SVG_SPAN />
-          <div class="text-center flex flex-col gap-[20px]">
-            <h3 class="title_pasos text-[23px] font-bold text-gray-700 hover:text-[#886B19]">
+          <div class="massage-info">
+            <h3 class="title_pasos massage-title">
               {t.massages[3].title}
             </h3>
-            <p class="texto__parrafo text-gray-900 text-[18px]">
+            <p class="texto__parrafo massage-desc">
               {t.massages[3].description}
             </p>
           </div>
         </div>
         
-        <div class="flex flex-col items-center justify-center gap-[20px]">
+        <div class="massage-card">
           <SVG_SPAN />
-          <div class="text-center flex flex-col gap-[20px]">
-            <h3 class="title_pasos text-[23px] font-bold text-gray-700 hover:text-[#886B19]">
+          <div class="massage-info">
+            <h3 class="title_pasos massage-title">
               {t.massages[4].title}
             </h3>
-            <p class="texto__parrafo text-gray-900 text-[18px]">
+            <p class="texto__parrafo massage-desc">
               {t.massages[4].description}
             </p>
           </div>
         </div>
       </div>
+      
     </div>
   </div>
 </section>
 
 <style>
+  /* --- CONTENEDOR PRINCIPAL SECCIÓN --- */
+  .container_masages {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding-top: 60px;
+    justify-content: center;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 100px;
+    padding-left: 20px;
+    padding-right: 20px;
+    box-sizing: border-box;
+    animation: animations 2s ease-out;
+  }
+
+  /* --- CABECERAS --- */
+  .main-spa-title {
+    text-align: center;
+    font-size: 2.25rem; /* text-4xl */
+    font-weight: 600;
+    color: #374151; /* text-gray-700 */
+    padding-top: 20px;
+    padding-bottom: 50px;
+    margin: 0;
+    font-family: var(--font-family-poppins);
+  }
+
+  .title_pasos {
+    font-family: var(--font-family-poppins);
+  }
+
+  /* --- ARQUITECTURA DE GRID Y COLUMNAS --- */
+  .spa-layout-inner {
+    width: 65%;
+  }
+
+  .spa-columns-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 35px;
+    width: 100%;
+  }
+
+  .spa-column {
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    gap: 80px;
+  }
+
+  /* --- TARJETAS DE MASAJES --- */
+  .massage-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+  }
+
+  .massage-info {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .massage-title {
+    font-size: 23px;
+    font-weight: 700;
+    color: #374151;
+    margin: 0;
+    transition: color 0.2s ease;
+    cursor: pointer;
+  }
+
+  .massage-title:hover {
+    color: #886B19;
+  }
+
   .texto__parrafo {
     font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
     font-weight: 300;
   }
-  
-  .title_pasos {
-    font-family: var(--font-family-poppins);
+
+  .massage-desc {
+    color: #111827; /* text-gray-900 */
+    font-size: 18px;
+    margin: 0;
+    line-height: 1.6;
   }
-  
-  .container_masages {
-    margin-top: 100px;
-    animation: animations 2s;
+
+  /* --- IMAGEN CENTRAL DE CONTROL --- */
+  .image-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
   }
-  
+
+  .center-spa-img {
+    position: relative;
+    top: 50px;
+    width: 270px;
+    height: auto;
+    object-fit: contain;
+  }
+
+  /* --- ANIMACIONES DE ENTRADA --- */
   @keyframes animations {
     0% {
       transform: translateY(80px);
+      opacity: 0;
     }
     100% {
       transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  /* --- RESPONSIVE DESIGN (MEDIA QUERIES) --- */
+
+  /* Pantallas medianas e iPads en modo vertical (max-width: 1024px) */
+  @media (max-width: 1024px) {
+    .spa-layout-inner {
+      width: 100%;
+    }
+  }
+
+  /* Móviles y dispositivos pequeños (max-width: 768px) */
+  @media (max-width: 768px) {
+    .spa-columns-container {
+      flex-direction: column;
+      align-items: center;
+      gap: 60px; /* Reducimos el gap global al colapsar */
+    }
+
+    .spa-column {
+      width: 80%;
+      gap: 60px;
+    }
+
+    .spacer-column {
+      /* Reacomodamos el orden visual de la imagen central en responsive para que no flote de forma extraña */
+      gap: 40px; 
+    }
+
+    .center-spa-img {
+      top: 0; /* Reseteamos el desfase vertical en móviles */
+      margin-bottom: 20px;
+    }
+    
+    .main-spa-title {
+      font-size: 1.8rem;
+      padding-bottom: 30px;
     }
   }
 </style>

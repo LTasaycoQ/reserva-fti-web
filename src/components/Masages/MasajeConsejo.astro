@@ -28,27 +28,97 @@ const translations = {
   }
 };
 
-const t = translations[currentLocale as keyof typeof translations];
+const t = translations[currentLocale as keyof typeof translations] || translations.es;
 ---
 
-<section class="w-full flex flex-col justify-center items-center relative top-[60px]">
-  <div class="flex flex-col justify-center items-center">
-    <h1 class="text-[35px] text-center font-black text-gray-700">{t.title}</h1>
-    <span class="w-[50%] bg-[#C28E26] h-[2px]"></span>
+<section class="spa-service-section">
+  <div class="spa-title-container">
+    <h1 class="spa-title">{t.title}</h1>
+    <span class="spa-title-divider"></span>
   </div>
   
-  <p class="text-spacio text-center p-[20px] text-gray-600 mt-6 text-[17.4px]">
-    {t.content.map((line, index) => (
+  <div class="spa-text-content">
+    {t.content.map((line) => (
       <>
-        {line}
-        {index < t.content.length - 1 && <br />}
+        {line === "" ? (
+          <div class="spa-paragraph-spacer" />
+        ) : (
+          <span class="spa-text-line">{line}</span>
+        )}
       </>
     ))}
-  </p>
+  </div>
 </section>
 
 <style>
-  .text-spacio {
-    margin-top: 30px;
+  .spa-service-section {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    top: 60px;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+
+  /* --- CABECERA Y TÍTULO --- */
+  .spa-title-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 24px;
+  }
+
+  .spa-title {
+    font-size: 35px;
+    text-align: center;
+    font-weight: 900;
+    color: #374151; 
+    margin: 0;
+    letter-spacing: 1px;
+  }
+
+  .spa-title-divider {
+    width: 120px; 
+    background-color: #C28E26;
+    height: 2px;
+    margin-top: 8px;
+    display: block;
+  }
+
+  .spa-text-content {
+    text-align: center;
+    max-width: 750px; /* Limita la longitud de lectura para que se vea premium */
+    margin-top: 30px; /* Reemplaza a .text-spacio */
+    padding: 0 20px;
+    box-sizing: border-box;
+  }
+
+  .spa-text-line {
+    display: block;
+    color: #4b5563; /* text-gray-600 */
+    font-size: 17.4px;
+    line-height: 1.7; /* Altura de línea idónea para textos de bienestar */
+    font-weight: 400;
+    letter-spacing: 0.2px;
+  }
+
+  .spa-paragraph-spacer {
+    height: 18px; 
+    width: 100%;
+  }
+
+  @media (max-width: 640px) {
+    .spa-title {
+      font-size: 28px; /* Reducción de escala armónica para móviles */
+    }
+    
+    .spa-text-line {
+      font-size: 16px; /* Mayor legibilidad en pantallas angostas */
+      line-height: 1.6;
+    }
   }
 </style>

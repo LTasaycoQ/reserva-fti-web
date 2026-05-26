@@ -3,12 +3,76 @@ import { Image } from "astro:assets";
 
 import lobby from "../../assets/images/Lobby-5.webp"
 import pasadizo from "../../assets/images/pasadizo2.webp"
-
 ---
 
-<div class="w-[80%] pb-[60px] 2xl:w-[50%] flex justify-center items-center">
-    <div class="w-[100%] flex max-lg:flex-col  gap-[70px] justify-around items-center ">
-        <Image loading="lazy" class="w-[25em] max-lg:w-[30em] bg-white p-[12px] shadow-black shadow-2xl" src={pasadizo} alt="pasadizo"/>
-        <Image loading="lazy" class="w-[25em] max-lg:w-[30em]  bg-white p-[12px] shadow-black shadow-2xl" src={lobby} alt="Lobby"/>
-    </div>
+<div class="gallery-wrapper">
+  <div class="gallery-container">
+    <Image 
+      loading="lazy" 
+      class="gallery-img" 
+      src={pasadizo} 
+      alt="Pasadizo"
+    />
+    <Image 
+      loading="lazy" 
+      class="gallery-img" 
+      src={lobby} 
+      alt="Lobby"
+    />
+  </div>
 </div>
+
+<style>
+  /* --- CONTENEDOR EXTERIOR --- */
+  .gallery-wrapper {
+    width: 80%;
+    padding-bottom: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: auto; /* Centra el bloque completo */
+    margin-right: auto;
+    box-sizing: border-box;
+  }
+
+  /* --- CONTENEDOR INTERNO FLEX --- */
+  .gallery-container {
+    width: 100%;
+    display: flex;
+    flex-direction: row; /* En desktop van de lado a lado */
+    gap: 70px;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  /* --- DEFINICIÓN DE IMÁGENES (FIX IPAD) --- */
+  .gallery-img {
+    width: 25em;
+    height: auto;
+    max-width: 100%; /* Evita que se desborde del contenedor en pantallas intermedias */
+    background-color: #ffffff;
+    padding: 12px;
+    box-sizing: border-box;
+    flex-shrink: 0; /* Alerta iPad: Evita que WebKit colapse la imagen a 0px */
+    
+    /* Reemplazo nativo premium de shadow-black shadow-2xl */
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25); 
+  }
+
+  /* --- RESPONSIVE Y SOPORTE PARA RETINA/2XL --- */
+  @media (min-width: 1536px) { /* Equivalente a 2xl:w-[50%] */
+    .gallery-wrapper {
+      width: 50%;
+    }
+  }
+
+  @media (max-width: 1024px) { /* Equivalente a max-lg: */
+    .gallery-container {
+      flex-direction: column; /* Apila las imágenes verticalmente en tablets/móviles */
+    }
+
+    .gallery-img {
+      width: 30em; /* Mantiene tu proporción de crecimiento max-lg:w-[30em] */
+    }
+  }
+</style>

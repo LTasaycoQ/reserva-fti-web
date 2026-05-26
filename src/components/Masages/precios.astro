@@ -18,23 +18,89 @@ const translations = {
       { name: "Shiatsu", price: 45 },
       { name: "Therapeutic and Sports Massage", price: 45 },
       { name: "Reflexology", price: 45 },
-
     ],
   },
 };
 
-const t = translations[currentLocale as keyof typeof translations];
+const t = translations[currentLocale as keyof typeof translations] || translations.es;
 ---
-<section class="flex justify-center pt-[60px]">
-  <ul class="flex flex-col gap-[20px] text-[20px] text-gray-700 w-[500px] p-[40px]">
+
+<section class="price-list-section">
+  <ul class="price-menu-container">
     {t.services.map((service) => (
-      <li class="flex items-center justify-between">
-        <span class="poppins text-bold text-[#4E5250]">{service.name}</span>
-
-        <span class="flex-1 mx-3 relative top-[3px] border-dashed border-[#912424] border-t-[0.5px] h-[1px]"></span>
-
-        <span>${service.price}</span>
+      <li class="price-item">
+        <span class="service-name-text">{service.name}</span>
+        
+        <span class="price-leader-dots"></span>
+        
+        <span class="service-price-value">${service.price}</span>
       </li>
     ))}
   </ul>
 </section>
+
+<style>
+  /* --- CONTENEDOR DE LA SECCIÓN --- */
+  .price-list-section {
+    display: flex;
+    justify-content: center;
+    padding-top: 60px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  /* --- MENÚ DE PRECIOS --- */
+  .price-menu-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    font-size: 20px;
+    color: #374151; /* text-gray-700 */
+    width: 500px;
+    max-width: 100%; /* Evita desbordamiento en pantallas móviles muy angostas */
+    padding: 40px;
+    margin: 0;
+    list-style: none;
+    box-sizing: border-box;
+  }
+
+  /* --- FILA INDIVIDUAL --- */
+  .price-item {
+    display: flex;
+    align-items: baseline; /* Alinea el precio y los puntos a la línea base del texto base */
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .service-name-text {
+    color: #4E5250; /* text-[#4E5250] */
+    font-family: var(--font-family-poppins), sans-serif;
+    font-weight: 600; /* text-bold aproximado */
+    white-space: nowrap; /* Evita roturas de palabras huérfanas si hay espacio */
+  }
+
+  /* --- SEPARADOR DE PUNTOS EDITORIAL (LEADER DOTS) --- */
+  .price-leader-dots {
+    flex-grow: 1; /* flex-1 */
+    margin: 0 12px; /* mx-3 */
+    border-bottom: 1px dashed #912424; /* border-dashed border-[#912424] */
+    height: 10px; /* Controla la altura para centrarse verticalmente con el texto */
+  }
+
+  .service-price-value {
+    font-family: var(--font-family-poppins), sans-serif;
+    font-weight: 500;
+    color: #374151;
+  }
+
+  @media (max-width: 640px) {
+    .price-menu-container {
+      padding: 20px;
+      font-size: 17px; /* Reducción ligera para prevenir saltos de línea agresivos en móviles */
+    }
+
+    .service-name-text {
+      white-space: normal; /* Permite saltos de línea limpios si el nombre del masaje es muy largo en smartphones */
+    }
+  }
+</style>

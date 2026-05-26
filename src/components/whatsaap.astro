@@ -4,10 +4,112 @@
   href="https://wa.link/0x6gpq" 
   target="_blank" 
   rel="noopener noreferrer" 
-  class="fixed bottom-[4em] max-sm:bottom-[5.2em] right-6 xl:right-[60px] z-[999] flex h-14 w-14 items-center justify-center rounded-full bg-[#25d366] text-white shadow-lg transition-transform hover:scale-110 active:scale-95 md:h-16 md:w-16"
-  aria-label="Chat con Terra Andina en WhatsApp"
-  title="Chat con Terra Andina en WhatsApp">
-  <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#25d366] opacity-75"></span>
+  class="btn-whatsapp-reserva"
+  aria-label="Reserva aquí por WhatsApp"
+  title="Reserva aquí por WhatsApp">
   
-  <i class="bi bi-whatsapp relative text-2xl md:text-3xl"></i>
+  <span class="ping-effect"></span>
+  
+  <!-- Icono WhatsApp usando Bootstrap Icons -->
+  <i class="icon-whatsapp bi bi-whatsapp"></i>
+  
+  <span class="text-reserva">Reserva aquí</span>
 </a>
+<style>
+  /* Botón flotante de WhatsApp - Versión Reserva */
+  .btn-whatsapp-reserva {
+    position: fixed;
+    bottom: 4em;
+    right: 1.5rem;
+    z-index: 999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.25rem;
+    background-color: #25d366;
+    color: white;
+    text-decoration: none;
+    font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+    font-weight: 600;
+    font-size: 0.9rem;
+    border-radius: 9999px;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.02);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    overflow: visible;
+    white-space: nowrap;
+  }
+
+  .btn-whatsapp-reserva:hover {
+    transform: scale(1.05);
+    box-shadow: 0 20px 25px -12px rgba(0, 0, 0, 0.2);
+  }
+
+  .btn-whatsapp-reserva:active {
+    transform: scale(0.95);
+  }
+
+  .ping-effect {
+    position: absolute;
+    display: inline-flex;
+    width: 100%;
+    height: 100%;
+    border-radius: 9999px;
+    background-color: #25d366;
+    opacity: 0.75;
+    animation: ping 1.5s cubic-bezier(0, 0, 0.2, 1) infinite;
+    pointer-events: none;
+  }
+
+  @keyframes ping {
+    75%, 100% {
+      transform: scale(1.3);
+      opacity: 0;
+    }
+  }
+
+  .icon-whatsapp {
+    position: relative;
+    font-size: 1.5rem;
+    line-height: 1;
+    font-style: normal;
+    font-weight: normal;
+  }
+
+  .text-reserva {
+    position: relative;
+    font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+  }
+
+  @media (max-width: 640px) {
+    .btn-whatsapp-reserva {
+      bottom: 5.2em;
+      right: 1rem;
+      padding: 0.6rem 1rem;
+      gap: 0.4rem;
+    }
+    .icon-whatsapp {
+      font-size: 1.3rem;
+    }
+    .text-reserva {
+      font-size: 0.75rem;
+    }
+  }
+
+  @media (min-width: 1280px) {
+    .btn-whatsapp-reserva {
+      right: 60px;
+      padding: 0.9rem 1.5rem;
+    }
+    .icon-whatsapp {
+      font-size: 1.75rem;
+    }
+    .text-reserva {
+      font-size: 1rem;
+    }
+  }
+</style>
+
+

@@ -17,20 +17,71 @@ function getImage(path: string): ImageMetadata {
 }
 ---
 
-<div class="grid grid-cols-5 max-md:grid-cols-4 max-sm:grid-cols-2 gap-[50px] justify-around items-center w-[60%]">
+<div class="includes-grid">
   {
     iconsRoomIncludes.map((item) => (
-      <div class="flex flex-col gap-[15px] justify-center items-center">
+      <div class="include-item-box">
         <Image
           loading="lazy"
-          class="w-[64px]"
+          class="include-icon"
           src={getImage(item.image)}
           alt={item.label}
           width={64}
           height={64}
         />
-        <span class="text-gray-600 text-[14px]">{item.label}</span>
+        <span class="include-label">{item.label}</span>
       </div>
     ))
   }
 </div>
+
+<style>
+  .includes-grid {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 50px;
+    justify-content: space-around;
+    align-items: center;
+    width: 60%;
+    margin-left: auto; 
+    margin-right: auto;
+    box-sizing: border-box;
+  }
+
+  .include-item-box {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+
+  .include-icon {
+    width: 64px;
+    height: auto;
+    object-fit: contain;
+  }
+
+  .include-label {
+    color: #4b5563; 
+    font-size: 14px;
+    line-height: 1.2;
+  }
+
+  
+  @media (max-width: 768px) {
+    .includes-grid {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      width: 85%; 
+    }
+  }
+
+  @media (max-width: 640px) {
+    .includes-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr)); 
+      gap: 30px;
+      width: 100%; 
+    }
+  }
+</style>

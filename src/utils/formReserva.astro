@@ -1,40 +1,58 @@
 ---
+const currentLocale = Astro.currentLocale || 'es';
 
+const translations = {
+    es: { idioma: "es" },
+    en: { idioma: "en" }
+};
+
+const t = translations[currentLocale as keyof typeof translations] || translations.es;
 ---
 
-<div id="booking-engine-container" class="flex w-[40%] justify-center items-center pt-[50px] w-full"></div>
+<div 
+    data-idioma={t.idioma} 
+    id="booking-engine-container" 
+    class="booking-container"
+></div>
+
+<style>
+    @reference "tailwindcss";
+
+    .booking-container {
+        display: flex;
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+        padding-top: 50px;
+        min-height: 150px; /* Previene colapso visual en Safari */
+    }
+</style>
 
 <script is:inline>
-  let bookingInitialized = false;
-
-  document.addEventListener("astro:before-preparation", () => {
-    bookingInitialized = false;
-  });
-
-  function initBooking() {
-    if (bookingInitialized) return;
-    bookingInitialized = true;
-
+  window.safeInit('booking', () => {
     const container = document.querySelector("#booking-engine-container");
-    if (!container) return;
+    
+    if (!container) return; 
+
+    if (typeof FNSbooking === "undefined") return false;
+
     container.innerHTML = "";
+    const idioma = container.dataset.idioma || "es";
 
-    if (typeof FNSbooking !== "undefined") {
-      let fnsbooking = new FNSbooking(
-        "2992",
-        "#booking-engine-container",
-        "es",
-        "#d99e23",
-        false,
-        false,
-        "0px",
-        "0px",
-      );
-      fnsbooking.show();
-    } else {
-      console.error("FNSbooking no se cargó correctamente");
-    }
-  }
+    let fnsbooking = new FNSbooking(
+      "2992",
+      "#booking-engine-container",
+      idioma,
+      "#d99e23",
+      false,
+      false,
+      "0px",
+      "0px",
+    );
+    fnsbooking.show();
 
-  document.addEventListener("astro:page-load", initBooking);
+    container.style.display = 'none';
+    container.offsetHeight; 
+    container.style.display = 'flex';
+  });
 </script>

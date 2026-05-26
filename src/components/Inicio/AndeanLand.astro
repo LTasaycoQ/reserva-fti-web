@@ -6,7 +6,7 @@ const currentLocale = Astro.currentLocale || 'es';
 
 const translations = {
   es: {
-    tagline: "UNA ESTADÍA EN EL HOTEL TERRA ANDINA TE SITÚA EN EL CORAZÓN DE CUSCO",
+    tagline: "UNA ESTADIA QUE TE SITUA EN EL CORAZON DE CUSCO",
     buttonText: "CONOCENOS",
     title: "TERRA ANDINA",
     subtitle: "MANSION COLONIAL",
@@ -17,7 +17,7 @@ const translations = {
     ]
   },
   en: {
-    tagline: "A STAY AT TERRA ANDINA HOTEL PLACES YOU IN THE HEART OF CUSCO",
+    tagline: "A STAY THAT PLACES YOU IN THE HEART OF CUSCO",
     buttonText: "ABOUT US",
     title: "TERRA ANDINA",
     subtitle: "COLONIAL MANSION",
@@ -36,7 +36,7 @@ const t = translations[currentLocale as keyof typeof translations];
   <div class="hotel-section__container">
     
     <div class="hotel-section__tagline-box">
-      <h3 class="tagline-title">
+      <h3 class="tagline-title font-title">
         {t.tagline}
       </h3>
       <a href="#" class="btn-about">
@@ -46,7 +46,7 @@ const t = translations[currentLocale as keyof typeof translations];
     </div>
     
     <div class="hotel-intro__content">
-      <h2 class="intro-title">
+      <h2 class="intro-title font-title">
         {t.title} <br />
         {t.subtitle}
       </h2>

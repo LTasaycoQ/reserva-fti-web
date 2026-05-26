@@ -1,0 +1,37 @@
+---
+---
+
+<script is:inline>
+  /**
+   * Inicializador seguro para Astro y Safari (iPad/iOS)
+   * @param {string} flag - Nombre único para evitar duplicados (ej: 'booking', 'slider')
+   * @param {function} initFn - La función con la lógica que quieres ejecutar
+   */
+  window.safeInit = function (flag, initFn) {
+    const globalFlag = `__init_${flag}`;
+
+    document.addEventListener("astro:before-preparation", () => {
+      window[globalFlag] = false;
+    });
+
+    const runner = () => {
+      if (window[globalFlag]) return;
+      
+      const success = initFn();
+      
+      if (success !== false) {
+        window[globalFlag] = true;
+      } else {
+        setTimeout(runner, 100);
+      }
+    };
+
+    document.addEventListener("astro:page-load", runner);
+
+    if (document.readyState === "complete" || document.readyState === "interactive") {
+      runner();
+    } else {
+      window.addEventListener("DOMContentLoaded", runner);
+    }
+  };
+</script>
