@@ -7,7 +7,7 @@ import visa from "../assets/pay/visa.webp"
 <footer class="footer">
     <div class="footer__container">
         <div class="footer__col footer__brand">
-            <Image class="logo" src={logoTah} alt="Terra Andina Hotel" />
+            <Image class="logo" format="png" src={logoTah} alt="Terra Andina Hotel" />
         </div>
 
         <div class="footer__col">
@@ -42,7 +42,7 @@ import visa from "../assets/pay/visa.webp"
         <div class="footer__col footer__col--payments">
             <span class="title-footer">Payment Options</span>
             <div class="payment-icons">
-                <Image src={visa} alt="img-visa" loading="lazy" class="visa-img" />
+                <Image src={visa} alt="img-visa" format="png" loading="lazy" class="visa-img" />
                 <svg
                     fill="#CCCAC8"
                     class="payment-svg"
@@ -184,6 +184,7 @@ import visa from "../assets/pay/visa.webp"
 
     .visa-img {
         width: 53px;
+        height: 60px;
     }
 
     .lista-elementos {

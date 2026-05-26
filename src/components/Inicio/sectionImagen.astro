@@ -20,12 +20,12 @@ const t = translations[currentLocale as keyof typeof translations] || translatio
 <div class="hotel-gallery-wrapper">
   
   <div class="gallery-photo-card photo-card-vertical">
-    <Image class="gallery-img-file img-bar" loading="lazy" src={barVert} alt="bar-vert" />
+    <Image format="png" class="gallery-img-file img-bar" loading="lazy" src={barVert} alt="bar-vert" />
   </div>
   
   <div class="container-seccion-imagenes gallery-photo-group">
     <div class="gallery-photo-card photo-card-horizontal">
-      <Image class="gallery-img-file img-reception" loading="lazy" src={repcionTah} alt="repcion-tah" />
+      <Image format="png" class="gallery-img-file img-reception" loading="lazy" src={repcionTah} alt="repcion-tah" />
     </div>
     <span class="span-text hotel-gallery-label">{t.hotelLabel}</span>
   </div>

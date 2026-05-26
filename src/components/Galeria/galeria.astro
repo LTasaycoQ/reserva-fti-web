@@ -47,8 +47,8 @@ const sections: Section[] = roomsData[0]?.frontmatter?.fotos ?? [];
                             src={foto.image} 
                             alt={foto.title} 
                             class="galeria-img"
-                            loading="lazy"
-                            decoding="async"
+                            loading="eager"
+                            decoding="sync" 
                         />
                         <div class="galeria-overlay">
                             <i class="bi bi-zoom-in zoom-icon"></i>
@@ -145,28 +145,17 @@ const sections: Section[] = roomsData[0]?.frontmatter?.fotos ?? [];
         border-radius: 20px;
         box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
         width: 100%;
-        height: 250px;
+        height: 250px; /* IMPORTANTE: Altura rígida en el contenedor para obligar a Safari a pintar */
         cursor: pointer;
-        /* ✅ Fix iPadOS - fuerza GPU layer */
-        -webkit-transform: translateZ(0);
-        transform: translateZ(0);
-        -webkit-backface-visibility: hidden;
-        backface-visibility: hidden;
-        isolation: isolate;
     }
 
     .galeria-img {
         width: 100%;
         height: 100%;
-        background-color: #e5e7eb;
+        background-color: #e5e7eb; /* Gris claro de carga */
         object-fit: cover;
         transition: transform 0.7s ease;
         display: block;
-        /* ✅ Fix iPadOS - fuerza repaint */
-        -webkit-transform: translateZ(0);
-        transform: translateZ(0);
-        -webkit-backface-visibility: hidden;
-        backface-visibility: hidden;
     }
 
     .galeria-item:hover .galeria-img {
@@ -315,6 +304,7 @@ const sections: Section[] = roomsData[0]?.frontmatter?.fotos ?? [];
 
         if (!modal || !modalImg || !galleryContainer || !prevBtn || !nextBtn || !closeBtn) return;
 
+        // Cambiado dataset por getAttribute para máxima compatibilidad con Safari en iPad
         const rawSections = galleryContainer.getAttribute('data-sections');
         const images = JSON.parse(rawSections || '[]');
         let currentIndex = 0;
@@ -334,6 +324,7 @@ const sections: Section[] = roomsData[0]?.frontmatter?.fotos ?? [];
             modalImg.classList.remove('img-magnified');
         }
 
+        // Delegación de eventos nativa compatible con eventos táctiles (touchend/click)
         galleryContainer.addEventListener('click', (e) => {
             const target = e.target as HTMLElement;
             const item = target.closest('.galeria-item') as HTMLElement;
@@ -341,7 +332,7 @@ const sections: Section[] = roomsData[0]?.frontmatter?.fotos ?? [];
                 const index = parseInt(item.dataset.index || '0');
                 updateModal(index);
                 modal.showModal();
-                document.body.style.overflow = 'hidden';
+                document.body.style.overflow = 'hidden'; // Bloqueo de scroll manual para iOS
             }
         });
 
@@ -357,7 +348,7 @@ const sections: Section[] = roomsData[0]?.frontmatter?.fotos ?? [];
 
         const closeModal = () => {
             modal.close();
-            document.body.style.overflow = '';
+            document.body.style.overflow = ''; // Restaurar scroll manual en iOS
         };
 
         closeBtn.addEventListener('click', (e) => {
@@ -379,19 +370,6 @@ const sections: Section[] = roomsData[0]?.frontmatter?.fotos ?? [];
             if (e.key === 'ArrowLeft') updateModal(currentIndex - 1);
             if (e.key === 'ArrowRight') updateModal(currentIndex + 1);
             if (e.key === 'Escape') closeModal();
-        });
-
-        document.querySelectorAll<HTMLImageElement>('.galeria-img').forEach(img => {
-            if (img.complete && img.naturalWidth === 0) {
-                const src = img.src;
-                img.src = '';
-                requestAnimationFrame(() => { img.src = src; });
-            }
-            img.addEventListener('error', () => {
-                if (img.src.includes('cloudinary') && !img.src.includes('f_auto')) {
-                    img.src = img.src.replace('/upload/', '/upload/f_auto,q_auto/');
-                }
-            });
         });
     };
 

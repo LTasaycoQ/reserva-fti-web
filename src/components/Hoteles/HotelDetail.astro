@@ -38,6 +38,7 @@ function getImage(path: string): ImageMetadata {
       <div class="gap-[10px] flex flex-col items-center justify-center">
         <Image
           loading="lazy"
+          format='png'
           src={getImage(section.image)}
           alt={section.alt}
           width={60}

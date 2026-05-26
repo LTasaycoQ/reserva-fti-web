@@ -23,11 +23,11 @@ const t = translations[currentLocale as keyof typeof translations] || translatio
   <div class="restaurant-intro-container">
     
     <div class="restaurant-image-box">
-      <Image class="intro-main-img" loading="lazy" src={InterraIntro} alt="interra intro"/>
+      <Image format="png" class="intro-main-img" loading="lazy" src={InterraIntro} alt="interra intro"/>
     </div>
 
     <div class="restaurant-content-column">
-      <Image class="restaurant-logo-img" loading="lazy" src={LogoInterra} alt="Logo Interra" />
+      <Image format="png" class="restaurant-logo-img" loading="lazy" src={LogoInterra} alt="Logo Interra" />
       
       <p class="resturant__parrafo">
         {t.description}

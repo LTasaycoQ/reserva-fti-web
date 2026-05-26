@@ -56,6 +56,7 @@ const t = translations[currentLocale as keyof typeof translations] || translatio
         <Image
           width={440}
           height={320}
+          format="png"
           src={getImage(section.image)}
           alt={section.alt}
           loading="eager"
@@ -70,11 +71,11 @@ const t = translations[currentLocale as keyof typeof translations] || translatio
             <span>{section.people} {t.people}</span>
           </li>
           <li class="room-spec-item">
-            <Image class="room-spec-icon-img" loading="eager" src={area} alt="image-area" />
+            <Image class="room-spec-icon-img" format="png" loading="eager" src={area} alt="image-area" />
             <span>{section.area}</span>
           </li>
           <li class="room-spec-item">
-            <Image class="room-spec-icon-img" loading="eager" src={cama} alt="image-bed" />
+            <Image class="room-spec-icon-img" format="png" loading="eager" src={cama} alt="image-bed" />
             <span>{section.bed}</span>
           </li>
         </ul>

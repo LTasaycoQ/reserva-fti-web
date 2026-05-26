@@ -65,6 +65,7 @@ const t = translations[currentLocale as keyof typeof translations] || translatio
           <Image
             src={getImage(section.image)}
             loading="lazy"
+            format='png'
             alt={section.alt}
             width={60}
             height={60}

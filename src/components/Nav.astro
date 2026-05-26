@@ -36,8 +36,14 @@ const getPath = (path: string) => {
     <div class="menu-container">
         <div class="nav__logo">
             <a href={currentLocale === 'es' ? '/' : '/en'} class="logo-link" aria-label="Volver al inicio">
-                <Image  src={logo} class="logo-img" loading="eager" alt="Logotipo de Terra Andina Colonial Mansion Hotel Cusco"/>
-            </a>
+    <Image 
+        src={logo}
+        format="png"
+        class="logo-img" 
+        loading="eager" 
+        alt="Logotipo de Terra Andina Colonial Mansion Hotel Cusco"
+    />
+</a>
         </div>
 
         <div class="desktop-menu">
