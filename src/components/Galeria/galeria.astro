@@ -47,7 +47,7 @@ const sections: Section[] = roomsData[0]?.frontmatter?.fotos ?? [];
                             src={foto.image} 
                             alt={foto.title} 
                             class="img w-[100%]  bg-gray-400 object-cover transition-transform duration-700 group-hover:scale-110"
-                            loading="lazy"
+                            loading="eager"
                         />
                         <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                             <i class="bi bi-zoom-in text-white text-3xl"></i>
