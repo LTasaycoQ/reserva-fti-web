@@ -3,15 +3,42 @@ const { imgFondo } = Astro.props;
 ---
 
 <section class="fondo-section">
+  <img 
+    src={imgFondo} 
+    alt="Banner Principal Terra Andina" 
+    loading="eager"
+    decoding="async"
+    class="banner-img-native"
+  />
 </section>
 
-<style define:vars={{ imgFondo }}>
+<style>
+  .fondo-section {
+    width: 100%;
+    height: 38em;
+    position: relative;
+    overflow: hidden;
+    display: block;
+  }
+
+  .banner-img-native {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+    display: block;
+  }
+
+  /* Optimización para pantallas de iPad y Tablets */
+  @media (max-width: 1024px) {
     .fondo-section {
-        width: 100%;
-        height: 38em;
-        background-image: var(--imgFondo);
-        background-size: cover;
-        background-repeat: no-repeat;
-        background-position: center;
+      height: 30em;
     }
+  }
+
+  /* Optimización para Smartphones */
+  @media (max-width: 480px) {
+    .fondo-section {
+      height: 22em;
+    }
+  }
 </style>

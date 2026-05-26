@@ -46,40 +46,156 @@ const translations = {
   }
 };
 
-const t = translations[currentLocale as keyof typeof translations];
+const t = translations[currentLocale as keyof typeof translations] || translations.es;
 ---
 
-<div class="card-container max-md:grid-cols-2 max-sm:grid-cols-1 grid grid-cols-3 justify-center items-center gap-[10px] flex-wrap p-[40px]">
+<div class="rooms-card-container">
   {sections.map((section) => (
-    <div class="border-[1px] max-sm:h-full max-lg:h-[23em] max-md:w-[100%] border-gray-300 p-[15px]">
-      <div>
+    <div class="room-card">
+      <div class="room-image-wrapper">
         <Image
           width={440}
           height={320}
           src={getImage(section.image)}
           alt={section.alt}
           loading="eager"
+          class="room-card-img"
         />
       </div>
-      <div>
-        <h2 class="title text-2xl text-gray-700 font-normal pt-[10px]">{section.text}</h2>
-        <div>
-          <ul class="flex flex-col gap-[10px] pt-[10px] text-gray-600">
-            <li class="items flex items-center gap-[15px]">
-              <i class="text-[#F7A40F] icon-card bi bi-people-fill" />
-              {section.people} {t.people}
-            </li>
-            <li class="items flex items-center gap-[15px]">
-              <Image class="w-[20px]" loading="eager" src={area} alt="image-area" />
-              {section.area}
-            </li>
-            <li class="items flex items-center gap-[15px]">
-              <Image class="w-[20px]" loading="eager" src={cama} alt="image-bed" />
-              {section.bed}
-            </li>
-          </ul>
-        </div>
+      <div class="room-card-content">
+        <h2 class="title room-card-title">{section.text}</h2>
+        <ul class="room-specs-list">
+          <li class="room-spec-item">
+            <i class="bi bi-people-fill room-spec-icon-native" />
+            <span>{section.people} {t.people}</span>
+          </li>
+          <li class="room-spec-item">
+            <Image class="room-spec-icon-img" loading="eager" src={area} alt="image-area" />
+            <span>{section.area}</span>
+          </li>
+          <li class="room-spec-item">
+            <Image class="room-spec-icon-img" loading="eager" src={cama} alt="image-bed" />
+            <span>{section.bed}</span>
+          </li>
+        </ul>
       </div>
     </div>
   ))}
 </div>
+
+<style>
+  /* --- CONTENEDOR GRID PRINCIPAL (DESKTOP) --- */
+  .rooms-card-container {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr)); /* grid-cols-3 */
+    justify-content: center;
+    align-items: stretch; /* Estira las tarjetas para que midan lo mismo por fila */
+    gap: 10px; /* gap-[10px] */
+    padding: 40px; /* p-[40px] */
+    width: 80%;
+    box-sizing: border-box;
+  }
+
+  /* --- TARJETA INDIVIDUAL --- */
+  .room-card {
+    border: 1px solid #d1d5db; /* border-gray-300 */
+    padding: 15px; /* p-[15px] */
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-sizing: border-box;
+  }
+
+  /* --- SECCIÓN IMAGEN --- */
+  .room-image-wrapper {
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .room-card-img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* --- TEXTOS INTERNOS --- */
+  .room-card-content {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+  }
+
+  .room-card-title {
+    font-size: 1.5rem; /* text-2xl */
+    color: #374151; /* text-gray-700 */
+    font-weight: 400; /* font-normal */
+    padding-top: 10px; /* pt-[10px] */
+    margin: 0;
+  }
+
+  /* --- LISTA DE ESPECIFICACIONES --- */
+  .room-specs-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* gap-[10px] */
+    padding-top: 10px; /* pt-[10px] */
+    margin: 0;
+    padding-left: 0;
+    list-style: none;
+    color: #4b5563; /* text-gray-600 */
+  }
+
+  .room-spec-item {
+    display: flex;
+    align-items: center;
+    gap: 15px; /* gap-[15px] */
+    font-size: 16px;
+  }
+
+  /* Icono Bootstrap nativo */
+  .room-spec-icon-native {
+    color: #F7A40F; /* text-[#F7A40F] */
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px; /* Mantiene la misma caja que las imágenes webp */
+  }
+
+  /* Iconos Webp (m2 y cama) */
+  .room-spec-icon-img {
+    width: 20px; /* w-[20px] */
+    height: auto;
+    object-fit: contain;
+    display: block;
+  }
+
+  /* --- MEDIA QUERIES (RESPONSIVE SEGURO PARA IPAD) --- */
+
+  /* Tablets e iPads en modo vertical (max-width: 1024px -> max-md) */
+  @media (max-width: 1024px) {
+    .rooms-card-container {
+      grid-template-columns: repeat(2, minmax(0, 1fr)); /* max-md:grid-cols-2 */
+      padding: 24px;
+      width: 98%;
+
+    }
+  }
+
+  /* Celulares y Smartphones (max-width: 640px -> max-sm) */
+  @media (max-width: 640px) {
+    .rooms-card-container {
+      grid-template-columns: repeat(1, minmax(0, 1fr)); /* max-sm:grid-cols-1 */
+      padding: 16px;
+      width: 98%;
+
+    }
+    
+    .room-card {
+      width: 100%; /* max-md:w-[100%] */
+      height: 100%; /* max-sm:h-full */
+    }
+  }
+</style>

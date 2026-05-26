@@ -15,13 +15,12 @@ const title = "Inicio"
 const description = "Disfruta de Terra Andina Colonial Mansion, hotel boutique en el corazón de Cusco. Lujo colonial, confort moderno y una ubicación inmejorable.";
 ---
 
-<BaseLayout lang={lang}  title={title} description={description} ogImage={ogImage}>
-    <Fondos imgFondo={`url(${fondoImagen.src})`} />
+<BaseLayout lang={lang} title={title} description={description} ogImage={ogImage}>
+    
+    <Fondos imgFondo={fondoImagen.src} />
 
     <main class="home">
-
         <FormReserva/>
-
         <HistoricCenter />
         <AndeandLand />
         <Rooms />

@@ -14,11 +14,72 @@ const translations = {
   }
 };
 
-const t = translations[currentLocale as keyof typeof translations];
+const t = translations[currentLocale as keyof typeof translations] || translations.es;
 ---
 
-<section class="w-full flex flex-col justify-center items-center">
-  <h2 class="title text-center text-4xl pt-[2em]">{t.title}</h2>
-  <h3 class="text-center text-[21px] text-gray-700">{t.subtitle}</h3>
+<section class="rooms-section-container">
+  <h2 class="title rooms-main-title">{t.title}</h2>
+  <h3 class="rooms-subtitle">{t.subtitle}</h3>
   <CardRooms />
 </section>
+
+<style>
+  /* --- CONTENEDOR DE LA SECCIÓN --- */
+  .rooms-section-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+  }
+
+  /* --- TÍTULO PRINCIPAL H2 --- */
+  .rooms-main-title {
+    text-align: center;
+    font-size: 2.25rem; /* text-4xl */
+    padding-top: 32px; /* Equivalente exacto a pt-[2em] (2 * 16px de base) */
+    margin: 0;
+  }
+
+  /* --- SUBTÍTULO H3 --- */
+  .rooms-subtitle {
+    text-align: center;
+    font-size: 21px; /* text-[21px] */
+    color: #374151; /* text-gray-700 */
+    margin: 0;
+    padding-top: 10px; /* Separación sutil e intuitiva debajo del H2 */
+    padding-bottom: 20px; /* Espacio de amortiguación antes de inyectar las tarjetas */
+    font-weight: 400;
+    line-height: 1.4;
+  }
+
+  /* --- MEDIA QUERIES (RESPONSIVE SEGURO PARA IPAD) --- */
+
+  /* Tablets e iPads (max-width: 768px) */
+  @media (max-width: 768px) {
+    .rooms-main-title {
+      font-size: 1.85rem; /* Escala tipográfica adaptativa */
+      padding-top: 24px;
+    }
+
+    .rooms-subtitle {
+      font-size: 18px;
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+  }
+
+  /* Móviles (max-width: 480px) */
+  @media (max-width: 480px) {
+    .rooms-main-title {
+      font-size: 1.5rem;
+      padding-left: 10px;
+      padding-right: 10px;
+    }
+
+    .rooms-subtitle {
+      font-size: 15px;
+    }
+  }
+</style>

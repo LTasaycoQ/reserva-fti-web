@@ -47,28 +47,30 @@ const translations = {
   }
 };
 
-const t = translations[currentLocale as keyof typeof translations];
+const t = translations[currentLocale as keyof typeof translations] || translations.es;
 ---
 
-<section class="pb-[60px] section-img-casona-colonial container-web pt-[5em]">
-  <h2 class="title text-center font-light text-4xl text-gray-700">
+<section class="section-img-casona-colonial container-web stay-guarantee-section">
+  <h2 class="stay-title">
     {t.title}
   </h2>
-  <h3 class="text-subtitle pt-[10px]">
+  <h3 class="text-subtitle">
     {t.subtitle}
   </h3>
-  <div class="flex justify-center pt-[30px] pb-[60px] items-center">
-    <div class="w-[70%] max-lg:w-[95%] grid grid-cols-5 max-md:grid-cols-3 max-sm:grid-cols-2 gap-[50px]">
+  
+  <div class="services-grid-wrapper">
+    <div class="services-grid">
       {sections.map((section) => (
-        <div class="flex text-center gap-[18px] flex-col justify-center items-center">
+        <div class="service-icon-card">
           <Image
             src={getImage(section.image)}
             loading="lazy"
             alt={section.alt}
             width={60}
             height={60}
+            class="service-icon-img"
           />
-          <span class="text-[14px] text-gray-700">
+          <span class="service-icon-label">
             {section.text}
           </span>
         </div>
@@ -78,9 +80,110 @@ const t = translations[currentLocale as keyof typeof translations];
 </section>
 
 <style>
+  /* --- SECCIÓN CONTENEDORA PRINCIPAL --- */
+  .stay-guarantee-section {
+    padding-top: 80px; /* Equivalente exacto a pt-[5em] (5 * 16px) */
+    padding-bottom: 60px; /* pb-[60px] */
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  /* --- ENCABEZADOS --- */
+  .stay-title {
+    text-align: center;
+    font-weight: 300; /* font-light */
+    font-size: 2.25rem; /* text-4xl */
+    color: #374151; /* text-gray-700 */
+    margin: 0;
+  }
+
   .text-subtitle {
     text-align: center;
     font-size: 18px;
     color: var(--text-color-gray);
+    padding-top: 10px; /* pt-[10px] */
+    margin: 0;
+    font-weight: 400;
+  }
+
+  /* --- ENVOLTORIO FLEX DE ALINEACIÓN --- */
+  .services-grid-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 30px; /* pt-[30px] */
+    padding-bottom: 60px; /* pb-[60px] */
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  /* --- GRID DE ICONOS (DESKTOP) --- */
+  .services-grid {
+    width: 70%; /* w-[70%] */
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr)); /* grid-cols-5 */
+    gap: 50px; /* gap-[50px] */
+  }
+
+  /* --- TARJETAS DE ICONOS INDIVIDUALES --- */
+  .service-icon-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 18px; /* gap-[18px] */
+    text-align: center;
+  }
+
+  .service-icon-img {
+    width: 60px;
+    height: auto;
+    object-fit: contain;
+    flex-shrink: 0; /* Bloquea el colapso accidental en navegadores iOS/Safari */
+  }
+
+  .service-icon-label {
+    font-size: 14px; /* text-[14px] */
+    color: #374151; /* text-gray-700 */
+    line-height: 1.4;
+  }
+
+  /* --- MEDIA QUERIES (RESPONSIVE SEGURO) --- */
+
+  /* Pantallas grandes intermedias y Laptops (max-width: 1024px -> max-lg) */
+  @media (max-width: 1024px) {
+    .services-grid {
+      width: 95%; /* max-lg:w-[95%] */
+    }
+  }
+
+  /* Tablets e iPads en vertical (max-width: 768px -> max-md) */
+  @media (max-width: 768px) {
+    .services-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr)); /* max-md:grid-cols-3 */
+      gap: 40px 30px; /* Reducción ligera del gap para pantallas compactas */
+    }
+    
+    .stay-title {
+      font-size: 1.85rem; /* Ajuste sutil de escala para títulos largos */
+    }
+  }
+
+  /* Móviles (max-width: 640px -> max-sm) */
+  @media (max-width: 640px) {
+    .services-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr)); /* max-sm:grid-cols-2 */
+      gap: 35px 20px;
+    }
+    
+    .stay-title {
+      font-size: 1.6rem;
+    }
+    
+    .text-subtitle {
+      font-size: 16px;
+      padding-left: 15px;
+      padding-right: 15px;
+    }
   }
 </style>

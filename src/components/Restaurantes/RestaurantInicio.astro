@@ -1,7 +1,7 @@
 ---
 import { Image } from "astro:assets";
 import LogoInterra from "../../assets/images/Logo-Interra.webp";
-import InterraIntro from "../../assets/images/Interra-intro.webp"
+import InterraIntro from "../../assets/images/Interra-intro.webp";
 
 const currentLocale = Astro.currentLocale || 'es';
 
@@ -16,31 +16,169 @@ const translations = {
   }
 };
 
-const t = translations[currentLocale as keyof typeof translations];
+const t = translations[currentLocale as keyof typeof translations] || translations.es;
 ---
 
-<section class="flex flex-col justify-center items-center text-center mx-auto">
-  <div class="flex flex-wrap justify-center items-center gap-[80px] p-[40px]">
-    <div class="size-auto">
-      <Image loading="lazy" src={InterraIntro} alt="interra intro"/>
+<section class="restaurant-intro-section">
+  <div class="restaurant-intro-container">
+    
+    <div class="restaurant-image-box">
+      <Image class="intro-main-img" loading="lazy" src={InterraIntro} alt="interra intro"/>
     </div>
 
-    <div class="w-[31%] max-lg:w-[40%] max-md:w-[80%] flex flex-col items-center justify-center gap-[20px] p-[20px]">
-      <Image loading="lazy" src={LogoInterra} alt="Logo Interra" />
-      <p class="resturant__parrafo text-gray-600">
+    <div class="restaurant-content-column">
+      <Image class="restaurant-logo-img" loading="lazy" src={LogoInterra} alt="Logo Interra" />
+      
+      <p class="resturant__parrafo">
         {t.description}
       </p>
-      <a href="/downloads/Carta-Rest-InTerra.pdf" class="w-[240px] rounded-[5px] font-normal p-[12px] bg-[#C9A724] items-nav text-white">
-        <i class="bi bi-file-earmark-pdf"></i>
-        {t.buttonText}
+      
+      <a href="/downloads/Carta-Rest-InTerra.pdf" class="restaurant-download-btn items-nav">
+        <i class="bi bi-file-earmark-pdf pdf-icon"></i>
+        <span>{t.buttonText}</span>
       </a>
     </div>
+    
   </div>
 </section>
 
 <style>
+  /* --- SECCIÓN CONTENEDORA GENERAL --- */
+  .restaurant-intro-section {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    box-sizing: border-box;
+  }
+
+  /* --- CONTENEDOR FLEX DE CONTENIDO --- */
+  .restaurant-intro-container {
+    display: flex;
+    flex-wrap: wrap; /* flex-wrap */
+    justify-content: center;
+    align-items: center;
+    gap: 80px; /* gap-[80px] */
+    padding: 40px; /* p-[40px] */
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  /* --- CAJA DE IMAGEN PRINCIPAL --- */
+  .restaurant-image-box {
+    width: auto;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .intro-main-img {
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+    display: block;
+  }
+
+  /* --- COLUMNA DE CONTENIDO (ANCHO DESKTOP) --- */
+  .restaurant-content-column {
+    width: 31%; /* w-[31%] */
+    display: flex;
+    flex-direction: column;
+    items-items: center;
+    justify-content: center;
+    gap: 20px; /* gap-[20px] */
+    padding: 20px; /* p-[20px] */
+    box-sizing: border-box;
+  }
+
+  .restaurant-logo-img {
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+    align-self: center;
+  }
+
+  /* --- TEXTO / DESCRIPCIÓN --- */
   .resturant__parrafo {
-    margin-top: 20px;
-    font-family: var(--font-family-poppins);
+    margin-top: 20px; /* mt-20 de tu estilo original */
+    font-family: var(--font-family-poppins), sans-serif;
+    color: #4b5563; /* text-gray-600 */
+    font-size: 15px;
+    line-height: 1.6;
+    text-align: justify; /* Da un look más limpio y editorial para bloques densos */
+  }
+
+  /* --- BOTÓN DE DESCARGA PREMIUM --- */
+  .restaurant-download-btn {
+    width: 240px; /* w-[240px] */
+    background-color: #C9A724; /* bg-[#C9A724] */
+    color: #ffffff; /* text-white */
+    border-radius: 5px; /* rounded-[5px] */
+    font-weight: 400; /* font-normal */
+    padding: 12px; /* p-[12px] */
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px; /* Espaciado entre el icono PDF y el texto */
+    align-self: center;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+
+  .restaurant-download-btn:hover {
+    background-color: #b0911f; /* Variación sutil de dorado para interactividad */
+    transform: translateY(-1px);
+  }
+
+  .pdf-icon {
+    font-size: 18px;
+    line-height: 1;
+  }
+
+  /* --- MEDIA QUERIES (RESPONSIVE SEGURO) --- */
+
+  /* Pantallas medianas y Laptops (max-width: 1024px -> max-lg) */
+  @media (max-width: 1024px) {
+    .restaurant-content-column {
+      width: 40%; /* max-lg:w-[40%] */
+    }
+    
+    .restaurant-intro-container {
+      gap: 40px; /* Reducción de separación en layouts compactos */
+    }
+  }
+
+  /* Tablets e iPads en vertical (max-width: 768px -> max-md) */
+  @media (max-width: 768px) {
+    .restaurant-intro-container {
+      flex-direction: column; /* Apilado vertical limpio */
+      gap: 50px;
+      padding: 24px;
+    }
+
+    .restaurant-content-column {
+      width: 80%; /* max-md:w-[80%] */
+    }
+    
+    .resturant__parrafo {
+      text-align: center; /* Centrado clásico estético para móviles */
+    }
+  }
+
+  /* Smartphones y pantallas pequeñas (max-width: 480px) */
+  @media (max-width: 480px) {
+    .restaurant-intro-container {
+      padding: 16px;
+    }
+
+    .restaurant-content-column {
+      width: 100%;
+      padding: 10px 0;
+    }
   }
 </style>

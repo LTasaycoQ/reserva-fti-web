@@ -179,17 +179,18 @@ const t = translations[currentLocale as keyof typeof translations];
   @media (max-width: 1023px) {
     .hotel-section__container {
       width: 100%;
+      flex-direction: column;
+
+    }
+        .hotel-section__tagline-box {
+      align-items: center;
     }
   }
 
   @media (max-width: 767px) {
-    .hotel-section__container {
-      flex-direction: column;
-    }
 
-    .hotel-section__tagline-box {
-      align-items: center;
-    }
+
+
 
     .tagline-title {
       text-align: center;

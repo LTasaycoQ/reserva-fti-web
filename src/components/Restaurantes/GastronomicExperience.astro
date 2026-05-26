@@ -12,19 +12,76 @@ const translations = {
   }
 };
 
-const t = translations[currentLocale as keyof typeof translations];
+const t = translations[currentLocale as keyof typeof translations] || translations.es;
 ---
 
-<section class="flex flex-col justify-center items-center text-center my-[80px] mx-auto pb-[60px] ">
+<section class="dining-experience-section">
   <h2 class="title title--feature">{t.title}</h2>
   <ExperienceDetail />
 </section>
 
 <style>
+  /* --- CONTENEDOR PRINCIPAL SECCIÓN --- */
+  .dining-experience-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    
+    /* Reemplazo de las clases utilitarias de Tailwind */
+    margin-top: 80px; /* my-[80px] */
+    margin-bottom: 80px; /* my-[80px] */
+    margin-left: auto; /* mx-auto */
+    margin-right: auto; /* mx-auto */
+    padding-bottom: 60px; /* pb-[60px] */
+    
+    /* Ajustes premium de contención */
+    width: 100%;
+    max-width: 1200px; /* Evita que el título se estire infinito en pantallas ultra-wide */
+    padding-left: 24px; /* Amortiguación de bordes para mobile e iPads */
+    padding-right: 24px;
+    box-sizing: border-box;
+  }
+
+  /* --- COPIAS DE ESTILO DEL ENCABEZADO --- */
   .title--feature {
     font-size: 26px;
+    margin-top: 0;
     margin-bottom: 70px;
     font-weight: 300;
     color: #CEAD2F;
+    line-height: 1.4;
+  }
+
+  /* --- MEDIA QUERIES (RESPONSIVE SEGURO) --- */
+
+  /* Tablets e iPads en vertical (max-width: 768px) */
+  @media (max-width: 768px) {
+    .dining-experience-section {
+      margin-top: 60px;
+      margin-bottom: 60px;
+      padding-bottom: 40px;
+    }
+
+    .title--feature {
+      font-size: 22px; /* Escala tipográfica armónica */
+      margin-bottom: 50px; /* Reduce espacio muerto en pantallas más cortas */
+    }
+  }
+
+  /* Smartphones y dispositivos pequeños (max-width: 480px) */
+  @media (max-width: 480px) {
+    .dining-experience-section {
+      margin-top: 40px;
+      margin-bottom: 40px;
+      padding-left: 16px;
+      padding-right: 16px;
+    }
+
+    .title--feature {
+      font-size: 19px;
+      margin-bottom: 40px;
+    }
   }
 </style>
