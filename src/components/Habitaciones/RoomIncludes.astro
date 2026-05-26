@@ -3,15 +3,15 @@ import { Image } from "astro:assets";
 import { getRoomIncludes } from "../../content/rooms-includes";
 
 const iconos = import.meta.glob<{ default: ImageMetadata }>(
-  '../../assets/iconos/*.webp',
-  { eager: true }
+  "../../assets/iconos/*.webp",
+  { eager: true },
 );
 
-const currentLocale = Astro.currentLocale || 'es';
+const currentLocale = Astro.currentLocale || "es";
 const iconsRoomIncludes = getRoomIncludes(currentLocale);
 
 function getImage(path: string): ImageMetadata {
-  const filename = path.split('/').pop();
+  const filename = path.split("/").pop();
   const key = `../../assets/iconos/${filename}`;
   return iconos[key]?.default;
 }
@@ -23,6 +23,7 @@ function getImage(path: string): ImageMetadata {
       <div class="include-item-box">
         <Image
           loading="lazy"
+          format="png"
           class="include-icon"
           src={getImage(item.image)}
           alt={item.label}
@@ -43,7 +44,7 @@ function getImage(path: string): ImageMetadata {
     justify-content: space-around;
     align-items: center;
     width: 60%;
-    margin-left: auto; 
+    margin-left: auto;
     margin-right: auto;
     box-sizing: border-box;
   }
@@ -64,24 +65,23 @@ function getImage(path: string): ImageMetadata {
   }
 
   .include-label {
-    color: #4b5563; 
+    color: #4b5563;
     font-size: 14px;
     line-height: 1.2;
   }
 
-  
   @media (max-width: 768px) {
     .includes-grid {
       grid-template-columns: repeat(4, minmax(0, 1fr));
-      width: 85%; 
+      width: 85%;
     }
   }
 
   @media (max-width: 640px) {
     .includes-grid {
-      grid-template-columns: repeat(2, minmax(0, 1fr)); 
+      grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 30px;
-      width: 100%; 
+      width: 100%;
     }
   }
 </style>
