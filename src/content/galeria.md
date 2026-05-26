@@ -163,7 +163,7 @@ fotos:
       title: "Lobby"
       
     - id: 35
-      image: "https://res.cloudinary.com/dlgeap8h0/image/upload/Clasica-bano_mpfoco"
+      image: "https://res.cloudinary.com/dlgeap8h0/image/upload/v1770926166/Clasica-bano_mpfoco.png"
       title: "Premium-bano"
             
     - id: 36
