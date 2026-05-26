@@ -9,13 +9,14 @@ import OpenMassages from "../components/Masages/OpenMassages.astro";
 
 const lang = "es"
 const ogImage = "https://res.cloudinary.com/dlgeap8h0/image/upload/Salon-masajes_1_yaide0.webp"
+const fondoUrl = "https://res.cloudinary.com/dlgeap8h0/image/upload/f_auto,q_auto/v1779832041/Salon-masajes-2_okkmuv.webp";
 
 const title = "Masajes";
 const description = "Recupera tu energía en Cusco con nuestras 'Manos Curativas'. Masajes suecos, shiatsu y reflexología disponibles todos los días de 8am a 10pm.";
 ---
 
 <BaseLayout lang={lang}  title={title} description={description} ogImage={ogImage}>
-    <Fondos imgFondo={`url(${fondoImagen.src})`} />
+    <Fondos imgFondo={fondoUrl} />
     <main>
        <MasajeConsejo />
        <MasajesPasos />

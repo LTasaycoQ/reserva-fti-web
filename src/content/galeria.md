@@ -1,11 +1,11 @@
 ---
 fotos:
     - id: 1
-      image: "https://res.cloudinary.com/dlgeap8h0/image/upload/Bar1_pnruco"
+      image: "https://res.cloudinary.com/dlgeap8h0/image/upload/Bar1_pnruco.webp"
       title: "Hotel - Terra Andina"
 
     - id: 2
-      image: "https://res.cloudinary.com/dlgeap8h0/image/upload/v1770926180/recepcion_2_kdgftj"
+      image: "https://res.cloudinary.com/dlgeap8h0/image/upload/v1770926180/recepcion_2_kdgftj.webp"
       title: "Bar-2"
      
     - id: 3

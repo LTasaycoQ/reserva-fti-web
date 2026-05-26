@@ -3,16 +3,16 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import Fondos from "../components/fondos.astro";
 import HotelStay from "../components/Hoteles/HotelStay.astro";
 
-import fondoImagen from "../assets/backgrounds/fachada.webp";
 const lang = "es"
 const ogImage = "https://res.cloudinary.com/dlgeap8h0/image/upload/Bar1_pnruco.webp"
+const fondoUrl = "https://res.cloudinary.com/dlgeap8h0/image/upload/f_auto,q_auto/v1779832041/fachada_goirco.webp";
 
 const title = "Hotel";
 const description = "Ubicado en una casona colonial cerca a la Plaza San Pedro, Terra Andina ofrece 51 habitaciones de lujo y un servicio de excelencia en Cusco.";
 ---
 
 <BaseLayout lang={lang}  title={title} description={description} ogImage={ogImage}>
-    <Fondos imgFondo={`url(${fondoImagen.src})`} />
+    <Fondos imgFondo={fondoUrl} />
     <main class="home">
         <HotelStay />
     </main>

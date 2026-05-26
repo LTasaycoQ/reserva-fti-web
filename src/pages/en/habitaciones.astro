@@ -7,12 +7,14 @@ const fondoImagen = "https://res.cloudinary.com/dlgeap8h0/image/upload/ban2_vsrj
 
 const lang = "en"
 const ogImage = "https://res.cloudinary.com/dlgeap8h0/image/upload/Suite_1_tlzfen.webp"
+const fondoUrl = "https://res.cloudinary.com/dlgeap8h0/image/upload/f_auto,q_auto/v1779832041/ban2_ivozi6.webp"
+
 const title = "Rooms";
 const description = "Classic, Premium and Suite rooms in Cusco. With heating, Smart TV and WiFi. Complimentary airport transfers included!";
 ---
 
 <BaseLayout lang={lang}  title={title} description={description} ogImage={ogImage}>
-    <Fondos imgFondo={`url(${fondoImagen})`} />
+    <Fondos imgFondo={fondoUrl} />
     <main class="home">
         <RoomFeatures />
     </main>
