@@ -24,7 +24,7 @@ const roomsData = Object.values(roomsImport) as any[];
 const sections: Section[] = roomsData[0]?.frontmatter?.fotos ?? [];
 ---
 
-<section class="w-full flex flex-col justify-center items-center mx-auto px-4 py-12">
+<section class=" w-full flex flex-col justify-center items-center mx-auto px-4 py-12">
     <div class="w-[90%]">
         <div>
             <h1 class="title text-[34px] text-gray-600 mb-8 font-semibold">{t.title}</h1>        
@@ -33,25 +33,21 @@ const sections: Section[] = roomsData[0]?.frontmatter?.fotos ?? [];
     
     <div 
         id="galeria-fotos" 
-        class="pt-[30px] grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 justify-items-center w-[90%]"
+        class=" pt-[30px] grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 justify-items-center w-[90%]"
         data-sections={JSON.stringify(sections)}
     >
         {
             sections.length > 0 ? (
                 sections.map((foto, index) => (
                     <div 
-                        class="item-galeria group relative overflow-hidden rounded-[20px] shadow-lg w-full cursor-pointer backend-container"
+                        class="item-galeria group relative overflow-hidden rounded-[20px] shadow-lg w-full  cursor-pointer"
                         data-index={index}
                     >
-                        {/* Usamos data-src inyectado por JS y eliminamos loading="lazy" implícito de Astro.
-                          Se añade un loader/background gris inicial vía CSS para asegurar altura en iOS.
-                        */}
                         <img 
-                            data-src={foto.image} 
+                            src={foto.image} 
                             alt={foto.title} 
-                            class="img-cloudinary-ipad w-full object-cover transition-transform duration-700 group-hover:scale-110"
-                            fetchpriority="high"
-                            referrerpolicy="no-referrer"
+                            class="img w-[100%]  bg-gray-400 object-cover transition-transform duration-700 group-hover:scale-110"
+                            loading="eager"
                         />
                         <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                             <i class="bi bi-zoom-in text-white text-3xl"></i>
@@ -71,20 +67,18 @@ const sections: Section[] = roomsData[0]?.frontmatter?.fotos ?? [];
                 &times;
             </button>
             
-            <div class="flex items-center justify-between w-full h-full max-w-7xl px-4 gap-4 mechanical-wrapper">
+            <div class="flex items-center justify-between w-full h-full max-w-7xl px-4 gap-4">
                 
                 <button id="prev-btn" class="text-white bg-black/40 hover:bg-black/60 rounded-full p-3 cursor-pointer transition-all z-[60]">
                     <i class="bi bi-caret-left-fill text-3xl"></i>
                 </button>
 
-                <div class="flex flex-col items-center gap-4 flex-1 h-full justify-center modal-image-container">
+                <div class="flex flex-col items-center gap-4 flex-1 h-full justify-center">
                     <img 
                         id="modal-img" 
                         src="" 
                         alt="" 
                         class="max-w-full max-h-[75vh] object-contain rounded-md shadow-2xl transition-transform duration-300 cursor-zoom-in" 
-                        fetchpriority="high"
-                        referrerpolicy="no-referrer"
                     />
                 </div>
 
@@ -99,40 +93,6 @@ const sections: Section[] = roomsData[0]?.frontmatter?.fotos ?? [];
 <style>
     @reference "tailwindcss";
 
-    /* --- PARCHE ESTRUCTURAL PARA SAFARI/IPAD --- */
-    
-    /* Evita que los contenedores colapsen a 0px de altura en iOS */
-    .backend-container {
-        display: block;
-        position: relative;
-        min-height: 240px; /* Altura mínima estimada para la grilla */
-        background-color: #e5e7eb; /* Background gris visible mientras procesa JS */
-    }
-
-    .img-cloudinary-ipad {
-        display: block;
-        width: 100%;
-        height: 240px; /* Forzamos tamaño inicial */
-        opacity: 0;   /* Invisible hasta que JS confirme la inyección */
-        transition: opacity 0.3s ease-in-out, transform 0.7s duration-700;
-    }
-
-    /* Modificadores de visualización controlados por JS */
-    .img-loaded-safari {
-        opacity: 1 !important;
-        height: auto !important;
-        aspect-ratio: 4 / 3; /* Forzamos ratio de aspecto base para galerías */
-        object-fit: cover;
-    }
-
-    /* Caja contenedora dentro del modal para evitar bugs de flexbox en iOS */
-    .modal-image-container {
-        display: flex;
-        min-width: 280px;
-        min-h: 300px;
-    }
-
-    /* Estilos originales preservados */
     .item-galeria {
         animation: slideUp 0.5s ease-out forwards;
     }
@@ -162,112 +122,62 @@ const sections: Section[] = roomsData[0]?.frontmatter?.fotos ?? [];
 </style>
 
 <script is:inline>
-    // Ejecución segura tras construcción del árbol DOM
-    document.addEventListener('DOMContentLoaded', () => {
-        const modal = document.getElementById('modal-galeria');
-        const modalImg = document.getElementById('modal-img');
-        const galleryContainer = document.getElementById('galeria-fotos');
-        const prevBtn = document.getElementById('prev-btn');
-        const nextBtn = document.getElementById('next-btn');
+    const modal = document.getElementById('modal-galeria');
+    const modalImg = document.getElementById('modal-img');
+    const galleryContainer = document.getElementById('galeria-fotos');
+    const prevBtn = document.getElementById('prev-btn');
+    const nextBtn = document.getElementById('next-btn');
 
-        if (!galleryContainer) return;
+    const images = JSON.parse(galleryContainer.dataset.sections);
+    let currentIndex = 0;
 
-        const images = JSON.parse(galleryContainer.dataset.sections);
-        let currentIndex = 0;
-
-        // --- 1. RENDERIZADO INMEDIATO FORZADO POR JAVASCRIPT (Solución Grilla iPad) ---
-        const gridImages = galleryContainer.querySelectorAll('.img-cloudinary-ipad');
+    function updateModal(index) {
+        if (index < 0) index = images.length - 1;
+        if (index >= images.length) index = 0;
         
-        gridImages.forEach((img) => {
-            const realSrc = img.getAttribute('data-src');
-            if (realSrc) {
-                // Removemos atributos nativos que congelan el renderizado en Safari remoto
-                img.removeAttribute('loading');
-                
-                // Inyección de origen directa
-                img.src = realSrc;
+        currentIndex = index;
+        const data = images[currentIndex];
+        
+        modalImg.src = data.image;
+        modalImg.alt = data.title;
+        
+        modalImg.classList.remove('img-magnified');
+    }
 
-                // Evento de control de carga específico para WebKit
-                if (img.complete) {
-                    triggerSafariRender(img);
-                } else {
-                    img.addEventListener('load', () => triggerSafariRender(img));
-                    img.addEventListener('error', () => {
-                        // Bypass de caché agresiva si falla el handshake SSL/Seguridad del iPad
-                        img.src = `${realSrc}?cache_bypass=${Date.now()}`;
-                    });
-                }
-            }
-        });
-
-        function triggerSafariRender(imageElement) {
-            imageElement.classList.add('img-loaded-safari');
-            // Hack de re-pintado (Reflow) para forzar al motor WebKit a mostrar el buffer gráfico
-            imageElement.style.display = 'none';
-            imageElement.offsetHeight; 
-            imageElement.style.display = 'block';
+    galleryContainer.addEventListener('click', (e) => {
+        const item = e.target.closest('.item-galeria');
+        if (item) {
+            const index = parseInt(item.dataset.index);
+            updateModal(index);
+            modal.showModal();
         }
+    });
 
-        // --- 2. CONTROL DEL MODAL (Solución Modal iPad) ---
-        function updateModal(index) {
-            if (index < 0) index = images.length - 1;
-            if (index >= images.length) index = 0;
-            
-            currentIndex = index;
-            const data = images[currentIndex];
-            
-            // Limpieza e inyección limpia controlada para evitar layouts rotos en el Dialog
-            modalImg.style.opacity = '0';
-            modalImg.src = data.image;
-            modalImg.alt = data.title;
-            modalImg.classList.remove('img-magnified');
+    prevBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        updateModal(currentIndex - 1);
+    });
 
-            modalImg.onload = () => {
-                modalImg.style.opacity = '1';
-                // Forzar re-cálculo de contenedor flexible en Safari iOS
-                modalImg.style.display = 'inline-block';
-                setTimeout(() => { modalImg.style.display = 'block'; }, 20);
-            };
-            
-            // Bypass secundario en modal por si el iPad bloquea la referencia cruzada
-            modalImg.onerror = () => {
-                modalImg.src = `${data.image}?ts=${Date.now()}`;
-            };
-        }
+    nextBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        updateModal(currentIndex + 1);
+    });
 
-        galleryContainer.addEventListener('click', (e) => {
-            const item = e.target.closest('.item-galeria');
-            if (item) {
-                const index = parseInt(item.dataset.index);
-                updateModal(index);
-                modal.showModal();
-            }
-        });
+    modalImg.addEventListener('click', (e) => {
+        e.stopPropagation();
+        modalImg.classList.toggle('img-magnified');
+    });
+   
 
-        prevBtn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            updateModal(currentIndex - 1);
-        });
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) modal.close();
+    });
 
-        nextBtn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            updateModal(currentIndex + 1);
-        });
-
-        modalImg.addEventListener('click', (e) => {
-            e.stopPropagation();
-            modalImg.classList.toggle('img-magnified');
-        });
-
-        modal.addEventListener('click', (e) => {
-            if (e.target === modal) modal.close();
-        });
-
-        document.addEventListener('keydown', (e) => {
-            if (!modal.open) return;
-            if (e.key === 'ArrowLeft') updateModal(currentIndex - 1);
-            if (e.key === 'ArrowRight') updateModal(currentIndex + 1);
-            if (e.key === 'Escape') modal.close();
-        });
+    document.addEventListener('keydown', (e) => {
+        if (!modal.open) return;
+        
+        if (e.key === 'ArrowLeft') updateModal(currentIndex - 1);
+        if (e.key === 'ArrowRight') updateModal(currentIndex + 1);
+        if (e.key === 'Escape') modal.close();
     });
 </script>
