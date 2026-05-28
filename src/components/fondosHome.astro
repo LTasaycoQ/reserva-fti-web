@@ -9,7 +9,7 @@ const imagen = [
 ---
 <section class="fondo-animado">
   {
-    imagen.slice(0, 1).map((item, index) => (
+    imagen.map((item, index) => (
       <div class={`container-imagen ${index === 0 ? 'active' : ''}`}>
         <img class="imagen-hero" src={item} alt={`Slide ${index + 1}`} />
       </div>
@@ -21,7 +21,7 @@ const imagen = [
     .fondo-animado {
         position: relative;
         width: 100%;
-        height: 40em;
+        height: 44em;
         overflow: hidden;
     }
     .container-imagen {
@@ -42,7 +42,7 @@ const imagen = [
         width: 100%;
         height: 100%;
         object-fit:cover;
-        object-position: center;
+        object-position: start;
     }
 </style>
 
