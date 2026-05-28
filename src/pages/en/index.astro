@@ -1,23 +1,20 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import Rooms from "../../components/Inicio/Rooms.astro";
-import Fondos from "../../components/fondos.astro";
 import HistoricCenter from "../../components/Inicio/HistoricCenter.astro";
 import AndeandLand from "../../components/Inicio/AndeanLand.astro";
 import GuaranteedStay from "../../components/Inicio/GuaranteedStay.astro";
 import FormReserva from "../../utils/formReserva.astro";
-import fondoImagen from "../../assets/backgrounds/baner-terra.webp";
-
+import FondosHome from "../../components/fondosHome.astro";
 
 const lang = "en"
 const ogImage = "https://res.cloudinary.com/dlgeap8h0/image/upload/R6M25442_qbs8cv.webp"
-const fondoUrl = "https://res.cloudinary.com/dlgeap8h0/image/upload/f_auto,q_auto/v1779832041/baner-terra_pmgdit.webp";
 const title = "Home";
 const description = "Enjoy Terra Andina Colonial Mansion, a boutique hotel in the heart of Cusco. Colonial luxury, modern comfort and an unbeatable location.";
 ---
 
 <BaseLayout  lang={lang} title={title} description={description} ogImage={ogImage}>
-  <Fondos imgFondo={fondoUrl} />
+  <FondosHome />
   <main class="home">
     <FormReserva />
     <HistoricCenter />

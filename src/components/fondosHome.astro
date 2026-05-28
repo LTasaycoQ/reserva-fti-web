@@ -1,0 +1,64 @@
+---
+const imagen = [
+    "https://res.cloudinary.com/dlgeap8h0/image/upload/f_auto/v1780007193/Rest-5_zcmczw.jpg",
+    "https://res.cloudinary.com/dlgeap8h0/image/upload/f_auto/v1780007159/repcion-1_qfcsd0.jpg",
+    "https://res.cloudinary.com/dlgeap8h0/image/upload/f_auto/v1780007210/Suite1_awcn2k.jpg",
+    "https://res.cloudinary.com/dlgeap8h0/image/upload/f_auto/v1780007228/fachada_ngxdsh.jpg",
+    "https://res.cloudinary.com/dlgeap8h0/image/upload/f_auto/v1780007243/Salon-masajes_1_inj2pv.jpg",
+]
+---
+<section class="fondo-animado">
+  {
+    imagen.map((item, index) => (
+      <div class={`container-imagen ${index === 0 ? 'active' : ''}`}>
+        <img class="imagen-hero" src={item} alt={`Slide ${index + 1}`} />
+      </div>
+    ))
+  }
+</section>
+
+<style>
+    .fondo-animado {
+        position: relative;
+        width: 100%;
+        height: 44em;
+        overflow: hidden;
+    }
+    .container-imagen {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        transition: opacity 1s ease-in-out;
+        z-index: 1;
+    }
+    .container-imagen.active {
+        opacity: 1;
+        z-index: 2;
+    }
+    .imagen-hero {
+        width: 100%;
+        height: 100%;
+        object-fit:cover;
+        object-position: start;
+    }
+</style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const slides = document.querySelectorAll('.container-imagen');
+        let currentSlide = 0;
+        const intervalTime = 4000;
+        function nextSlide() {
+            slides[currentSlide].classList.remove('active');
+            
+            currentSlide = (currentSlide + 1) % slides.length;
+            
+            slides[currentSlide].classList.add('active');
+        }
+
+        setInterval(nextSlide, intervalTime);
+    });
+</script>

@@ -1,7 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Rooms from "../components/Inicio/Rooms.astro";
-import Fondos from "../components/fondos.astro";
+import FondosHome from "../components/fondosHome.astro";
 import HistoricCenter from "../components/Inicio/HistoricCenter.astro";
 import AndeandLand from "../components/Inicio/AndeanLand.astro";
 import GuaranteedStay from "../components/Inicio/GuaranteedStay.astro";
@@ -9,7 +9,6 @@ import GuaranteedStay from "../components/Inicio/GuaranteedStay.astro";
 import FormReserva from "../utils/formReserva.astro";
 
 const lang = "es"
-const fondoUrl = "https://res.cloudinary.com/dlgeap8h0/image/upload/f_auto,q_auto/v1779832041/baner-terra_pmgdit.webp";
 
 const ogImage = "https://res.cloudinary.com/dlgeap8h0/image/upload/R6M25442_qbs8cv.webp"
 const title = "Inicio"
@@ -17,9 +16,8 @@ const description = "Disfruta de Terra Andina Colonial Mansion, hotel boutique e
 ---
 
 <BaseLayout lang={lang}  title={title} description={description} ogImage={ogImage}>
-    <Fondos imgFondo={fondoUrl} />
+    <FondosHome />
     <main class="home">
-
         <FormReserva/>
 
         <HistoricCenter />
