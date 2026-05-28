@@ -301,7 +301,6 @@ const getPath = (path: string) => {
 </style>
 
 <script>
-    const setupMenu = () => {
         const openBtn = document.getElementById("open-modal");
         const closeBtn = document.getElementById("close-modal");
         const menu = document.getElementById("menu-responsive");
@@ -321,8 +320,5 @@ const getPath = (path: string) => {
                 closeBtn.classList.add("hidden");
             });
         }
-    };
-
-    setupMenu();
-    document.addEventListener("astro:page-load", setupMenu);
+    
 </script>
