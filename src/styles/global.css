@@ -64,6 +64,11 @@ html{
     fill: transparent;
 }
 
+.header-icon_telephono{
+    position: relative;
+    top: 4px;
+}
+
 .container-styleImagen {
     padding: 10px;
     width: max-content;
