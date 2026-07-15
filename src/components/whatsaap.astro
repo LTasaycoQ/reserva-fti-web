@@ -1,4 +1,22 @@
 ---
+const currentLocale = Astro.currentLocale || 'es';
+
+const translations = {
+  es: {
+    reserva: "!RESERVA AQUÍ!"
+  },
+  en: {
+    reserva: "!BOOK HERE!",
+   
+  }
+};
+
+const t = translations[currentLocale as keyof typeof translations];
+
+const getPath = (path: string) => {
+  if (currentLocale === 'es') return path;
+  return `/en${path}`;
+};
 ---
 <a 
   href="https://wa.link/0x6gpq" 
@@ -12,7 +30,7 @@
   
   <i class="icon-whatsapp bi bi-whatsapp"></i>
   
-  <span class="text-reserva"><i>¡RESERVA AQUÍ!</i></span>
+  <span class="text-reserva"><i>{t.reserva}</i></span>
 </a>
 <style>
   .btn-whatsapp-reserva {
